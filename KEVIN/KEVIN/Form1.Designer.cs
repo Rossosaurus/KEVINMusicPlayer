@@ -64,6 +64,7 @@
             this.btnPlay.TabIndex = 2;
             this.btnPlay.Text = "Play";
             this.btnPlay.UseVisualStyleBackColor = true;
+            this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
             // 
             // btnStop
             // 
@@ -82,6 +83,7 @@
             this.btnOpen.TabIndex = 4;
             this.btnOpen.Text = "Open";
             this.btnOpen.UseVisualStyleBackColor = true;
+            this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click);
             // 
             // btnSkipBackward
             // 
@@ -106,6 +108,7 @@
             this.ofdOpenMusic.DefaultExt = "mp3";
             this.ofdOpenMusic.FileName = "ofdOpenMusic";
             this.ofdOpenMusic.InitialDirectory = "C:\\Users\\Ross\\Music";
+            this.ofdOpenMusic.FileOk += new System.ComponentModel.CancelEventHandler(this.ofdOpenMusic_FileOk);
             // 
             // frmKEVINMain
             // 
