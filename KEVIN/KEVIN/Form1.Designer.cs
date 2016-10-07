@@ -29,12 +29,13 @@
         private void InitializeComponent()
         {
             this.lblSong = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblCurrentlyPlaying = new System.Windows.Forms.Label();
             this.btnPlay = new System.Windows.Forms.Button();
             this.btnStop = new System.Windows.Forms.Button();
             this.btnOpen = new System.Windows.Forms.Button();
             this.btnSkipBackward = new System.Windows.Forms.Button();
             this.btnSkipForward = new System.Windows.Forms.Button();
+            this.ofdOpenMusic = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // lblSong
@@ -46,14 +47,14 @@
             this.lblSong.TabIndex = 0;
             this.lblSong.Text = "Song:";
             // 
-            // label2
+            // lblCurrentlyPlaying
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(53, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(121, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "--------------------------------------";
+            this.lblCurrentlyPlaying.AutoSize = true;
+            this.lblCurrentlyPlaying.Location = new System.Drawing.Point(53, 9);
+            this.lblCurrentlyPlaying.Name = "lblCurrentlyPlaying";
+            this.lblCurrentlyPlaying.Size = new System.Drawing.Size(121, 13);
+            this.lblCurrentlyPlaying.TabIndex = 1;
+            this.lblCurrentlyPlaying.Text = "--------------------------------------";
             // 
             // btnPlay
             // 
@@ -100,6 +101,12 @@
             this.btnSkipForward.Text = ">>";
             this.btnSkipForward.UseVisualStyleBackColor = true;
             // 
+            // ofdOpenMusic
+            // 
+            this.ofdOpenMusic.DefaultExt = "mp3";
+            this.ofdOpenMusic.FileName = "ofdOpenMusic";
+            this.ofdOpenMusic.InitialDirectory = "C:\\Users\\Ross\\Music";
+            // 
             // frmKEVINMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -110,7 +117,7 @@
             this.Controls.Add(this.btnOpen);
             this.Controls.Add(this.btnStop);
             this.Controls.Add(this.btnPlay);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblCurrentlyPlaying);
             this.Controls.Add(this.lblSong);
             this.Name = "frmKEVINMain";
             this.Text = "KEVIN";
@@ -123,12 +130,13 @@
         #endregion
 
         private System.Windows.Forms.Label lblSong;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblCurrentlyPlaying;
         private System.Windows.Forms.Button btnPlay;
         private System.Windows.Forms.Button btnStop;
         private System.Windows.Forms.Button btnOpen;
         private System.Windows.Forms.Button btnSkipBackward;
         private System.Windows.Forms.Button btnSkipForward;
+        private System.Windows.Forms.OpenFileDialog ofdOpenMusic;
     }
 }
 
