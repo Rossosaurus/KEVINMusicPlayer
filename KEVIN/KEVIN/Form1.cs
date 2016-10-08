@@ -12,6 +12,8 @@ namespace KEVIN
 {
     public partial class frmKEVINMain : Form
     {
+        bool playpause = false;
+        bool playing = false;
         MusicPlayer mpPlayer = new MusicPlayer();
         public frmKEVINMain()
         {
@@ -25,11 +27,27 @@ namespace KEVIN
 
         private void btnPlay_Click(object sender, EventArgs e)
         {
-            mpPlayer.Play();
+            if (playpause == false)
+            {
+                return;
+            }
+            if (playing == true)
+            {
+                btnPlay.Text = "Play";
+                mpPlayer.Pause();
+                playing = false;
+            }
+            if (playing == false)
+            {
+                btnPlay.Text = "Pause";
+                mpPlayer.Play();
+                playing = true;
+            }            
         }
 
         private void btnOpen_Click(object sender, EventArgs e)
         {
+            playpause = true;
             ofdOpenMusic.ShowDialog();
         }
 
@@ -38,6 +56,12 @@ namespace KEVIN
             string fileName = System.IO.Path.GetFileName(ofdOpenMusic.FileName);
             lblCurrentlyPlaying.Text = fileName;
             mpPlayer.Open(ofdOpenMusic.FileName);
+        }
+
+        private void btnStop_Click(object sender, EventArgs e)
+        {
+            mpPlayer.Stop();
+            lblCurrentlyPlaying.Text = "-----------------------------------------------";
         }
     }
 }

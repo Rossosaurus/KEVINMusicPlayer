@@ -52,9 +52,9 @@
             this.lblCurrentlyPlaying.AutoSize = true;
             this.lblCurrentlyPlaying.Location = new System.Drawing.Point(53, 9);
             this.lblCurrentlyPlaying.Name = "lblCurrentlyPlaying";
-            this.lblCurrentlyPlaying.Size = new System.Drawing.Size(121, 13);
+            this.lblCurrentlyPlaying.Size = new System.Drawing.Size(148, 13);
             this.lblCurrentlyPlaying.TabIndex = 1;
-            this.lblCurrentlyPlaying.Text = "--------------------------------------";
+            this.lblCurrentlyPlaying.Text = "-----------------------------------------------";
             // 
             // btnPlay
             // 
@@ -74,6 +74,7 @@
             this.btnStop.TabIndex = 3;
             this.btnStop.Text = "Stop";
             this.btnStop.UseVisualStyleBackColor = true;
+            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
             // btnOpen
             // 
