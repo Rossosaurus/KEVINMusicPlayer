@@ -36,12 +36,14 @@ namespace KEVIN
                 btnPlay.Text = "Play";
                 mpPlayer.Pause();
                 playing = false;
+                return;
             }
             if (playing == false)
             {
                 btnPlay.Text = "Pause";
                 mpPlayer.Play();
                 playing = true;
+                return;
             }            
         }
 
@@ -62,6 +64,7 @@ namespace KEVIN
         {
             mpPlayer.Stop();
             lblCurrentlyPlaying.Text = "-----------------------------------------------";
+            btnPlay.Text = "Play";
         }
     }
 }

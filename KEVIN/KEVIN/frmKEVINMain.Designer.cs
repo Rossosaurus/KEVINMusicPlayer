@@ -107,7 +107,6 @@
             // ofdOpenMusic
             // 
             this.ofdOpenMusic.DefaultExt = "mp3";
-            this.ofdOpenMusic.FileName = "ofdOpenMusic";
             this.ofdOpenMusic.InitialDirectory = "C:\\Users\\Ross\\Music";
             this.ofdOpenMusic.FileOk += new System.ComponentModel.CancelEventHandler(this.ofdOpenMusic_FileOk);
             // 
