@@ -22,6 +22,10 @@ namespace KEVIN
 
         private void frmKEVINMain_Load(object sender, EventArgs e)
         {
+            this.BackColor = ColorTranslator.FromHtml("#444444");
+            btnPlay.BackColor = Color.Transparent;
+            btnOpen.BackColor = Color.Transparent;
+            btnPlay.ForeColor = ColorTranslator.FromHtml("#444444");
 
         }
 
@@ -65,6 +69,11 @@ namespace KEVIN
             mpPlayer.Stop();
             lblCurrentlyPlaying.Text = "-----------------------------------------------";
             btnPlay.Text = "Play";
+        }
+
+        private void grpbxPlayerBottom_Enter(object sender, EventArgs e)
+        {
+            grpbxPlayerBottom.BackColor = ColorTranslator.FromHtml("#3c3c3c");
         }
     }
 }

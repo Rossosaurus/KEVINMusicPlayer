@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{45B83DDF-B53E-4A59-865A-B57A2F311E27}</ProjectGuid>
+    <ProjectGuid>{85878CB1-F05D-4ED3-8FFA-835DED805B26}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>KEVIN</RootNamespace>
-    <AssemblyName>KEVIN</AssemblyName>
+    <RootNamespace>KEVINFormAesthetics</RootNamespace>
+    <AssemblyName>KEVINFormAesthetics</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -46,17 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmKEVINMain.cs">
+    <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmKEVINMain.Designer.cs">
-      <DependentUpon>frmKEVINMain.cs</DependentUpon>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="MusicPlayer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmKEVINMain.resx">
-      <DependentUpon>frmKEVINMain.cs</DependentUpon>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -66,7 +65,6 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -80,60 +78,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Icons\Add Music Logo.fw.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Icons\Album Iocn.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Icons\Close.fw.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Icons\Close.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Icons\MainIcon.fw.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Icons\Maximize.fw.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Icons\Mazimize.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Icons\minimize.fw.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Icons\minimize.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Icons\Music Player Logo Reverse.fw.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Icons\Music Player Logo.fw.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Icons\Playlist Logo Colour Reverse.fw.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Icons\Playlist Logo Colour.fw.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Icons\Playlist Logo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Icons\Reverse Album.fw.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Icons\Settings Logo Coloured.fw.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Icons\Settings Logo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Icons\playpausebutton.fw.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
