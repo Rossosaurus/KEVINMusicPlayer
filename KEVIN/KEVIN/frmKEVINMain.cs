@@ -53,27 +53,34 @@ namespace KEVIN
 
         private void btnOpen_Click(object sender, EventArgs e)
         {
+            mpPlayer.Stop();
             playpause = true;
             ofdOpenMusic.ShowDialog();
         }
 
         private void ofdOpenMusic_FileOk(object sender, CancelEventArgs e)
         {
-            string fileName = System.IO.Path.GetFileName(ofdOpenMusic.FileName);
-            lblCurrentlyPlaying.Text = fileName;
+            string fileName = System.IO.Path.GetFileNameWithoutExtension(ofdOpenMusic.FileName);
+            this.Text = fileName + " - KEVIN";
             mpPlayer.Open(ofdOpenMusic.FileName);
         }
 
         private void btnStop_Click(object sender, EventArgs e)
         {
             mpPlayer.Stop();
-            lblCurrentlyPlaying.Text = "-----------------------------------------------";
+            this.Text = "KEVIN MP";
             btnPlay.Text = "Play";
+            playpause = false;
         }
 
-        private void grpbxPlayerBottom_Enter(object sender, EventArgs e)
+        private void tlpKEVINMain_Paint(object sender, PaintEventArgs e)
         {
-            grpbxPlayerBottom.BackColor = ColorTranslator.FromHtml("#3c3c3c");
+
+        }
+
+        private void tableLayoutPanel4_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

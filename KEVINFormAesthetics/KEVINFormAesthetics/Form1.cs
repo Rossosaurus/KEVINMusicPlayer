@@ -40,5 +40,10 @@ namespace KEVINFormAesthetics
         {
             button1.BackgroundImage = Image.FromFile(@"C:\Users\Ross\Google Drive\School\A Level\Computing\Coursework\Resources\Icons\");
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

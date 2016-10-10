@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
+using KEVIN.Properties;
 
 namespace KEVIN
 {
@@ -22,8 +23,6 @@ namespace KEVIN
         {
             string command = "play CurrentlyPlaying";
             mciSendString(command, null, 0, 0);
-
-
         }
 
         public void Pause()
