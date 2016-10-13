@@ -134,6 +134,36 @@
   <ItemGroup>
     <None Include="Resources\Icons\playpausebutton.fw.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\Pause.fw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\Play.fw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\repeat.fw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\shuffle.fw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\SkipBkrwd.fw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\SkipFwrd.fw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Backing.fw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player Bar.fw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Top Menu.fw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\MainIcon.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

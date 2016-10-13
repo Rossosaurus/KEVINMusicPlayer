@@ -23,10 +23,12 @@ namespace KEVIN
         private void frmKEVINMain_Load(object sender, EventArgs e)
         {
             this.BackColor = ColorTranslator.FromHtml("#444444");
-            btnPlay.BackColor = Color.Transparent;
+            btnPlay.BackColor = ColorTranslator.FromHtml("#3c3c3c");
+            btnPlay.ForeColor = ColorTranslator.FromHtml("#3c3c3c");
+            btnPlay.UseVisualStyleBackColor = false;
             btnOpen.BackColor = Color.Transparent;
-            btnPlay.ForeColor = ColorTranslator.FromHtml("#444444");
-
+            btnSkipBackward.BackColor = ColorTranslator.FromHtml("#3c3c3c");
+            btnSkipForward.BackColor = ColorTranslator.FromHtml("#3c3c3c");
         }
 
         private void btnPlay_Click(object sender, EventArgs e)
@@ -37,14 +39,14 @@ namespace KEVIN
             }
             if (playing == true)
             {
-                btnPlay.Text = "Play";
+                btnPlay.BackgroundImage = KEVIN.Properties.Resources.Pause_fw;
                 mpPlayer.Pause();
                 playing = false;
                 return;
             }
             if (playing == false)
             {
-                btnPlay.Text = "Pause";
+                btnPlay.BackgroundImage = KEVIN.Properties.Resources.Play_fw;
                 mpPlayer.Play();
                 playing = true;
                 return;
@@ -69,7 +71,7 @@ namespace KEVIN
         {
             mpPlayer.Stop();
             this.Text = "KEVIN MP";
-            btnPlay.Text = "Play";
+            btnPlay.BackgroundImage = KEVIN.Properties.Resources.Pause_fw;
             playpause = false;
         }
 
@@ -78,7 +80,22 @@ namespace KEVIN
 
         }
 
-        private void tableLayoutPanel4_Paint(object sender, PaintEventArgs e)
+        private void tlpPlayerBottom_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pbAlbumCover_Click(object sender, EventArgs e)
+        {
+            pbAlbumCover.BackColor = ColorTranslator.FromHtml("#444444");
+        }
+
+        private void btnSkipForward_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblCurrentlyPlaying_Click(object sender, EventArgs e)
         {
 
         }

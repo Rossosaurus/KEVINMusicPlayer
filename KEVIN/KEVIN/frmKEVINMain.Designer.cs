@@ -37,10 +37,22 @@
             this.ofdOpenMusic = new System.Windows.Forms.OpenFileDialog();
             this.tlpKEVINMain = new System.Windows.Forms.TableLayoutPanel();
             this.tlpPlayerTopMenu = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnAlbum = new System.Windows.Forms.Button();
+            this.btnPlaylists = new System.Windows.Forms.Button();
+            this.btnSettings = new System.Windows.Forms.Button();
+            this.btnPlayer = new System.Windows.Forms.Button();
+            this.btnAddMusic = new System.Windows.Forms.Button();
+            this.tlpMain = new System.Windows.Forms.TableLayoutPanel();
             this.tlpPlayerBottom = new System.Windows.Forms.TableLayoutPanel();
+            this.pbAlbumCover = new System.Windows.Forms.PictureBox();
+            this.btnRepeat = new System.Windows.Forms.Button();
+            this.btnShuffle = new System.Windows.Forms.Button();
+            this.lblCurrentlyPlaying = new System.Windows.Forms.Label();
             this.tlpKEVINMain.SuspendLayout();
+            this.tlpPlayerTopMenu.SuspendLayout();
+            this.tlpMain.SuspendLayout();
             this.tlpPlayerBottom.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbAlbumCover)).BeginInit();
             this.SuspendLayout();
             // 
             // btnPlay
@@ -49,19 +61,22 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPlay.BackColor = System.Drawing.Color.Transparent;
+            this.btnPlay.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPlay.BackgroundImage")));
             this.btnPlay.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnPlay.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnPlay.Location = new System.Drawing.Point(208, 3);
+            this.btnPlay.FlatAppearance.BorderSize = 0;
+            this.btnPlay.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnPlay.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnPlay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPlay.Location = new System.Drawing.Point(616, 3);
             this.btnPlay.Name = "btnPlay";
-            this.btnPlay.Size = new System.Drawing.Size(63, 40);
+            this.btnPlay.Size = new System.Drawing.Size(39, 40);
             this.btnPlay.TabIndex = 2;
-            this.btnPlay.Text = "Play";
             this.btnPlay.UseVisualStyleBackColor = false;
             this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
             // 
             // btnStop
             // 
-            this.btnStop.Location = new System.Drawing.Point(350, 3);
+            this.btnStop.Location = new System.Drawing.Point(3, 51);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(50, 40);
             this.btnStop.TabIndex = 3;
@@ -71,9 +86,9 @@
             // 
             // btnOpen
             // 
-            this.btnOpen.Location = new System.Drawing.Point(277, 3);
+            this.btnOpen.Location = new System.Drawing.Point(3, 3);
             this.btnOpen.Name = "btnOpen";
-            this.btnOpen.Size = new System.Drawing.Size(67, 40);
+            this.btnOpen.Size = new System.Drawing.Size(39, 40);
             this.btnOpen.TabIndex = 4;
             this.btnOpen.Text = "Open";
             this.btnOpen.UseVisualStyleBackColor = true;
@@ -81,21 +96,42 @@
             // 
             // btnSkipBackward
             // 
-            this.btnSkipBackward.Location = new System.Drawing.Point(406, 3);
+            this.btnSkipBackward.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSkipBackward.BackColor = System.Drawing.Color.Transparent;
+            this.btnSkipBackward.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSkipBackward.BackgroundImage")));
+            this.btnSkipBackward.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSkipBackward.FlatAppearance.BorderSize = 0;
+            this.btnSkipBackward.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnSkipBackward.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnSkipBackward.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSkipBackward.Location = new System.Drawing.Point(593, 2);
+            this.btnSkipBackward.Margin = new System.Windows.Forms.Padding(2);
             this.btnSkipBackward.Name = "btnSkipBackward";
-            this.btnSkipBackward.Size = new System.Drawing.Size(31, 40);
+            this.btnSkipBackward.Size = new System.Drawing.Size(18, 42);
             this.btnSkipBackward.TabIndex = 5;
-            this.btnSkipBackward.Text = "<<";
-            this.btnSkipBackward.UseVisualStyleBackColor = true;
+            this.btnSkipBackward.UseVisualStyleBackColor = false;
             // 
             // btnSkipForward
             // 
-            this.btnSkipForward.Location = new System.Drawing.Point(468, 3);
+            this.btnSkipForward.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSkipForward.BackColor = System.Drawing.Color.Transparent;
+            this.btnSkipForward.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSkipForward.BackgroundImage")));
+            this.btnSkipForward.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSkipForward.FlatAppearance.BorderSize = 0;
+            this.btnSkipForward.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnSkipForward.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnSkipForward.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSkipForward.Location = new System.Drawing.Point(660, 2);
+            this.btnSkipForward.Margin = new System.Windows.Forms.Padding(2);
             this.btnSkipForward.Name = "btnSkipForward";
-            this.btnSkipForward.Size = new System.Drawing.Size(31, 40);
+            this.btnSkipForward.Size = new System.Drawing.Size(18, 42);
             this.btnSkipForward.TabIndex = 6;
-            this.btnSkipForward.Text = ">>";
-            this.btnSkipForward.UseVisualStyleBackColor = true;
+            this.btnSkipForward.UseVisualStyleBackColor = false;
+            this.btnSkipForward.Click += new System.EventHandler(this.btnSkipForward_Click);
             // 
             // ofdOpenMusic
             // 
@@ -111,7 +147,7 @@
             this.tlpKEVINMain.ColumnCount = 1;
             this.tlpKEVINMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpKEVINMain.Controls.Add(this.tlpPlayerTopMenu, 0, 0);
-            this.tlpKEVINMain.Controls.Add(this.tableLayoutPanel3, 0, 1);
+            this.tlpKEVINMain.Controls.Add(this.tlpMain, 0, 1);
             this.tlpKEVINMain.Controls.Add(this.tlpPlayerBottom, 0, 2);
             this.tlpKEVINMain.Location = new System.Drawing.Point(-2, -1);
             this.tlpKEVINMain.Name = "tlpKEVINMain";
@@ -129,32 +165,137 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tlpPlayerTopMenu.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tlpPlayerTopMenu.BackgroundImage")));
-            this.tlpPlayerTopMenu.ColumnCount = 2;
-            this.tlpPlayerTopMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpPlayerTopMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 690F));
+            this.tlpPlayerTopMenu.ColumnCount = 8;
+            this.tlpPlayerTopMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tlpPlayerTopMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4.740475F));
+            this.tlpPlayerTopMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4.740475F));
+            this.tlpPlayerTopMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4.740475F));
+            this.tlpPlayerTopMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 76.29764F));
+            this.tlpPlayerTopMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4.740475F));
+            this.tlpPlayerTopMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4.740475F));
+            this.tlpPlayerTopMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tlpPlayerTopMenu.Controls.Add(this.btnAlbum, 1, 0);
+            this.tlpPlayerTopMenu.Controls.Add(this.btnPlaylists, 3, 0);
+            this.tlpPlayerTopMenu.Controls.Add(this.btnSettings, 6, 0);
+            this.tlpPlayerTopMenu.Controls.Add(this.btnPlayer, 2, 0);
+            this.tlpPlayerTopMenu.Controls.Add(this.btnAddMusic, 5, 0);
             this.tlpPlayerTopMenu.Location = new System.Drawing.Point(3, 3);
             this.tlpPlayerTopMenu.Name = "tlpPlayerTopMenu";
+            this.tlpPlayerTopMenu.Padding = new System.Windows.Forms.Padding(3);
             this.tlpPlayerTopMenu.RowCount = 1;
-            this.tlpPlayerTopMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpPlayerTopMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpPlayerTopMenu.Size = new System.Drawing.Size(738, 35);
             this.tlpPlayerTopMenu.TabIndex = 0;
             // 
-            // tableLayoutPanel3
+            // btnAlbum
             // 
-            this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.btnAlbum.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tableLayoutPanel3.BackgroundImage")));
-            this.tableLayoutPanel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.tableLayoutPanel3.ColumnCount = 1;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(14, 44);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(14, 3, 14, 0);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 1;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(716, 423);
-            this.tableLayoutPanel3.TabIndex = 1;
+            this.btnAlbum.BackColor = System.Drawing.Color.Transparent;
+            this.btnAlbum.BackgroundImage = global::KEVIN.Properties.Resources.Album_Iocn;
+            this.btnAlbum.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnAlbum.FlatAppearance.BorderSize = 0;
+            this.btnAlbum.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnAlbum.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAlbum.Location = new System.Drawing.Point(13, 3);
+            this.btnAlbum.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAlbum.Name = "btnAlbum";
+            this.btnAlbum.Size = new System.Drawing.Size(33, 29);
+            this.btnAlbum.TabIndex = 0;
+            this.btnAlbum.UseVisualStyleBackColor = false;
+            // 
+            // btnPlaylists
+            // 
+            this.btnPlaylists.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPlaylists.BackColor = System.Drawing.Color.Transparent;
+            this.btnPlaylists.BackgroundImage = global::KEVIN.Properties.Resources.Playlist_Logo_Colour_fw;
+            this.btnPlaylists.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnPlaylists.FlatAppearance.BorderSize = 0;
+            this.btnPlaylists.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnPlaylists.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPlaylists.Location = new System.Drawing.Point(79, 3);
+            this.btnPlaylists.Margin = new System.Windows.Forms.Padding(0);
+            this.btnPlaylists.Name = "btnPlaylists";
+            this.btnPlaylists.Size = new System.Drawing.Size(33, 29);
+            this.btnPlaylists.TabIndex = 2;
+            this.btnPlaylists.UseVisualStyleBackColor = false;
+            // 
+            // btnSettings
+            // 
+            this.btnSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSettings.BackColor = System.Drawing.Color.Transparent;
+            this.btnSettings.BackgroundImage = global::KEVIN.Properties.Resources.Settings_Logo_Coloured_fw;
+            this.btnSettings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSettings.FlatAppearance.BorderSize = 0;
+            this.btnSettings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSettings.Location = new System.Drawing.Point(688, 3);
+            this.btnSettings.Margin = new System.Windows.Forms.Padding(0);
+            this.btnSettings.Name = "btnSettings";
+            this.btnSettings.Size = new System.Drawing.Size(33, 29);
+            this.btnSettings.TabIndex = 4;
+            this.btnSettings.UseVisualStyleBackColor = false;
+            // 
+            // btnPlayer
+            // 
+            this.btnPlayer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPlayer.BackColor = System.Drawing.Color.Transparent;
+            this.btnPlayer.BackgroundImage = global::KEVIN.Properties.Resources.Music_Player_Logo_fw;
+            this.btnPlayer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnPlayer.FlatAppearance.BorderSize = 0;
+            this.btnPlayer.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnPlayer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPlayer.Location = new System.Drawing.Point(46, 3);
+            this.btnPlayer.Margin = new System.Windows.Forms.Padding(0);
+            this.btnPlayer.Name = "btnPlayer";
+            this.btnPlayer.Size = new System.Drawing.Size(33, 29);
+            this.btnPlayer.TabIndex = 3;
+            this.btnPlayer.UseVisualStyleBackColor = false;
+            // 
+            // btnAddMusic
+            // 
+            this.btnAddMusic.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddMusic.BackColor = System.Drawing.Color.Transparent;
+            this.btnAddMusic.BackgroundImage = global::KEVIN.Properties.Resources.Add_Music_Logo_fw;
+            this.btnAddMusic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnAddMusic.FlatAppearance.BorderSize = 0;
+            this.btnAddMusic.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnAddMusic.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddMusic.Location = new System.Drawing.Point(655, 3);
+            this.btnAddMusic.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAddMusic.Name = "btnAddMusic";
+            this.btnAddMusic.Size = new System.Drawing.Size(33, 29);
+            this.btnAddMusic.TabIndex = 1;
+            this.btnAddMusic.UseVisualStyleBackColor = false;
+            // 
+            // tlpMain
+            // 
+            this.tlpMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tlpMain.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tlpMain.BackgroundImage")));
+            this.tlpMain.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.tlpMain.ColumnCount = 1;
+            this.tlpMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpMain.Controls.Add(this.btnOpen, 0, 0);
+            this.tlpMain.Controls.Add(this.btnStop, 0, 1);
+            this.tlpMain.Location = new System.Drawing.Point(14, 44);
+            this.tlpMain.Margin = new System.Windows.Forms.Padding(14, 3, 14, 0);
+            this.tlpMain.Name = "tlpMain";
+            this.tlpMain.RowCount = 2;
+            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 375F));
+            this.tlpMain.Size = new System.Drawing.Size(716, 423);
+            this.tlpMain.TabIndex = 1;
             // 
             // tlpPlayerBottom
             // 
@@ -162,31 +303,100 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tlpPlayerBottom.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tlpPlayerBottom.BackgroundImage")));
-            this.tlpPlayerBottom.ColumnCount = 7;
-            this.tlpPlayerBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.36585F));
-            this.tlpPlayerBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 74.63415F));
-            this.tlpPlayerBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 69F));
-            this.tlpPlayerBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 73F));
-            this.tlpPlayerBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 56F));
-            this.tlpPlayerBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 62F));
-            this.tlpPlayerBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 272F));
-            this.tlpPlayerBottom.Controls.Add(this.btnPlay, 2, 0);
-            this.tlpPlayerBottom.Controls.Add(this.btnOpen, 3, 0);
-            this.tlpPlayerBottom.Controls.Add(this.btnStop, 4, 0);
-            this.tlpPlayerBottom.Controls.Add(this.btnSkipBackward, 5, 0);
-            this.tlpPlayerBottom.Controls.Add(this.btnSkipForward, 6, 0);
+            this.tlpPlayerBottom.ColumnCount = 8;
+            this.tlpPlayerBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 6.23F));
+            this.tlpPlayerBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68.81999F));
+            this.tlpPlayerBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 6.23F));
+            this.tlpPlayerBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3.13F));
+            this.tlpPlayerBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 6.23F));
+            this.tlpPlayerBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3.13F));
+            this.tlpPlayerBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 6.23F));
+            this.tlpPlayerBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tlpPlayerBottom.Controls.Add(this.pbAlbumCover, 0, 0);
+            this.tlpPlayerBottom.Controls.Add(this.btnPlay, 4, 0);
+            this.tlpPlayerBottom.Controls.Add(this.btnSkipForward, 5, 0);
+            this.tlpPlayerBottom.Controls.Add(this.btnSkipBackward, 3, 0);
+            this.tlpPlayerBottom.Controls.Add(this.btnRepeat, 2, 0);
+            this.tlpPlayerBottom.Controls.Add(this.btnShuffle, 6, 0);
+            this.tlpPlayerBottom.Controls.Add(this.lblCurrentlyPlaying, 1, 0);
             this.tlpPlayerBottom.Location = new System.Drawing.Point(3, 467);
             this.tlpPlayerBottom.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.tlpPlayerBottom.Name = "tlpPlayerBottom";
             this.tlpPlayerBottom.RowCount = 1;
-            this.tlpPlayerBottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 42.85714F));
+            this.tlpPlayerBottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpPlayerBottom.Size = new System.Drawing.Size(738, 46);
             this.tlpPlayerBottom.TabIndex = 2;
-            this.tlpPlayerBottom.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel4_Paint);
+            this.tlpPlayerBottom.Paint += new System.Windows.Forms.PaintEventHandler(this.tlpPlayerBottom_Paint);
+            // 
+            // pbAlbumCover
+            // 
+            this.pbAlbumCover.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbAlbumCover.Location = new System.Drawing.Point(0, 0);
+            this.pbAlbumCover.Margin = new System.Windows.Forms.Padding(0);
+            this.pbAlbumCover.Name = "pbAlbumCover";
+            this.pbAlbumCover.Size = new System.Drawing.Size(45, 46);
+            this.pbAlbumCover.TabIndex = 7;
+            this.pbAlbumCover.TabStop = false;
+            this.pbAlbumCover.Click += new System.EventHandler(this.pbAlbumCover_Click);
+            // 
+            // btnRepeat
+            // 
+            this.btnRepeat.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRepeat.BackColor = System.Drawing.Color.Transparent;
+            this.btnRepeat.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRepeat.BackgroundImage")));
+            this.btnRepeat.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnRepeat.FlatAppearance.BorderSize = 0;
+            this.btnRepeat.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnRepeat.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnRepeat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRepeat.Location = new System.Drawing.Point(548, 2);
+            this.btnRepeat.Margin = new System.Windows.Forms.Padding(2);
+            this.btnRepeat.Name = "btnRepeat";
+            this.btnRepeat.Size = new System.Drawing.Size(41, 42);
+            this.btnRepeat.TabIndex = 8;
+            this.btnRepeat.UseVisualStyleBackColor = false;
+            // 
+            // btnShuffle
+            // 
+            this.btnShuffle.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnShuffle.BackColor = System.Drawing.Color.Transparent;
+            this.btnShuffle.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnShuffle.BackgroundImage")));
+            this.btnShuffle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnShuffle.FlatAppearance.BorderSize = 0;
+            this.btnShuffle.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnShuffle.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnShuffle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnShuffle.Location = new System.Drawing.Point(683, 3);
+            this.btnShuffle.Name = "btnShuffle";
+            this.btnShuffle.Size = new System.Drawing.Size(39, 40);
+            this.btnShuffle.TabIndex = 9;
+            this.btnShuffle.UseVisualStyleBackColor = false;
+            // 
+            // lblCurrentlyPlaying
+            // 
+            this.lblCurrentlyPlaying.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCurrentlyPlaying.AutoSize = true;
+            this.lblCurrentlyPlaying.BackColor = System.Drawing.Color.Transparent;
+            this.lblCurrentlyPlaying.Font = new System.Drawing.Font("Trebuchet MS", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentlyPlaying.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblCurrentlyPlaying.Location = new System.Drawing.Point(48, 0);
+            this.lblCurrentlyPlaying.Name = "lblCurrentlyPlaying";
+            this.lblCurrentlyPlaying.Size = new System.Drawing.Size(495, 46);
+            this.lblCurrentlyPlaying.TabIndex = 10;
+            this.lblCurrentlyPlaying.Click += new System.EventHandler(this.lblCurrentlyPlaying_Click);
             // 
             // frmKEVINMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(740, 514);
             this.Controls.Add(this.tlpKEVINMain);
@@ -196,7 +406,11 @@
             this.Text = "KEVIN MP";
             this.Load += new System.EventHandler(this.frmKEVINMain_Load);
             this.tlpKEVINMain.ResumeLayout(false);
+            this.tlpPlayerTopMenu.ResumeLayout(false);
+            this.tlpMain.ResumeLayout(false);
             this.tlpPlayerBottom.ResumeLayout(false);
+            this.tlpPlayerBottom.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbAlbumCover)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -210,8 +424,17 @@
         private System.Windows.Forms.Button btnPlay;
         private System.Windows.Forms.TableLayoutPanel tlpKEVINMain;
         private System.Windows.Forms.TableLayoutPanel tlpPlayerTopMenu;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.TableLayoutPanel tlpMain;
         private System.Windows.Forms.TableLayoutPanel tlpPlayerBottom;
+        private System.Windows.Forms.PictureBox pbAlbumCover;
+        private System.Windows.Forms.Button btnRepeat;
+        private System.Windows.Forms.Button btnShuffle;
+        private System.Windows.Forms.Label lblCurrentlyPlaying;
+        private System.Windows.Forms.Button btnAlbum;
+        private System.Windows.Forms.Button btnAddMusic;
+        private System.Windows.Forms.Button btnPlaylists;
+        private System.Windows.Forms.Button btnPlayer;
+        private System.Windows.Forms.Button btnSettings;
     }
 }
 
