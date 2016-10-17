@@ -29,6 +29,7 @@ namespace KEVIN
             btnOpen.BackColor = Color.Transparent;
             btnSkipBackward.BackColor = ColorTranslator.FromHtml("#3c3c3c");
             btnSkipForward.BackColor = ColorTranslator.FromHtml("#3c3c3c");
+            lblCurrentlyPlaying.ForeColor = ColorTranslator.FromHtml("#646464");
         }
 
         private void btnPlay_Click(object sender, EventArgs e)
@@ -64,6 +65,7 @@ namespace KEVIN
         {
             string fileName = System.IO.Path.GetFileNameWithoutExtension(ofdOpenMusic.FileName);
             this.Text = fileName + " - KEVIN";
+            lblCurrentlyPlaying.Text = fileName;
             mpPlayer.Open(ofdOpenMusic.FileName);
         }
 
@@ -98,6 +100,18 @@ namespace KEVIN
         private void lblCurrentlyPlaying_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnSettings_Click(object sender, EventArgs e)
+        {
+            frmKEVINSettings Settings = new frmKEVINSettings();
+            Settings.Show();
+        }
+
+        private void btnAddMusic_Click(object sender, EventArgs e)
+        {
+            frmKEVINAddMusic addMusic = new frmKEVINAddMusic();
+            addMusic.Show();
         }
     }
 }

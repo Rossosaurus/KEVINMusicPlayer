@@ -196,6 +196,7 @@
             this.btnAlbum.BackgroundImage = global::KEVIN.Properties.Resources.Album_Iocn;
             this.btnAlbum.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnAlbum.FlatAppearance.BorderSize = 0;
+            this.btnAlbum.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnAlbum.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnAlbum.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAlbum.Location = new System.Drawing.Point(13, 3);
@@ -214,6 +215,7 @@
             this.btnPlaylists.BackgroundImage = global::KEVIN.Properties.Resources.Playlist_Logo_Colour_fw;
             this.btnPlaylists.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnPlaylists.FlatAppearance.BorderSize = 0;
+            this.btnPlaylists.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnPlaylists.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnPlaylists.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPlaylists.Location = new System.Drawing.Point(79, 3);
@@ -232,6 +234,7 @@
             this.btnSettings.BackgroundImage = global::KEVIN.Properties.Resources.Settings_Logo_Coloured_fw;
             this.btnSettings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnSettings.FlatAppearance.BorderSize = 0;
+            this.btnSettings.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnSettings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSettings.Location = new System.Drawing.Point(688, 3);
@@ -240,6 +243,7 @@
             this.btnSettings.Size = new System.Drawing.Size(33, 29);
             this.btnSettings.TabIndex = 4;
             this.btnSettings.UseVisualStyleBackColor = false;
+            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
             // 
             // btnPlayer
             // 
@@ -250,6 +254,7 @@
             this.btnPlayer.BackgroundImage = global::KEVIN.Properties.Resources.Music_Player_Logo_fw;
             this.btnPlayer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnPlayer.FlatAppearance.BorderSize = 0;
+            this.btnPlayer.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnPlayer.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnPlayer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPlayer.Location = new System.Drawing.Point(46, 3);
@@ -268,6 +273,7 @@
             this.btnAddMusic.BackgroundImage = global::KEVIN.Properties.Resources.Add_Music_Logo_fw;
             this.btnAddMusic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnAddMusic.FlatAppearance.BorderSize = 0;
+            this.btnAddMusic.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnAddMusic.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnAddMusic.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddMusic.Location = new System.Drawing.Point(655, 3);
@@ -276,6 +282,7 @@
             this.btnAddMusic.Size = new System.Drawing.Size(33, 29);
             this.btnAddMusic.TabIndex = 1;
             this.btnAddMusic.UseVisualStyleBackColor = false;
+            this.btnAddMusic.Click += new System.EventHandler(this.btnAddMusic_Click);
             // 
             // tlpMain
             // 

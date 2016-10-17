@@ -46,17 +46,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmKEVINAddMusic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmKEVINAddMusic.Designer.cs">
+      <DependentUpon>frmKEVINAddMusic.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmKEVINMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmKEVINMain.Designer.cs">
       <DependentUpon>frmKEVINMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmKEVINSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmKEVINSettings.Designer.cs">
+      <DependentUpon>frmKEVINSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="MusicPlayer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmKEVINAddMusic.resx">
+      <DependentUpon>frmKEVINAddMusic.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmKEVINMain.resx">
       <DependentUpon>frmKEVINMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmKEVINSettings.resx">
+      <DependentUpon>frmKEVINSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -163,6 +181,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Icons\MainIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rounded Button.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\General Button%28Not Selected%29.fw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\General Button.fw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\Player Button%28Not Selected%29.fw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\Player Button.fw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\Skins Button%28Not Selected%29.fw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\Skins Button..fw.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
