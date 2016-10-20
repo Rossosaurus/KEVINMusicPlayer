@@ -118,85 +118,91 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="MainIcon_fw" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\MainIcon.fw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="shuffle_fw" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\shuffle.fw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Play_fw" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\Play.fw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Playlist_Logo_Colour_fw" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\Playlist Logo Colour.fw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="SkipFwrd_fw" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\SkipFwrd.fw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Reverse_Album_fw" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\Reverse Album.fw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="repeat_fw" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\repeat.fw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="SkipBkrwd_fw" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\SkipBkrwd.fw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Playlist_Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\Playlist Logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Music_Player_Logo_Reverse_fw" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\Music Player Logo Reverse.fw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="minimize" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\minimize.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="MainIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\MainIcon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Music_Player_Logo_fw" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\Music Player Logo.fw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Close" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\Close.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Add_Music_Logo_fw" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\Add Music Logo.fw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="General Button(Not Selected).fw" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\General Button(Not Selected).fw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Settings_Logo_Coloured_fw" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\Settings Logo Coloured.fw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Mazimize" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\Mazimize.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Album_Iocn" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\Album Iocn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Pause_fw" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\Pause.fw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Music_Player_Logo_Reverse_fw" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\Music Player Logo Reverse.fw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Settings_Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\Settings Logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Playlist_Logo_Colour_Reverse_fw" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\Playlist Logo Colour Reverse.fw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="General Button(Not Selected).fw" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\General Button(Not Selected).fw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="General Button.fw" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\General Button.fw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Player Button(Not Selected).fw" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\Player Button(Not Selected).fw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Player Button.fw" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\Player Button.fw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="MainIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\MainIcon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Skins Button(Not Selected).fw" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\Skins Button(Not Selected).fw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="repeat_fw" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\repeat.fw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Album_Iocn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\Album Iocn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SkipFwrd_fw" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\SkipFwrd.fw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Player Button.fw" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\Player Button.fw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Reverse Album.fw - Copy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\Reverse Album.fw - Copy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="General Button.fw" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\General Button.fw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="minimize" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\minimize.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Playlist_Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\Playlist Logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Play_fw" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\Play.fw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Skins Button..fw" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\Skins Button..fw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Playlist_Logo_Colour_fw" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\Playlist Logo Colour.fw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Close" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\Close.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Playlist_Logo_Colour_Reverse_fw" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\Playlist Logo Colour Reverse.fw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Music_Player_Logo_fw" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\Music Player Logo.fw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MainIcon_fw" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\MainIcon.fw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Add_Music_Logo_fw" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\Add Music Logo.fw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Reverse_Album_fw" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\Reverse Album.fw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SkipBkrwd_fw" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\SkipBkrwd.fw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="shuffle_fw" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\shuffle.fw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pause_fw" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\Pause.fw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Player Button(Not Selected).fw" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\Player Button(Not Selected).fw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Mazimize" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\Mazimize.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Album Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\Album Icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

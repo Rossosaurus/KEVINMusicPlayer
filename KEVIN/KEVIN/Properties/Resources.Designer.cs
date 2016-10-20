@@ -73,6 +73,16 @@ namespace KEVIN.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Album_Icon {
+            get {
+                object obj = ResourceManager.GetObject("Album Icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Album_Iocn {
             get {
                 object obj = ResourceManager.GetObject("Album_Iocn", resourceCulture);
@@ -256,6 +266,16 @@ namespace KEVIN.Properties {
         internal static System.Drawing.Bitmap Reverse_Album_fw {
             get {
                 object obj = ResourceManager.GetObject("Reverse_Album_fw", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Reverse_Album_fw___Copy {
+            get {
+                object obj = ResourceManager.GetObject("Reverse Album.fw - Copy", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

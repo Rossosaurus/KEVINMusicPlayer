@@ -43,6 +43,7 @@
             this.btnPlayer = new System.Windows.Forms.Button();
             this.btnAddMusic = new System.Windows.Forms.Button();
             this.tlpMain = new System.Windows.Forms.TableLayoutPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.tlpPlayerBottom = new System.Windows.Forms.TableLayoutPanel();
             this.pbAlbumCover = new System.Windows.Forms.PictureBox();
             this.btnRepeat = new System.Windows.Forms.Button();
@@ -76,9 +77,9 @@
             // 
             // btnStop
             // 
-            this.btnStop.Location = new System.Drawing.Point(3, 51);
+            this.btnStop.Location = new System.Drawing.Point(3, 31);
             this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(50, 40);
+            this.btnStop.Size = new System.Drawing.Size(50, 24);
             this.btnStop.TabIndex = 3;
             this.btnStop.Text = "Stop";
             this.btnStop.UseVisualStyleBackColor = true;
@@ -88,7 +89,7 @@
             // 
             this.btnOpen.Location = new System.Drawing.Point(3, 3);
             this.btnOpen.Name = "btnOpen";
-            this.btnOpen.Size = new System.Drawing.Size(39, 40);
+            this.btnOpen.Size = new System.Drawing.Size(50, 22);
             this.btnOpen.TabIndex = 4;
             this.btnOpen.Text = "Open";
             this.btnOpen.UseVisualStyleBackColor = true;
@@ -193,7 +194,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAlbum.BackColor = System.Drawing.Color.Transparent;
-            this.btnAlbum.BackgroundImage = global::KEVIN.Properties.Resources.Album_Iocn;
+            this.btnAlbum.BackgroundImage = global::KEVIN.Properties.Resources.Album_Icon;
             this.btnAlbum.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnAlbum.FlatAppearance.BorderSize = 0;
             this.btnAlbum.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
@@ -205,6 +206,7 @@
             this.btnAlbum.Size = new System.Drawing.Size(33, 29);
             this.btnAlbum.TabIndex = 0;
             this.btnAlbum.UseVisualStyleBackColor = false;
+            this.btnAlbum.Click += new System.EventHandler(this.btnAlbum_Click);
             // 
             // btnPlaylists
             // 
@@ -295,14 +297,25 @@
             this.tlpMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpMain.Controls.Add(this.btnOpen, 0, 0);
             this.tlpMain.Controls.Add(this.btnStop, 0, 1);
+            this.tlpMain.Controls.Add(this.panel1, 0, 2);
             this.tlpMain.Location = new System.Drawing.Point(14, 44);
             this.tlpMain.Margin = new System.Windows.Forms.Padding(14, 3, 14, 0);
             this.tlpMain.Name = "tlpMain";
-            this.tlpMain.RowCount = 2;
+            this.tlpMain.RowCount = 3;
             this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 375F));
+            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 365F));
             this.tlpMain.Size = new System.Drawing.Size(716, 423);
             this.tlpMain.TabIndex = 1;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(3, 61);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(710, 359);
+            this.panel1.TabIndex = 5;
             // 
             // tlpPlayerBottom
             // 
@@ -442,6 +455,7 @@
         private System.Windows.Forms.Button btnPlaylists;
         private System.Windows.Forms.Button btnPlayer;
         private System.Windows.Forms.Button btnSettings;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

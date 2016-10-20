@@ -33,6 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DB.cs" />
     <Compile Include="frmKEVINAddMusic.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -186,22 +188,10 @@
     <None Include="Resources\Rounded Button.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Icons\General Button%28Not Selected%29.fw.png" />
+    <None Include="Resources\Icons\Reverse Album.fw - Copy.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Icons\General Button.fw.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Icons\Player Button%28Not Selected%29.fw.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Icons\Player Button.fw.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Icons\Skins Button%28Not Selected%29.fw.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Icons\Skins Button..fw.png" />
+    <None Include="Resources\Icons\Album Icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
