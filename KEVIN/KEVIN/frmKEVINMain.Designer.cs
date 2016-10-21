@@ -44,6 +44,12 @@
             this.btnAddMusic = new System.Windows.Forms.Button();
             this.tlpMain = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.chSongID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chSongName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chAlbum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chArtist = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chSongLocation = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tlpPlayerBottom = new System.Windows.Forms.TableLayoutPanel();
             this.pbAlbumCover = new System.Windows.Forms.PictureBox();
             this.btnRepeat = new System.Windows.Forms.Button();
@@ -52,6 +58,7 @@
             this.tlpKEVINMain.SuspendLayout();
             this.tlpPlayerTopMenu.SuspendLayout();
             this.tlpMain.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.tlpPlayerBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbAlbumCover)).BeginInit();
             this.SuspendLayout();
@@ -77,7 +84,7 @@
             // 
             // btnStop
             // 
-            this.btnStop.Location = new System.Drawing.Point(3, 31);
+            this.btnStop.Location = new System.Drawing.Point(59, 3);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(50, 24);
             this.btnStop.TabIndex = 3;
@@ -295,27 +302,43 @@
             this.tlpMain.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.tlpMain.ColumnCount = 1;
             this.tlpMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpMain.Controls.Add(this.btnOpen, 0, 0);
-            this.tlpMain.Controls.Add(this.btnStop, 0, 1);
-            this.tlpMain.Controls.Add(this.panel1, 0, 2);
+            this.tlpMain.Controls.Add(this.panel1, 0, 0);
+            this.tlpMain.Controls.Add(this.listView1, 0, 1);
             this.tlpMain.Location = new System.Drawing.Point(14, 44);
             this.tlpMain.Margin = new System.Windows.Forms.Padding(14, 3, 14, 0);
             this.tlpMain.Name = "tlpMain";
-            this.tlpMain.RowCount = 3;
+            this.tlpMain.RowCount = 2;
             this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 365F));
+            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 399F));
             this.tlpMain.Size = new System.Drawing.Size(716, 423);
             this.tlpMain.TabIndex = 1;
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.Controls.Add(this.btnStop);
+            this.panel1.Controls.Add(this.btnOpen);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 61);
+            this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(710, 359);
+            this.panel1.Size = new System.Drawing.Size(710, 18);
             this.panel1.TabIndex = 5;
+            // 
+            // listView1
+            // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.chSongID,
+            this.chSongName,
+            this.chAlbum,
+            this.chArtist,
+            this.chSongLocation});
+            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listView1.Location = new System.Drawing.Point(3, 27);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(710, 393);
+            this.listView1.TabIndex = 6;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.List;
             // 
             // tlpPlayerBottom
             // 
@@ -428,6 +451,7 @@
             this.tlpKEVINMain.ResumeLayout(false);
             this.tlpPlayerTopMenu.ResumeLayout(false);
             this.tlpMain.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.tlpPlayerBottom.ResumeLayout(false);
             this.tlpPlayerBottom.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbAlbumCover)).EndInit();
@@ -456,6 +480,12 @@
         private System.Windows.Forms.Button btnPlayer;
         private System.Windows.Forms.Button btnSettings;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader chSongID;
+        private System.Windows.Forms.ColumnHeader chSongName;
+        private System.Windows.Forms.ColumnHeader chAlbum;
+        private System.Windows.Forms.ColumnHeader chArtist;
+        private System.Windows.Forms.ColumnHeader chSongLocation;
     }
 }
 

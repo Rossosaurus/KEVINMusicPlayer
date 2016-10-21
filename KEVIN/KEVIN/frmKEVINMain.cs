@@ -18,7 +18,7 @@ namespace KEVIN
         bool playpause = false;
         bool playing = false;
         MusicPlayer mpPlayer = new MusicPlayer();
-        //DB DB = new DB();
+        DB DB = new DB();
         public frmKEVINMain()
         {
             InitializeComponent();
@@ -36,8 +36,8 @@ namespace KEVIN
             btnSkipBackward.BackColor = ColorTranslator.FromHtml("#3c3c3c");
             btnSkipForward.BackColor = ColorTranslator.FromHtml("#3c3c3c");
             lblCurrentlyPlaying.ForeColor = ColorTranslator.FromHtml("#646464");
-            /*DB.KEVINDBOnLoad();
-            this.Text = "KEVIN MP - DB Connected";*/
+            DB.KEVINDBOnLoad();
+            this.Text = "KEVIN MP - DB Connected";
         }
 
         private void btnOpen_Click(object sender, EventArgs e)
@@ -49,10 +49,13 @@ namespace KEVIN
 
         private void ofdOpenMusic_FileOk(object sender, CancelEventArgs e)
         {
-            string fileName = System.IO.Path.GetFileNameWithoutExtension(ofdOpenMusic.FileName);
+            /*string fileName = System.IO.Path.GetFileNameWithoutExtension(ofdOpenMusic.FileName);
             this.Text = fileName + " - KEVIN";
             lblCurrentlyPlaying.Text = fileName;
-            mpPlayer.Open(ofdOpenMusic.FileName);
+            mpPlayer.Open(ofdOpenMusic.FileName);*/
+            string a, b, c, d, f;
+            a = "1"; b = "Never Gonna Give You Up"; c = "[Singles]"; d = "Rick Astley"; f = "A Location";
+            DB.appendSongInformation(a, b, c, d, f);
         }
 
         private void btnPlay_Click(object sender, EventArgs e)
