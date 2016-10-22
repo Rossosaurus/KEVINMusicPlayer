@@ -10,7 +10,7 @@ namespace KEVIN
     class DB
     {
         MySqlConnection connect = new MySqlConnection();
-        MySqlCommand CheckAndCeateMusic = new MySqlCommand("CREATE TABLE IF NOT EXISTS Music (SongID INT(255) UNSIGNED AUTO_INCREMENT PRIMARY KEY, SongName VARCHAR(100), Artists VARCHAR(100), Album VARCHAR(100), SongLocation VARCHAR(1000))");
+        MySqlCommand CheckAndCeateMusic = new MySqlCommand("CREATE TABLE IF NOT EXISTS Music (SongID INT(255) UNSIGNED AUTO_INCREMENT PRIMARY KEY, TrackNo INT(255), SongName VARCHAR(100), Artist VARCHAR(100), Album VARCHAR(100), SongLocation VARCHAR(1000))");
         public void KEVINDBOnLoad()
         {
             connect.ConnectionString = "server=localhost; port=3306; userid=KEVIN; password=; database=kevin;";
@@ -19,9 +19,9 @@ namespace KEVIN
             CheckAndCeateMusic.ExecuteNonQuery();
         }
         
-        public void appendSongInformation(string SongID,string SongName, string Album, string Artist, string SongLocation)
+        public void appendSongInformation(string TrackID, string Song_Name, string Album, string Artist, string SongLocation)
         {
-            MySqlCommand append = new MySqlCommand("INSERT INTO music (SongName, Album, Artist, SongLocation)  VALUES (" + SongName + "," + Album + "," + Artist + "," + SongLocation + ")");
+            MySqlCommand append = new MySqlCommand("INSERT INTO music (TrackNo, SongName, Album, Artist, SongLocation)  VALUES (\"" + TrackID + "\", \"" + Song_Name + "\", \"" + Album + "\", \"" + Artist + "\", \"" + SongLocation + "\")");
             append.Connection = connect;
             append.ExecuteNonQuery();
         }

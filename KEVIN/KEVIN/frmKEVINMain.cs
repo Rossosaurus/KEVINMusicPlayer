@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using TagLib;
 
 namespace KEVIN
 {
@@ -37,7 +38,6 @@ namespace KEVIN
             btnSkipForward.BackColor = ColorTranslator.FromHtml("#3c3c3c");
             lblCurrentlyPlaying.ForeColor = ColorTranslator.FromHtml("#646464");
             DB.KEVINDBOnLoad();
-            this.Text = "KEVIN MP - DB Connected";
         }
 
         private void btnOpen_Click(object sender, EventArgs e)
@@ -49,13 +49,22 @@ namespace KEVIN
 
         private void ofdOpenMusic_FileOk(object sender, CancelEventArgs e)
         {
-            /*string fileName = System.IO.Path.GetFileNameWithoutExtension(ofdOpenMusic.FileName);
+            //Choose and Load Song
+            string fileName = System.IO.Path.GetFileNameWithoutExtension(ofdOpenMusic.FileName);
             this.Text = fileName + " - KEVIN";
             lblCurrentlyPlaying.Text = fileName;
-            mpPlayer.Open(ofdOpenMusic.FileName);*/
-            string a, b, c, d, f;
-            a = "1"; b = "Never Gonna Give You Up"; c = "[Singles]"; d = "Rick Astley"; f = "A Location";
-            DB.appendSongInformation(a, b, c, d, f);
+            mpPlayer.Open(ofdOpenMusic.FileName);
+            TagLib.File file = TagLib.File.Create(@ofdOpenMusic.FileName);
+            //Read file data
+            uint TrackID = file.Tag.Track;
+            string TrackIDstr = TrackID.ToString();
+            string SongName = file.Tag.Title;
+            string Artist = string.Join(",", file.Tag.AlbumArtists);
+            string Album = file.Tag.Album;
+            string Location = ofdOpenMusic.FileName;           
+            string sqlLocation = Location.Replace("\\", "\\\"");
+            //Addpend to DB
+            DB.appendSongInformation(TrackIDstr, SongName, Album, Artist, sqlLocation);
         }
 
         private void btnPlay_Click(object sender, EventArgs e)
