@@ -33,10 +33,11 @@ namespace KEVIN
             //Variables declared on launch
             int x = 1;
             MySqlCommand selectTrackNo = new MySqlCommand("SELECT TrackNo FROM Music");
-            MySqlCommand selectSongName = new MySqlCommand("SELECT SongName FROM Music WHERE TrackNo=" + x);
-            MySqlCommand selectAlbum = new MySqlCommand("SELECT Album FROM Music WHERE TrackNo=" + x);
-            MySqlCommand selectArtist = new MySqlCommand("SELECT Artist FROM Music WHERE TrackNo=" + x);
-
+            MySqlCommand selectSongName = new MySqlCommand("SELECT SongName FROM Music");
+            MySqlCommand selectSongLength = new MySqlCommand("SELECT SongLength FROM Music");
+            MySqlCommand selectAlbum = new MySqlCommand("SELECT Album FROM Music");
+            MySqlCommand selectArtist = new MySqlCommand("SELECT Artist FROM Music");
+            MySqlCommand selectGenre = new MySqlCommand("SELECT Genre FROM Music");
 
             //Set colours via hex codes
             this.BackColor = ColorTranslator.FromHtml("#444444");
@@ -47,6 +48,12 @@ namespace KEVIN
             btnSkipBackward.BackColor = ColorTranslator.FromHtml("#3c3c3c");
             btnSkipForward.BackColor = ColorTranslator.FromHtml("#3c3c3c");
             lblCurrentlyPlaying.ForeColor = ColorTranslator.FromHtml("#646464");
+            lblAlbum.ForeColor= ColorTranslator.FromHtml("#3c3c3c");
+            lblArtist.ForeColor = ColorTranslator.FromHtml("#3c3c3c");
+            lblGenre.ForeColor = ColorTranslator.FromHtml("#3c3c3c");
+            lblSong.ForeColor = ColorTranslator.FromHtml("#3c3c3c");
+            lblSongLength.ForeColor = ColorTranslator.FromHtml("#3c3c3c");
+            lblTrackNo.ForeColor = ColorTranslator.FromHtml("#3c3c3c");
             tlpPlayerBottom.BackColor = ColorTranslator.FromHtml("#3c3c3c");
             pbAlbumCover.BackColor = ColorTranslator.FromHtml("#444444");
 
@@ -58,10 +65,19 @@ namespace KEVIN
             MySqlDataReader trackNoReader = selectTrackNo.ExecuteReader();
             while (trackNoReader.Read())
             {
-                flpTrackNo.Controls.Add(new Label
+                flpTrackNo.Controls.Add(new Button
                 {
-                    Name = "TrackNo" + x,
-                    Text = trackNoReader[0] as string
+                    Name = "lblTrackNo" + x,
+                    Text = trackNoReader[0] as string,
+                    BackColor = Color.Transparent,
+                    FlatStyle = FlatStyle.Flat,
+                    AutoSize = false,
+                    Dock = DockStyle.Top,
+                    Width = flpArtist.Width,
+                    ForeColor = ColorTranslator.FromHtml("#3c3c3c"),
+                    Font = new Font("Trebuchet MS", 9),
+                    Enabled = true,
+                    TextAlign = ContentAlignment.MiddleLeft,
                 });
                 x++;
             }
@@ -72,17 +88,116 @@ namespace KEVIN
             MySqlDataReader songNameReader = selectSongName.ExecuteReader();
             while (songNameReader.Read())
             {
-                flpSong.Controls.Add(new Label
+                flpSong.Controls.Add(new Button
                 {
-                    Name = "Song" + x,
-                    Text = songNameReader[0] as string
+                    Name = "lblSong" + x,
+                    Text = songNameReader[0] as string,
+                    BackColor = Color.Transparent,
+                    FlatStyle = FlatStyle.Flat,
+                    AutoSize = false,
+                    Dock = DockStyle.Top,
+                    Width = flpArtist.Width,
+                    ForeColor = ColorTranslator.FromHtml("#3c3c3c"),
+                    Font = new Font("Trebuchet MS", 9),
+                    Enabled = true,
+                    TextAlign = ContentAlignment.MiddleLeft,
                 });
                 x++;
             }
             x = 1;
             selectSongName.Connection.Close();
             DB.KEVINDBOnLoad();
-
+            selectSongLength.Connection = DB.connect;
+            MySqlDataReader songLengthReader = selectSongLength.ExecuteReader();
+            while (songLengthReader.Read())
+            {
+                string y = songLengthReader[0] as string;
+                y = y.Remove(0, 3);
+                y = y.Remove(5, 8);
+                flpSongLength.Controls.Add(new Button
+                {
+                    Name = "lblSongLength" + x,
+                    Text = y,
+                    BackColor = Color.Transparent,
+                    FlatStyle = FlatStyle.Flat,
+                    AutoSize = false,
+                    Dock = DockStyle.Top,
+                    Width = flpArtist.Width,
+                    ForeColor = ColorTranslator.FromHtml("#3c3c3c"),
+                    Font = new Font("Trebuchet MS", 9),
+                    Enabled = true,
+                    TextAlign = ContentAlignment.MiddleLeft,
+                });
+            }
+            x = 1;
+            selectSongLength.Connection.Close();
+            DB.KEVINDBOnLoad();
+            selectAlbum.Connection = DB.connect;
+            MySqlDataReader albumReader = selectAlbum.ExecuteReader();
+            while (albumReader.Read())
+            {
+                flpAlbum.Controls.Add(new Button
+                {
+                    Name = "lblAlbum" + x,
+                    Text = albumReader[0] as string,
+                    BackColor = Color.Transparent,
+                    FlatStyle = FlatStyle.Flat,
+                    AutoSize = false,
+                    Dock = DockStyle.Top,
+                    Width = flpArtist.Width,
+                    ForeColor = ColorTranslator.FromHtml("#3c3c3c"),
+                    Font = new Font("Trebuchet MS", 9),
+                    Enabled = true,
+                    TextAlign = ContentAlignment.MiddleLeft,
+                });
+            }
+            x = 1;
+            selectAlbum.Connection.Close();
+            DB.KEVINDBOnLoad();
+            selectArtist.Connection = DB.connect;
+            MySqlDataReader artistReader = selectArtist.ExecuteReader();
+            while (artistReader.Read())
+            {
+                flpArtist.Controls.Add(new Button
+                {
+                    Name = "lblArtist" + x,
+                    Text = artistReader[0] as string,
+                    BackColor = Color.Transparent,
+                    FlatStyle = FlatStyle.Flat,
+                    AutoSize = false,
+                    Dock = DockStyle.Top,
+                    Width = flpArtist.Width,
+                    ForeColor = ColorTranslator.FromHtml("#3c3c3c"),
+                    Font = new Font("Trebuchet MS", 9),
+                    Enabled = true,
+                    TextAlign = ContentAlignment.MiddleLeft,
+                });
+            }
+            x = 1;
+            selectArtist.Connection.Close();
+            DB.KEVINDBOnLoad();
+            selectGenre.Connection = DB.connect;
+            MySqlDataReader genreReader = selectGenre.ExecuteReader();
+            while (genreReader.Read())
+            {
+                flpGenre.Controls.Add(new Button
+                {
+                    Name = "lblGenre" + x,
+                    Text = genreReader[0] as string,
+                    BackColor = Color.Transparent,
+                    FlatStyle = FlatStyle.Flat,
+                    AutoSize = false,
+                    Dock = DockStyle.Top,
+                    Width = flpArtist.Width,
+                    ForeColor = ColorTranslator.FromHtml("#3c3c3c"),
+                    Font = new Font("Trebuchet MS", 9),
+                    Enabled = true,
+                    TextAlign = ContentAlignment.MiddleLeft,
+                });
+            }
+            selectArtist.Connection.Close();
+            DB.KEVINDBOnLoad();
+            
         }
         private void btnOpen_Click(object sender, EventArgs e)
         {
@@ -106,16 +221,27 @@ namespace KEVIN
             string Genre = file.Tag.FirstGenre;
             string Location = ofdOpenMusic.FileName;
             string sqlLocation = Location.Replace("\\", "\\\"");
+
             //Add song
             this.Text = SongName + " - KEVIN";
             lblCurrentlyPlaying.Text = fileName;
             mpPlayer.Open(ofdOpenMusic.FileName);
-            MemoryStream ms = new MemoryStream(file.Tag.Pictures[0].Data.Data);
-            System.Drawing.Image image = System.Drawing.Image.FromStream(ms);
-            pbAlbumCover.BackgroundImage = image;
-            
+            MemoryStream ms;
+            try
+            {
+                ms = new MemoryStream(file.Tag.Pictures[0].Data.Data);
+                System.Drawing.Image image = System.Drawing.Image.FromStream(ms);
+                pbAlbumCover.BackgroundImage = image;
+            }
+            catch
+            {
+                
+            }
+                        
             //Addpend to DB
             DB.appendSongInformation(TrackIDstr, SongName, strSongLength, Album, Artist, Genre, sqlLocation);
+            DB.connect.Close();
+            Application.Restart();
         }
 
         private void btnPlay_Click(object sender, EventArgs e)
@@ -201,6 +327,11 @@ namespace KEVIN
         }
 
         private void lblTrackNo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void flpSong_Paint(object sender, PaintEventArgs e)
         {
 
         }

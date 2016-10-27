@@ -25,8 +25,7 @@ namespace KEVIN
         
         public void appendSongInformation(string TrackID, string Song_Name, string SongLength, string Album, string Artist, string Genre, string SongLocation)
         {
-            MySqlCommand append = new MySqlCommand("INSERT INTO music (TrackNo, SongName, SongLength, Album, Artist, Genre, SongLocation)  VALUES (\"" + TrackID + "\", \"" + Song_Name + "\", \"" + SongLength + "\", \"" + Album + "\", \"" + Artist + "\", \"" + Genre + "\", \"" + SongLocation + "\")");
-            append.Connection = connect;
+            MySqlCommand append = new MySqlCommand("INSERT INTO music (TrackNo, SongName, SongLength, Album, Artist, Genre, SongLocation)  VALUES (\"" + TrackID + "\", \"" + Song_Name + "\", \"" + SongLength + "\", \"" + Album + "\", \"" + Artist + "\", \"" + Genre + "\", \"" + SongLocation + "\")", connect);
             append.ExecuteNonQuery();
         }
         public void countRecords()
