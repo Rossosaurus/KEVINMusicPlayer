@@ -75,7 +75,7 @@ namespace KEVIN.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap Album_Icon {
             get {
-                object obj = ResourceManager.GetObject("Album Icon", resourceCulture);
+                object obj = ResourceManager.GetObject("Album_Icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace KEVIN.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Album_Iocn {
+        internal static System.Drawing.Bitmap Album2_fw {
             get {
-                object obj = ResourceManager.GetObject("Album_Iocn", resourceCulture);
+                object obj = ResourceManager.GetObject("Album2_fw", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -105,7 +105,7 @@ namespace KEVIN.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap General_Button_fw {
             get {
-                object obj = ResourceManager.GetObject("General Button.fw", resourceCulture);
+                object obj = ResourceManager.GetObject("General_Button_fw", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -115,7 +115,7 @@ namespace KEVIN.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap General_Button_Not_Selected__fw {
             get {
-                object obj = ResourceManager.GetObject("General Button(Not Selected).fw", resourceCulture);
+                object obj = ResourceManager.GetObject("General_Button_Not_Selected__fw", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -193,6 +193,16 @@ namespace KEVIN.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap PauseHover {
+            get {
+                object obj = ResourceManager.GetObject("PauseHover", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Play_fw {
             get {
                 object obj = ResourceManager.GetObject("Play_fw", resourceCulture);
@@ -205,7 +215,7 @@ namespace KEVIN.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap Player_Button_fw {
             get {
-                object obj = ResourceManager.GetObject("Player Button.fw", resourceCulture);
+                object obj = ResourceManager.GetObject("Player_Button_fw", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -215,7 +225,7 @@ namespace KEVIN.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap Player_Button_Not_Selected__fw {
             get {
-                object obj = ResourceManager.GetObject("Player Button(Not Selected).fw", resourceCulture);
+                object obj = ResourceManager.GetObject("Player_Button_Not_Selected__fw", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -223,9 +233,19 @@ namespace KEVIN.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Playlist_Logo {
+        internal static System.Drawing.Bitmap Player2_fw {
             get {
-                object obj = ResourceManager.GetObject("Playlist_Logo", resourceCulture);
+                object obj = ResourceManager.GetObject("Player2_fw", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PlayHover {
+            get {
+                object obj = ResourceManager.GetObject("PlayHover", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -253,6 +273,26 @@ namespace KEVIN.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Playlist_Logo_Colour_Reverse_fw1 {
+            get {
+                object obj = ResourceManager.GetObject("Playlist_Logo_Colour_Reverse_fw1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Playlist2_fw {
+            get {
+                object obj = ResourceManager.GetObject("Playlist2_fw", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap repeat_fw {
             get {
                 object obj = ResourceManager.GetObject("repeat_fw", resourceCulture);
@@ -263,9 +303,9 @@ namespace KEVIN.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Reverse_Album_fw {
+        internal static System.Drawing.Bitmap repeatHover {
             get {
-                object obj = ResourceManager.GetObject("Reverse_Album_fw", resourceCulture);
+                object obj = ResourceManager.GetObject("repeatHover", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -275,17 +315,7 @@ namespace KEVIN.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap Reverse_Album_fw___Copy {
             get {
-                object obj = ResourceManager.GetObject("Reverse Album.fw - Copy", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Settings_Logo {
-            get {
-                object obj = ResourceManager.GetObject("Settings_Logo", resourceCulture);
+                object obj = ResourceManager.GetObject("Reverse_Album_fw___Copy", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -313,9 +343,19 @@ namespace KEVIN.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap shuffleHover {
+            get {
+                object obj = ResourceManager.GetObject("shuffleHover", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Skins_Button__fw {
             get {
-                object obj = ResourceManager.GetObject("Skins Button..fw", resourceCulture);
+                object obj = ResourceManager.GetObject("Skins_Button__fw", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -325,7 +365,7 @@ namespace KEVIN.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap Skins_Button_Not_Selected__fw {
             get {
-                object obj = ResourceManager.GetObject("Skins Button(Not Selected).fw", resourceCulture);
+                object obj = ResourceManager.GetObject("Skins_Button_Not_Selected__fw", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -343,9 +383,29 @@ namespace KEVIN.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap SkipBkrwdHover {
+            get {
+                object obj = ResourceManager.GetObject("SkipBkrwdHover", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap SkipFwrd_fw {
             get {
                 object obj = ResourceManager.GetObject("SkipFwrd_fw", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SkipFwrdHover {
+            get {
+                object obj = ResourceManager.GetObject("SkipFwrdHover", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

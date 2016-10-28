@@ -83,13 +83,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Compile Include="Properties\Resources.Designer.cs">
+    <Compile Include="Properties\Resources1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -195,6 +194,51 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Icons\Album Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\General Button%28Not Selected%29.fw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\General Button.fw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\PauseHover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\Player Button%28Not Selected%29.fw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\Player Button.fw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\PlayHover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\Skins Button..fw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\SkipBkrwdHover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\SkipFwrdHover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\repeatHover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\shuffleHover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\Skins Button%28Not Selected%29.fw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\Player2.fw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\Playlist2.fw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\Album2.fw.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

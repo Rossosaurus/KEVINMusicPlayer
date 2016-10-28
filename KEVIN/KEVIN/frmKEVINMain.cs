@@ -26,6 +26,10 @@ namespace KEVIN
             InitializeComponent();
             btnAlbum.MouseEnter += new EventHandler(btnAlbum_MouseEnter);
             btnAlbum.MouseLeave += new EventHandler(btnAlbum_MouseLeave);
+            btnPlayer.MouseEnter += new EventHandler(btnPlayer_MouseEnter);
+            btnPlayer.MouseLeave += new EventHandler(btnPlayer_MouseLeave);
+            btnPlaylists.MouseEnter += new EventHandler(btnPlaylists_MouseEnter);
+            btnPlaylists.MouseLeave += new EventHandler(btnPlaylists_MouseLeave);
         }
 
         private void frmKEVINMain_Load(object sender, EventArgs e)
@@ -47,13 +51,13 @@ namespace KEVIN
             btnOpen.BackColor = Color.Transparent;
             btnSkipBackward.BackColor = ColorTranslator.FromHtml("#3c3c3c");
             btnSkipForward.BackColor = ColorTranslator.FromHtml("#3c3c3c");
-            lblCurrentlyPlaying.ForeColor = ColorTranslator.FromHtml("#646464");
-            lblAlbum.ForeColor= ColorTranslator.FromHtml("#3c3c3c");
-            lblArtist.ForeColor = ColorTranslator.FromHtml("#3c3c3c");
-            lblGenre.ForeColor = ColorTranslator.FromHtml("#3c3c3c");
-            lblSong.ForeColor = ColorTranslator.FromHtml("#3c3c3c");
-            lblSongLength.ForeColor = ColorTranslator.FromHtml("#3c3c3c");
-            lblTrackNo.ForeColor = ColorTranslator.FromHtml("#3c3c3c");
+            this.lblCurrentlyPlaying.ForeColor = ColorTranslator.FromHtml("#444444");
+            this.lblAlbum.ForeColor= ColorTranslator.FromHtml("#444444");
+            this.lblArtist.ForeColor = ColorTranslator.FromHtml("#444444");
+            this.lblGenre.ForeColor = ColorTranslator.FromHtml("#444444");
+            this.lblSong.ForeColor = ColorTranslator.FromHtml("#444444");
+            this.lblSongLength.ForeColor = ColorTranslator.FromHtml("#444444");
+            this.lblTrackNo.ForeColor = ColorTranslator.FromHtml("#444444");
             tlpPlayerBottom.BackColor = ColorTranslator.FromHtml("#3c3c3c");
             pbAlbumCover.BackColor = ColorTranslator.FromHtml("#444444");
 
@@ -65,19 +69,23 @@ namespace KEVIN
             MySqlDataReader trackNoReader = selectTrackNo.ExecuteReader();
             while (trackNoReader.Read())
             {
-                flpTrackNo.Controls.Add(new Button
+                flpTrackNo.Controls.Add(new Button()
                 {
-                    Name = "lblTrackNo" + x,
+                    Name = "btnTrackNo" + x,
                     Text = trackNoReader[0] as string,
                     BackColor = Color.Transparent,
                     FlatStyle = FlatStyle.Flat,
                     AutoSize = false,
                     Dock = DockStyle.Top,
                     Width = flpArtist.Width,
-                    ForeColor = ColorTranslator.FromHtml("#3c3c3c"),
+                    ForeColor = ColorTranslator.FromHtml("#444444"),
                     Font = new Font("Trebuchet MS", 9),
                     Enabled = true,
                     TextAlign = ContentAlignment.MiddleLeft,
+                    FlatAppearance =
+                    {
+                        BorderSize = 0
+                    }
                 });
                 x++;
             }
@@ -90,17 +98,21 @@ namespace KEVIN
             {
                 flpSong.Controls.Add(new Button
                 {
-                    Name = "lblSong" + x,
+                    Name = "btnSong" + x,
                     Text = songNameReader[0] as string,
                     BackColor = Color.Transparent,
                     FlatStyle = FlatStyle.Flat,
                     AutoSize = false,
                     Dock = DockStyle.Top,
                     Width = flpArtist.Width,
-                    ForeColor = ColorTranslator.FromHtml("#3c3c3c"),
+                    ForeColor = ColorTranslator.FromHtml("#444444"),
                     Font = new Font("Trebuchet MS", 9),
                     Enabled = true,
                     TextAlign = ContentAlignment.MiddleLeft,
+                    FlatAppearance =
+                    {
+                        BorderSize = 0
+                    }
                 });
                 x++;
             }
@@ -116,17 +128,21 @@ namespace KEVIN
                 y = y.Remove(5, 8);
                 flpSongLength.Controls.Add(new Button
                 {
-                    Name = "lblSongLength" + x,
+                    Name = "btnSongLength" + x,
                     Text = y,
                     BackColor = Color.Transparent,
                     FlatStyle = FlatStyle.Flat,
                     AutoSize = false,
                     Dock = DockStyle.Top,
                     Width = flpArtist.Width,
-                    ForeColor = ColorTranslator.FromHtml("#3c3c3c"),
+                    ForeColor = ColorTranslator.FromHtml("#444444"),
                     Font = new Font("Trebuchet MS", 9),
                     Enabled = true,
                     TextAlign = ContentAlignment.MiddleLeft,
+                    FlatAppearance =
+                    {
+                        BorderSize = 0
+                    }
                 });
             }
             x = 1;
@@ -145,10 +161,14 @@ namespace KEVIN
                     AutoSize = false,
                     Dock = DockStyle.Top,
                     Width = flpArtist.Width,
-                    ForeColor = ColorTranslator.FromHtml("#3c3c3c"),
+                    ForeColor = ColorTranslator.FromHtml("#444444"),
                     Font = new Font("Trebuchet MS", 9),
                     Enabled = true,
                     TextAlign = ContentAlignment.MiddleLeft,
+                    FlatAppearance =
+                    {
+                        BorderSize = 0
+                    }
                 });
             }
             x = 1;
@@ -160,17 +180,21 @@ namespace KEVIN
             {
                 flpArtist.Controls.Add(new Button
                 {
-                    Name = "lblArtist" + x,
+                    Name = "btnArtist" + x,
                     Text = artistReader[0] as string,
                     BackColor = Color.Transparent,
                     FlatStyle = FlatStyle.Flat,
                     AutoSize = false,
                     Dock = DockStyle.Top,
                     Width = flpArtist.Width,
-                    ForeColor = ColorTranslator.FromHtml("#3c3c3c"),
+                    ForeColor = ColorTranslator.FromHtml("#444444"),
                     Font = new Font("Trebuchet MS", 9),
                     Enabled = true,
                     TextAlign = ContentAlignment.MiddleLeft,
+                    FlatAppearance =
+                    {
+                        BorderSize = 0
+                    }
                 });
             }
             x = 1;
@@ -182,17 +206,20 @@ namespace KEVIN
             {
                 flpGenre.Controls.Add(new Button
                 {
-                    Name = "lblGenre" + x,
+                    Name = "btnGenre" + x,
                     Text = genreReader[0] as string,
-                    BackColor = Color.Transparent,
                     FlatStyle = FlatStyle.Flat,
                     AutoSize = false,
                     Dock = DockStyle.Top,
                     Width = flpArtist.Width,
-                    ForeColor = ColorTranslator.FromHtml("#3c3c3c"),
+                    ForeColor = ColorTranslator.FromHtml("#444444"),
                     Font = new Font("Trebuchet MS", 9),
                     Enabled = true,
                     TextAlign = ContentAlignment.MiddleLeft,
+                    FlatAppearance =
+                    {
+                        BorderSize = 0
+                    }
                 });
             }
             selectArtist.Connection.Close();
@@ -286,12 +313,42 @@ namespace KEVIN
 
         private void btnAlbum_MouseEnter(object sender, EventArgs e)
         {
-            btnAlbum.BackgroundImage = KEVIN.Properties.Resources.Reverse_Album_fw___Copy;
+            btnAlbum.BackgroundImage = KEVIN.Properties.Resources.Album2_fw;
         }
 
         private void btnAlbum_MouseLeave(object sender, EventArgs e)
         {
-            btnAlbum.BackgroundImage = KEVIN.Properties.Resources.Album_Iocn;
+            btnAlbum.BackgroundImage = KEVIN.Properties.Resources.Album_Icon;
+        }
+
+        private void btnPlayer_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnPlayer_MouseEnter(object sender, EventArgs e)
+        {
+            btnPlayer.BackgroundImage = KEVIN.Properties.Resources.Player2_fw;
+        }
+
+        private void btnPlayer_MouseLeave(object sender, EventArgs e)
+        {
+            btnPlayer.BackgroundImage = KEVIN.Properties.Resources.Music_Player_Logo_fw;
+        }
+
+        private void btnPlaylists_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnPlaylists_MouseEnter(object sender, EventArgs e)
+        {
+            btnPlaylists.BackgroundImage = KEVIN.Properties.Resources.Playlist2_fw;
+        }
+
+        private void btnPlaylists_MouseLeave(object sender, EventArgs e)
+        {
+            btnPlaylists.BackgroundImage = KEVIN.Properties.Resources.Playlist_Logo_Colour_fw;
         }
 
         private void btnSettings_Click(object sender, EventArgs e)
@@ -335,5 +392,7 @@ namespace KEVIN
         {
 
         }
+
+        
     }
 }
