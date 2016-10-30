@@ -21,6 +21,33 @@ namespace KEVIN
         bool playing = false;
         MusicPlayer mpPlayer = new MusicPlayer();
         DB DB = new DB();
+        string path;
+
+        public void mpPlay(int x)
+        {
+            DB.connect.Close();
+            DB.KEVINDBOnLoad();
+            //MySqlCommand selectSongID = new MySqlCommand("SELECT SongID FROM Music WHERE ")
+            MySqlCommand selectPath = new MySqlCommand("SELECT SongLocation FROM Music WHERE SongID= " + x);
+            selectPath.Connection = DB.connect;
+            MySqlDataReader readerPath = selectPath.ExecuteReader();
+            while (readerPath.Read())
+            {
+                path = readerPath[0] as string;
+                path = path.Replace("\"", "\\");
+            }
+            mpPlayer.Open(path);
+            mpPlayer.Play();
+            DB.connect.Close();
+            DB.KEVINDBOnLoad();
+        }
+
+        public Button AttachMethodToButton(Button b, Action buttonMethod)
+        {
+            b.Click += (s, e) => buttonMethod();
+            return b;
+        }
+
         public frmKEVINMain()
         {
             InitializeComponent();
@@ -69,7 +96,7 @@ namespace KEVIN
             MySqlDataReader trackNoReader = selectTrackNo.ExecuteReader();
             while (trackNoReader.Read())
             {
-                flpTrackNo.Controls.Add(new Button()
+                flpTrackNo.Controls.Add(AttachMethodToButton(new Button()
                 {
                     Name = "btnTrackNo" + x,
                     Text = trackNoReader[0] as string,
@@ -85,8 +112,8 @@ namespace KEVIN
                     FlatAppearance =
                     {
                         BorderSize = 0
-                    }
-                });
+                    },
+                }, mpPlay(x)));
                 x++;
             }
             x = 1;
@@ -96,7 +123,7 @@ namespace KEVIN
             MySqlDataReader songNameReader = selectSongName.ExecuteReader();
             while (songNameReader.Read())
             {
-                flpSong.Controls.Add(new Button
+                flpTrackNo.Controls.Add(AttachMethodToButton(new Button()
                 {
                     Name = "btnSong" + x,
                     Text = songNameReader[0] as string,
@@ -113,7 +140,7 @@ namespace KEVIN
                     {
                         BorderSize = 0
                     }
-                });
+                },mpPlay(x)));
                 x++;
             }
             x = 1;
@@ -126,7 +153,7 @@ namespace KEVIN
                 string y = songLengthReader[0] as string;
                 y = y.Remove(0, 3);
                 y = y.Remove(5, 8);
-                flpSongLength.Controls.Add(new Button
+                flpTrackNo.Controls.Add(AttachMethodToButton(new Button()
                 {
                     Name = "btnSongLength" + x,
                     Text = y,
@@ -143,7 +170,7 @@ namespace KEVIN
                     {
                         BorderSize = 0
                     }
-                });
+                }, mpPlay(x)));
             }
             x = 1;
             selectSongLength.Connection.Close();
@@ -152,7 +179,7 @@ namespace KEVIN
             MySqlDataReader albumReader = selectAlbum.ExecuteReader();
             while (albumReader.Read())
             {
-                flpAlbum.Controls.Add(new Button
+                flpTrackNo.Controls.Add(AttachMethodToButton(new Button()
                 {
                     Name = "lblAlbum" + x,
                     Text = albumReader[0] as string,
@@ -169,7 +196,7 @@ namespace KEVIN
                     {
                         BorderSize = 0
                     }
-                });
+                }, mpPlay(x)));
             }
             x = 1;
             selectAlbum.Connection.Close();
@@ -178,7 +205,7 @@ namespace KEVIN
             MySqlDataReader artistReader = selectArtist.ExecuteReader();
             while (artistReader.Read())
             {
-                flpArtist.Controls.Add(new Button
+                flpTrackNo.Controls.Add(AttachMethodToButton(new Button()
                 {
                     Name = "btnArtist" + x,
                     Text = artistReader[0] as string,
@@ -195,7 +222,7 @@ namespace KEVIN
                     {
                         BorderSize = 0
                     }
-                });
+                }, mpPlay(x)));
             }
             x = 1;
             selectArtist.Connection.Close();
@@ -204,7 +231,7 @@ namespace KEVIN
             MySqlDataReader genreReader = selectGenre.ExecuteReader();
             while (genreReader.Read())
             {
-                flpGenre.Controls.Add(new Button
+                flpTrackNo.Controls.Add(AttachMethodToButton(new Button()
                 {
                     Name = "btnGenre" + x,
                     Text = genreReader[0] as string,
@@ -220,12 +247,22 @@ namespace KEVIN
                     {
                         BorderSize = 0
                     }
-                });
+                }, mpPlay(x)));
             }
             selectArtist.Connection.Close();
             DB.KEVINDBOnLoad();
-            
         }
+
+        private Control AttachMethodToButton(Button button, object v)
+        {
+            throw new NotImplementedException();
+        }
+
+        private Control AttachMethodToButton(Button button)
+        {
+            throw new NotImplementedException();
+        }
+
         private void btnOpen_Click(object sender, EventArgs e)
         {
             mpPlayer.Stop();
