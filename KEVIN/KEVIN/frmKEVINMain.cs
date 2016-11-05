@@ -22,12 +22,18 @@ namespace KEVIN
         MusicPlayer mpPlayer = new MusicPlayer();
         DB DB = new DB();
         string path;
+        string TrackNo = "lblTrackNo";
+        string SongName = "lblSongName";
+        string Album = "lblAlbum";
+        string Artist = "lblArtist";
+        string Genre = "lblGenre";
 
         public void mpPlay(int x)
         {
+            playpause = true;
             DB.connect.Close();
             DB.KEVINDBOnLoad();
-            //MySqlCommand selectSongID = new MySqlCommand("SELECT SongID FROM Music WHERE ")
+            MySqlCommand selectSongID = new MySqlCommand("SELECT SongID FROM Music WHERE SongName = ");
             MySqlCommand selectPath = new MySqlCommand("SELECT SongLocation FROM Music WHERE SongID= " + x);
             selectPath.Connection = DB.connect;
             MySqlDataReader readerPath = selectPath.ExecuteReader();
@@ -36,6 +42,7 @@ namespace KEVIN
                 path = readerPath[0] as string;
                 path = path.Replace("\"", "\\");
             }
+            mpPlayer.Stop();
             mpPlayer.Open(path);
             mpPlayer.Play();
             DB.connect.Close();
@@ -46,6 +53,27 @@ namespace KEVIN
         {
             b.Click += (s, e) => buttonMethod();
             return b;
+        }
+
+        public void createButton(FlowLayoutPanel field, string buttonName, int x, MySqlDataReader reader, Action buttonAction)
+        {
+            field.Controls.Add(AttachMethodToButton(new Button()
+            {
+                Name = buttonName + x,
+                Text = reader[0] as string,
+                FlatStyle = FlatStyle.Flat,
+                AutoSize = false,
+                Dock = DockStyle.Top,
+                Width = flpArtist.Width,
+                ForeColor = ColorTranslator.FromHtml("#444444"),
+                Font = new Font("Trebuchet MS", 9),
+                Enabled = true,
+                TextAlign = ContentAlignment.MiddleLeft,
+                FlatAppearance =
+                    {
+                        BorderSize = 0,
+                    }
+            }, () => mpPlay(x)));
         }
 
         public frmKEVINMain()
@@ -90,30 +118,13 @@ namespace KEVIN
 
             //Connect to DB
             DB.KEVINDBOnLoad();
-
+        
             //Add Song Information to table
             selectTrackNo.Connection = DB.connect;
             MySqlDataReader trackNoReader = selectTrackNo.ExecuteReader();
             while (trackNoReader.Read())
             {
-                flpTrackNo.Controls.Add(AttachMethodToButton(new Button()
-                {
-                    Name = "btnTrackNo" + x,
-                    Text = trackNoReader[0] as string,
-                    BackColor = Color.Transparent,
-                    FlatStyle = FlatStyle.Flat,
-                    AutoSize = false,
-                    Dock = DockStyle.Top,
-                    Width = flpArtist.Width,
-                    ForeColor = ColorTranslator.FromHtml("#444444"),
-                    Font = new Font("Trebuchet MS", 9),
-                    Enabled = true,
-                    TextAlign = ContentAlignment.MiddleLeft,
-                    FlatAppearance =
-                    {
-                        BorderSize = 0
-                    },
-                }, mpPlay(x)));
+                createButton(flpTrackNo, TrackNo, x, trackNoReader, () => mpPlay(x));
                 x++;
             }
             x = 1;
@@ -123,24 +134,7 @@ namespace KEVIN
             MySqlDataReader songNameReader = selectSongName.ExecuteReader();
             while (songNameReader.Read())
             {
-                flpTrackNo.Controls.Add(AttachMethodToButton(new Button()
-                {
-                    Name = "btnSong" + x,
-                    Text = songNameReader[0] as string,
-                    BackColor = Color.Transparent,
-                    FlatStyle = FlatStyle.Flat,
-                    AutoSize = false,
-                    Dock = DockStyle.Top,
-                    Width = flpArtist.Width,
-                    ForeColor = ColorTranslator.FromHtml("#444444"),
-                    Font = new Font("Trebuchet MS", 9),
-                    Enabled = true,
-                    TextAlign = ContentAlignment.MiddleLeft,
-                    FlatAppearance =
-                    {
-                        BorderSize = 0
-                    }
-                },mpPlay(x)));
+                createButton(flpSong, SongName, x, songNameReader, () => mpPlay(x));
                 x++;
             }
             x = 1;
@@ -151,26 +145,9 @@ namespace KEVIN
             while (songLengthReader.Read())
             {
                 string y = songLengthReader[0] as string;
-                y = y.Remove(0, 3);
-                y = y.Remove(5, 8);
-                flpTrackNo.Controls.Add(AttachMethodToButton(new Button()
-                {
-                    Name = "btnSongLength" + x,
-                    Text = y,
-                    BackColor = Color.Transparent,
-                    FlatStyle = FlatStyle.Flat,
-                    AutoSize = false,
-                    Dock = DockStyle.Top,
-                    Width = flpArtist.Width,
-                    ForeColor = ColorTranslator.FromHtml("#444444"),
-                    Font = new Font("Trebuchet MS", 9),
-                    Enabled = true,
-                    TextAlign = ContentAlignment.MiddleLeft,
-                    FlatAppearance =
-                    {
-                        BorderSize = 0
-                    }
-                }, mpPlay(x)));
+                
+                createButton(flpSongLength, y, x, songLengthReader, () => mpPlay(x));
+                x++;
             }
             x = 1;
             selectSongLength.Connection.Close();
@@ -179,24 +156,8 @@ namespace KEVIN
             MySqlDataReader albumReader = selectAlbum.ExecuteReader();
             while (albumReader.Read())
             {
-                flpTrackNo.Controls.Add(AttachMethodToButton(new Button()
-                {
-                    Name = "lblAlbum" + x,
-                    Text = albumReader[0] as string,
-                    BackColor = Color.Transparent,
-                    FlatStyle = FlatStyle.Flat,
-                    AutoSize = false,
-                    Dock = DockStyle.Top,
-                    Width = flpArtist.Width,
-                    ForeColor = ColorTranslator.FromHtml("#444444"),
-                    Font = new Font("Trebuchet MS", 9),
-                    Enabled = true,
-                    TextAlign = ContentAlignment.MiddleLeft,
-                    FlatAppearance =
-                    {
-                        BorderSize = 0
-                    }
-                }, mpPlay(x)));
+                createButton(flpAlbum, Album, x, albumReader, () => mpPlay(x));
+                x++;
             }
             x = 1;
             selectAlbum.Connection.Close();
@@ -205,24 +166,8 @@ namespace KEVIN
             MySqlDataReader artistReader = selectArtist.ExecuteReader();
             while (artistReader.Read())
             {
-                flpTrackNo.Controls.Add(AttachMethodToButton(new Button()
-                {
-                    Name = "btnArtist" + x,
-                    Text = artistReader[0] as string,
-                    BackColor = Color.Transparent,
-                    FlatStyle = FlatStyle.Flat,
-                    AutoSize = false,
-                    Dock = DockStyle.Top,
-                    Width = flpArtist.Width,
-                    ForeColor = ColorTranslator.FromHtml("#444444"),
-                    Font = new Font("Trebuchet MS", 9),
-                    Enabled = true,
-                    TextAlign = ContentAlignment.MiddleLeft,
-                    FlatAppearance =
-                    {
-                        BorderSize = 0
-                    }
-                }, mpPlay(x)));
+                createButton(flpArtist, Artist, x, artistReader, () => mpPlay(x));
+                x++;
             }
             x = 1;
             selectArtist.Connection.Close();
@@ -231,36 +176,11 @@ namespace KEVIN
             MySqlDataReader genreReader = selectGenre.ExecuteReader();
             while (genreReader.Read())
             {
-                flpTrackNo.Controls.Add(AttachMethodToButton(new Button()
-                {
-                    Name = "btnGenre" + x,
-                    Text = genreReader[0] as string,
-                    FlatStyle = FlatStyle.Flat,
-                    AutoSize = false,
-                    Dock = DockStyle.Top,
-                    Width = flpArtist.Width,
-                    ForeColor = ColorTranslator.FromHtml("#444444"),
-                    Font = new Font("Trebuchet MS", 9),
-                    Enabled = true,
-                    TextAlign = ContentAlignment.MiddleLeft,
-                    FlatAppearance =
-                    {
-                        BorderSize = 0
-                    }
-                }, mpPlay(x)));
+                createButton(flpGenre, Genre, x, genreReader, () => mpPlay(x));
+
             }
             selectArtist.Connection.Close();
             DB.KEVINDBOnLoad();
-        }
-
-        private Control AttachMethodToButton(Button button, object v)
-        {
-            throw new NotImplementedException();
-        }
-
-        private Control AttachMethodToButton(Button button)
-        {
-            throw new NotImplementedException();
         }
 
         private void btnOpen_Click(object sender, EventArgs e)
@@ -280,6 +200,9 @@ namespace KEVIN
             string SongName = file.Tag.Title;
             TimeSpan SongLength = file.Properties.Duration;
             string strSongLength = SongLength.ToString();
+            strSongLength = strSongLength.Remove(0, 3);
+            strSongLength = strSongLength.Remove(5, 8);
+
             string Artist = string.Join(",", file.Tag.AlbumArtists);
             string Album = file.Tag.Album;
             string Genre = file.Tag.FirstGenre;
@@ -287,6 +210,8 @@ namespace KEVIN
             string sqlLocation = Location.Replace("\\", "\\\"");
 
             //Add song
+            DB.connect.Close();
+            DB.KEVINDBOnLoad();
             this.Text = SongName + " - KEVIN";
             lblCurrentlyPlaying.Text = fileName;
             mpPlayer.Open(ofdOpenMusic.FileName);
@@ -305,7 +230,7 @@ namespace KEVIN
             //Addpend to DB
             DB.appendSongInformation(TrackIDstr, SongName, strSongLength, Album, Artist, Genre, sqlLocation);
             DB.connect.Close();
-            Application.Restart();
+            //Application.Restart();
         }
 
         private void btnPlay_Click(object sender, EventArgs e)
@@ -328,14 +253,6 @@ namespace KEVIN
                 playing = true;
                 return;
             }            
-        }
-
-        private void btnStop_Click(object sender, EventArgs e)
-        {
-            mpPlayer.Stop();
-            this.Text = "KEVIN MP";
-            btnPlay.BackgroundImage = KEVIN.Properties.Resources.Pause_fw;
-            playpause = false;
         }
 
         private void btnSkipForward_Click(object sender, EventArgs e)

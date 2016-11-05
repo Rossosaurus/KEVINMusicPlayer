@@ -51,7 +51,7 @@
             this.lblGenre = new System.Windows.Forms.Label();
             this.lblSongLength = new System.Windows.Forms.Label();
             this.lblTrackNo = new System.Windows.Forms.Label();
-            this.flpTrackNo = new System.Windows.Forms.FlowLayoutPanel();
+            this.flpTrackNo =  new System.Windows.Forms.FlowLayoutPanel();
             this.lblSong = new System.Windows.Forms.Label();
             this.flpSong = new System.Windows.Forms.FlowLayoutPanel();
             this.lblAlbum = new System.Windows.Forms.Label();
@@ -179,12 +179,12 @@
             this.tlpPlayerTopMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4.740475F));
             this.tlpPlayerTopMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4.740475F));
             this.tlpPlayerTopMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-            this.tlpPlayerTopMenu.Controls.Add(this.btnOpen, 4, 0);
             this.tlpPlayerTopMenu.Controls.Add(this.btnAlbum, 1, 0);
             this.tlpPlayerTopMenu.Controls.Add(this.btnPlaylists, 3, 0);
             this.tlpPlayerTopMenu.Controls.Add(this.btnSettings, 6, 0);
             this.tlpPlayerTopMenu.Controls.Add(this.btnPlayer, 2, 0);
             this.tlpPlayerTopMenu.Controls.Add(this.btnAddMusic, 5, 0);
+            this.tlpPlayerTopMenu.Controls.Add(this.btnOpen, 4, 0);
             this.tlpPlayerTopMenu.Location = new System.Drawing.Point(3, 3);
             this.tlpPlayerTopMenu.Name = "tlpPlayerTopMenu";
             this.tlpPlayerTopMenu.Padding = new System.Windows.Forms.Padding(3);
@@ -335,11 +335,11 @@
             this.tlpSong.AutoSize = true;
             this.tlpSong.ColumnCount = 6;
             this.tlpSong.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpSong.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.18841F));
-            this.tlpSong.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.49275F));
-            this.tlpSong.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.57971F));
-            this.tlpSong.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.78261F));
-            this.tlpSong.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.3913F));
+            this.tlpSong.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.08803F));
+            this.tlpSong.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.43001F));
+            this.tlpSong.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.49062F));
+            this.tlpSong.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.67533F));
+            this.tlpSong.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.31601F));
             this.tlpSong.Controls.Add(this.flpGenre, 5, 1);
             this.tlpSong.Controls.Add(this.flpArtist, 4, 1);
             this.tlpSong.Controls.Add(this.flpAlbum, 3, 1);
@@ -352,13 +352,12 @@
             this.tlpSong.Controls.Add(this.flpSong, 1, 1);
             this.tlpSong.Controls.Add(this.lblAlbum, 3, 0);
             this.tlpSong.Controls.Add(this.lblArtist, 4, 0);
-            this.tlpSong.Enabled = false;
             this.tlpSong.Location = new System.Drawing.Point(0, 0);
             this.tlpSong.Name = "tlpSong";
             this.tlpSong.RowCount = 2;
             this.tlpSong.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.21F));
             this.tlpSong.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 94.79F));
-            this.tlpSong.Size = new System.Drawing.Size(659, 423);
+            this.tlpSong.Size = new System.Drawing.Size(656, 423);
             this.tlpSong.TabIndex = 0;
             // 
             // flpGenre
@@ -366,7 +365,7 @@
             this.flpGenre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.flpGenre.AutoSize = true;
-            this.flpGenre.Location = new System.Drawing.Point(551, 22);
+            this.flpGenre.Location = new System.Drawing.Point(548, 22);
             this.flpGenre.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.flpGenre.Name = "flpGenre";
             this.flpGenre.Size = new System.Drawing.Size(108, 0);
@@ -377,10 +376,10 @@
             this.flpArtist.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.flpArtist.AutoSize = true;
-            this.flpArtist.Location = new System.Drawing.Point(394, 22);
+            this.flpArtist.Location = new System.Drawing.Point(392, 22);
             this.flpArtist.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.flpArtist.Name = "flpArtist";
-            this.flpArtist.Size = new System.Drawing.Size(152, 0);
+            this.flpArtist.Size = new System.Drawing.Size(151, 0);
             this.flpArtist.TabIndex = 5;
             // 
             // flpAlbum
@@ -388,7 +387,7 @@
             this.flpAlbum.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.flpAlbum.AutoSize = true;
-            this.flpAlbum.Location = new System.Drawing.Point(264, 22);
+            this.flpAlbum.Location = new System.Drawing.Point(262, 22);
             this.flpAlbum.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.flpAlbum.Name = "flpAlbum";
             this.flpAlbum.Size = new System.Drawing.Size(125, 0);
@@ -399,10 +398,10 @@
             this.flpSongLength.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.flpSongLength.AutoSize = true;
-            this.flpSongLength.Location = new System.Drawing.Point(172, 22);
+            this.flpSongLength.Location = new System.Drawing.Point(171, 22);
             this.flpSongLength.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.flpSongLength.Name = "flpSongLength";
-            this.flpSongLength.Size = new System.Drawing.Size(87, 0);
+            this.flpSongLength.Size = new System.Drawing.Size(86, 0);
             this.flpSongLength.TabIndex = 3;
             // 
             // lblGenre
@@ -411,7 +410,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblGenre.Font = new System.Drawing.Font("Trebuchet MS", 10F);
-            this.lblGenre.Location = new System.Drawing.Point(549, 0);
+            this.lblGenre.Location = new System.Drawing.Point(546, 0);
             this.lblGenre.Name = "lblGenre";
             this.lblGenre.Size = new System.Drawing.Size(107, 22);
             this.lblGenre.TabIndex = 7;
@@ -424,9 +423,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSongLength.Font = new System.Drawing.Font("Trebuchet MS", 10F);
-            this.lblSongLength.Location = new System.Drawing.Point(170, 0);
+            this.lblSongLength.Location = new System.Drawing.Point(169, 0);
             this.lblSongLength.Name = "lblSongLength";
-            this.lblSongLength.Size = new System.Drawing.Size(86, 22);
+            this.lblSongLength.Size = new System.Drawing.Size(85, 22);
             this.lblSongLength.TabIndex = 4;
             this.lblSongLength.Text = "Song Length";
             this.lblSongLength.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -464,7 +463,7 @@
             this.lblSong.Font = new System.Drawing.Font("Trebuchet MS", 10F);
             this.lblSong.Location = new System.Drawing.Point(23, 0);
             this.lblSong.Name = "lblSong";
-            this.lblSong.Size = new System.Drawing.Size(141, 22);
+            this.lblSong.Size = new System.Drawing.Size(140, 22);
             this.lblSong.TabIndex = 3;
             this.lblSong.Text = "Song";
             this.lblSong.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -477,7 +476,7 @@
             this.flpSong.Location = new System.Drawing.Point(25, 22);
             this.flpSong.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.flpSong.Name = "flpSong";
-            this.flpSong.Size = new System.Drawing.Size(142, 0);
+            this.flpSong.Size = new System.Drawing.Size(141, 0);
             this.flpSong.TabIndex = 2;
             this.flpSong.Paint += new System.Windows.Forms.PaintEventHandler(this.flpSong_Paint);
             // 
@@ -489,7 +488,7 @@
             this.lblAlbum.BackColor = System.Drawing.Color.Transparent;
             this.lblAlbum.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblAlbum.Font = new System.Drawing.Font("Trebuchet MS", 10F);
-            this.lblAlbum.Location = new System.Drawing.Point(262, 0);
+            this.lblAlbum.Location = new System.Drawing.Point(260, 0);
             this.lblAlbum.Name = "lblAlbum";
             this.lblAlbum.Size = new System.Drawing.Size(124, 22);
             this.lblAlbum.TabIndex = 6;
@@ -502,9 +501,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblArtist.Font = new System.Drawing.Font("Trebuchet MS", 10F);
-            this.lblArtist.Location = new System.Drawing.Point(392, 0);
+            this.lblArtist.Location = new System.Drawing.Point(390, 0);
             this.lblArtist.Name = "lblArtist";
-            this.lblArtist.Size = new System.Drawing.Size(151, 22);
+            this.lblArtist.Size = new System.Drawing.Size(150, 22);
             this.lblArtist.TabIndex = 5;
             this.lblArtist.Text = "Artist";
             this.lblArtist.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -653,7 +652,7 @@
         private System.Windows.Forms.Panel pnlSongTable;
         private System.Windows.Forms.TableLayoutPanel tlpSong;
         public System.Windows.Forms.Label lblTrackNo;
-        private System.Windows.Forms.FlowLayoutPanel flpTrackNo;
+        public System.Windows.Forms.FlowLayoutPanel flpTrackNo;
         private System.Windows.Forms.FlowLayoutPanel flpSong;
         public System.Windows.Forms.Label lblSong;
         public System.Windows.Forms.Label lblGenre;
