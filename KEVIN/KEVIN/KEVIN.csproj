@@ -50,7 +50,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DB.cs" />
+    <Compile Include="Commented Code For Later Class.cs" />
+    <Compile Include="Functions.cs" />
     <Compile Include="frmKEVINAddMusic.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,12 +84,13 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Compile Include="Properties\Resources1.Designer.cs">
+    <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -239,6 +241,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Icons\Album2.fw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\AddMusic 2.fw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\Settings Logo Coloured2.fw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\NoAlbumArt.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

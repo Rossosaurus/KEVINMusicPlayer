@@ -73,6 +73,16 @@ namespace KEVIN.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AddMusic_2_fw {
+            get {
+                object obj = ResourceManager.GetObject("AddMusic_2_fw", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Album_Icon {
             get {
                 object obj = ResourceManager.GetObject("Album_Icon", resourceCulture);
@@ -86,6 +96,26 @@ namespace KEVIN.Properties {
         internal static System.Drawing.Bitmap Album2_fw {
             get {
                 object obj = ResourceManager.GetObject("Album2_fw", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Backing_fw {
+            get {
+                object obj = ResourceManager.GetObject("Backing.fw", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Backing1 {
+            get {
+                object obj = ResourceManager.GetObject("Backing1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -176,6 +206,16 @@ namespace KEVIN.Properties {
         internal static System.Drawing.Bitmap Music_Player_Logo_Reverse_fw {
             get {
                 object obj = ResourceManager.GetObject("Music_Player_Logo_Reverse_fw", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap NoAlbumArt {
+            get {
+                object obj = ResourceManager.GetObject("NoAlbumArt", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -333,6 +373,16 @@ namespace KEVIN.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Settings_Logo_Coloured2_fw {
+            get {
+                object obj = ResourceManager.GetObject("Settings_Logo_Coloured2_fw", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap shuffle_fw {
             get {
                 object obj = ResourceManager.GetObject("shuffle_fw", resourceCulture);
@@ -406,6 +456,16 @@ namespace KEVIN.Properties {
         internal static System.Drawing.Bitmap SkipFwrdHover {
             get {
                 object obj = ResourceManager.GetObject("SkipFwrdHover", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Top_Menu_fw {
+            get {
+                object obj = ResourceManager.GetObject("Top_Menu.fw", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
