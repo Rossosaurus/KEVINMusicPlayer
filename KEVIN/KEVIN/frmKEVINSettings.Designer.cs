@@ -31,14 +31,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmKEVINSettings));
             this.tlpSettingsTitle = new System.Windows.Forms.TableLayoutPanel();
             this.lblSettings = new System.Windows.Forms.Label();
+            this.pcbxSettings = new System.Windows.Forms.PictureBox();
             this.tlpNavigationBar = new System.Windows.Forms.TableLayoutPanel();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.pcbxSettings = new System.Windows.Forms.PictureBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.tlpSettingsTitle.SuspendLayout();
-            this.tlpNavigationBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbxSettings)).BeginInit();
+            this.tlpNavigationBar.SuspendLayout();
             this.SuspendLayout();
             // 
             // tlpSettingsTitle
@@ -67,21 +67,31 @@
             this.lblSettings.TabIndex = 2;
             this.lblSettings.Text = "Settings";
             // 
+            // pcbxSettings
+            // 
+            this.pcbxSettings.BackgroundImage = global::KEVIN.Properties.Resources.Settings_Logo_Coloured_fw;
+            this.pcbxSettings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pcbxSettings.Location = new System.Drawing.Point(340, 3);
+            this.pcbxSettings.Name = "pcbxSettings";
+            this.pcbxSettings.Size = new System.Drawing.Size(52, 44);
+            this.pcbxSettings.TabIndex = 3;
+            this.pcbxSettings.TabStop = false;
+            // 
             // tlpNavigationBar
             // 
             this.tlpNavigationBar.ColumnCount = 1;
             this.tlpNavigationBar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpNavigationBar.Controls.Add(this.button1, 0, 0);
-            this.tlpNavigationBar.Controls.Add(this.button3, 0, 2);
             this.tlpNavigationBar.Controls.Add(this.button2, 0, 1);
+            this.tlpNavigationBar.Controls.Add(this.button3, 0, 2);
             this.tlpNavigationBar.Location = new System.Drawing.Point(-1, 49);
             this.tlpNavigationBar.Name = "tlpNavigationBar";
             this.tlpNavigationBar.RowCount = 3;
             this.tlpNavigationBar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 112F));
-            this.tlpNavigationBar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 79F));
+            this.tlpNavigationBar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 85F));
             this.tlpNavigationBar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpNavigationBar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpNavigationBar.Size = new System.Drawing.Size(39, 498);
+            this.tlpNavigationBar.Size = new System.Drawing.Size(39, 610);
             this.tlpNavigationBar.TabIndex = 1;
             this.tlpNavigationBar.Paint += new System.Windows.Forms.PaintEventHandler(this.tlpNavigationBar_Paint);
             // 
@@ -98,58 +108,50 @@
             this.button1.TabIndex = 2;
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // button2
-            // 
-            this.button2.BackgroundImage = global::KEVIN.Properties.Resources.Player_Button_Not_Selected__fw;
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(0, 112);
-            this.button2.Margin = new System.Windows.Forms.Padding(0);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(39, 79);
-            this.button2.TabIndex = 3;
-            this.button2.UseVisualStyleBackColor = true;
-            // 
             // button3
             // 
             this.button3.BackgroundImage = global::KEVIN.Properties.Resources.Skins_Button_Not_Selected__fw;
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button3.FlatAppearance.BorderSize = 0;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Location = new System.Drawing.Point(0, 191);
+            this.button3.Location = new System.Drawing.Point(0, 197);
             this.button3.Margin = new System.Windows.Forms.Padding(0);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(39, 64);
             this.button3.TabIndex = 4;
             this.button3.UseVisualStyleBackColor = true;
             // 
-            // pcbxSettings
+            // button2
             // 
-            this.pcbxSettings.BackgroundImage = global::KEVIN.Properties.Resources.Settings_Logo_Coloured_fw;
-            this.pcbxSettings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pcbxSettings.Location = new System.Drawing.Point(340, 3);
-            this.pcbxSettings.Name = "pcbxSettings";
-            this.pcbxSettings.Size = new System.Drawing.Size(52, 44);
-            this.pcbxSettings.TabIndex = 3;
-            this.pcbxSettings.TabStop = false;
+            this.button2.BackgroundImage = global::KEVIN.Properties.Resources.Player_Button_Not_Selected__fw;
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Location = new System.Drawing.Point(0, 112);
+            this.button2.Margin = new System.Windows.Forms.Padding(0);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(39, 85);
+            this.button2.TabIndex = 3;
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // frmKEVINSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(392, 543);
+            this.ClientSize = new System.Drawing.Size(392, 656);
             this.Controls.Add(this.tlpNavigationBar);
             this.Controls.Add(this.tlpSettingsTitle);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "frmKEVINSettings";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Settings";
             this.Load += new System.EventHandler(this.frmKEVINSettings_Load);
             this.tlpSettingsTitle.ResumeLayout(false);
             this.tlpSettingsTitle.PerformLayout();
-            this.tlpNavigationBar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pcbxSettings)).EndInit();
+            this.tlpNavigationBar.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

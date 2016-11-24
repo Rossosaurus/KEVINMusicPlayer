@@ -34,7 +34,7 @@ namespace KEVIN
             while (readerPath.Read())
             {
                 path = readerPath[0] as string;
-                path = path.Replace("\"", "\\");
+                path = path.Replace("'", "\\");
             }
             mpPlayer.Stop();
             mpPlayer.Open(path);
@@ -73,7 +73,6 @@ namespace KEVIN
             btnPlay.BackColor = ColorTranslator.FromHtml("#3c3c3c");
             btnPlay.ForeColor = ColorTranslator.FromHtml("#3c3c3c");
             btnPlay.UseVisualStyleBackColor = false;
-            btnOpen.BackColor = Color.Transparent;
             btnSkipBackward.BackColor = ColorTranslator.FromHtml("#3c3c3c");
             btnSkipForward.BackColor = ColorTranslator.FromHtml("#3c3c3c");
             this.lblCurrentlyPlaying.ForeColor = ColorTranslator.FromHtml("#646464");
@@ -85,27 +84,26 @@ namespace KEVIN
             pnlPlaylists.Hide();
             //Format of all subforms            
             flpAlbums.Location = new Point(16,3);
-            flpAlbums.Size = new Size(709, 423);
+            flpAlbums.Size = new Size(729, 423);
             flpAlbums.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom;
             pnlPlaying.Location = new Point(16, 3);
-            pnlPlaying.Size = new Size(709, 423);
+            pnlPlaying.Size = new Size(729, 423);
             pnlPlaying.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom;
             pnlPlaylists.Location = new Point(16, 3);
-            pnlPlaylists.Size = new Size(709, 423);
+            pnlPlaylists.Size = new Size(729, 423);
             pnlPlaylists.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom;
 
             //Connect to DB
             Functions.connectToDB();
             Functions.createAlbumButtons(x, flpAlbums);
             Functions.refreshConnectionToDB();
+            
 
         }
 
         private void btnOpen_Click(object sender, EventArgs e)
         {
-            mpPlayer.Stop();
-            playpause = true;
-            ofdOpenMusic.ShowDialog();
+            
         }
 
         private void ofdOpenMusic_FileOk(object sender, CancelEventArgs e)
@@ -113,44 +111,60 @@ namespace KEVIN
             //Variable decleration
             foreach (String songInfo in ofdOpenMusic.FileNames)
             {
-                TagLib.File file = TagLib.File.Create(songInfo);
-                string fileName = System.IO.Path.GetFileNameWithoutExtension(songInfo);
-                uint TrackID = file.Tag.Track;
-                string TrackIDstr = TrackID.ToString();
-                string SongName = file.Tag.Title;
-                TimeSpan SongLength = file.Properties.Duration;
-                string strSongLength = SongLength.ToString();
-                strSongLength = strSongLength.Remove(0, 3);
-                strSongLength = strSongLength.Remove(5, 8);
-
-                string Artist = string.Join(",", file.Tag.Artists);
-                string Album = file.Tag.Album;
-                string Genre = file.Tag.FirstGenre;
-                string Location = songInfo;
-                string sqlLocation = Location.Replace("\\", "\\\"");
-
-                //Add song
-                Functions.refreshConnectionToDB();
-                this.Text = SongName + " - KEVIN";
-                lblCurrentlyPlaying.Text = fileName;
-                mpPlayer.Open(ofdOpenMusic.FileName);
-                MemoryStream ms;
-                try
+                string pathExtension = Path.GetExtension(songInfo);
+                if (pathExtension == ".mp3" || pathExtension == ".flac" || pathExtension == ".aac" || pathExtension == ".m4a" || pathExtension == ".wav")
                 {
-                    ms = new MemoryStream(file.Tag.Pictures[0].Data.Data);
-                    System.Drawing.Image image = System.Drawing.Image.FromStream(ms);
-                    pbAlbumCover.BackgroundImage = image;
-                }
-                catch
-                {
-                    pbAlbumCover.BackgroundImage = KEVIN.Properties.Resources.NoAlbumArt;
+                    mpPlayer.Stop();
+                    TagLib.File file = TagLib.File.Create(songInfo);
+                    string fileName = System.IO.Path.GetFileNameWithoutExtension(songInfo);
+                    uint TrackID = file.Tag.Track;
+                    string TrackIDstr = TrackID.ToString();
+                    string SongName;
+                    if (file.Tag.Title == null || file.Tag.Title == "")
+                    {
+                        SongName = ofdOpenMusic.FileName;
+                    }
+                    else
+                    {
+                        SongName = file.Tag.Title;
+                    }
 
-                }
+                    TimeSpan SongLength = file.Properties.Duration;
+                    string strSongLength = SongLength.ToString();
+                    //strSongLength = strSongLength.Remove(0, 3);
+                    //strSongLength = strSongLength.Remove(5, 8);
 
-                //Addpend to DB
-                Functions.createAndAppendMusicInfoToTables(Album, Artist, Genre, TrackIDstr, SongName, strSongLength, sqlLocation);
-                Functions.connect.Close();
-                //Application.Restart();
+                    string Artist = string.Join(",", file.Tag.Artists);
+                    string Album = file.Tag.Album;
+                    string Genre = file.Tag.FirstGenre;
+                    string Location = songInfo;
+                    string sqlLocation = Location.Replace("\\", "'");
+
+                    //Add song
+                    Functions.refreshConnectionToDB();
+                    this.Text = Album + " - KEVIN";
+                    lblCurrentlyPlaying.Text = SongName;
+                    mpPlayer.Open(ofdOpenMusic.FileName);
+                    MemoryStream ms;
+                    try
+                    {
+                        ms = new MemoryStream(file.Tag.Pictures[0].Data.Data);
+                        System.Drawing.Image image = System.Drawing.Image.FromStream(ms);
+                        pbAlbumCover.BackgroundImage = image;
+                    }
+                    catch
+                    {
+                        pbAlbumCover.BackgroundImage = KEVIN.Properties.Resources.NoAlbumArt;
+                    }
+
+
+                    //Addpend to DB
+                    Functions.CreateAndAppendAlbumInfoToTables(Album, Artist, Genre);
+                    Functions.albumExists = false;
+                    Functions.createAndAppendMusicInfoToTables(Album, Artist, TrackIDstr, SongName, strSongLength, sqlLocation);
+                    Functions.connect.Close();
+                    //Application.Restart();
+                }
             }
         }
 
@@ -250,8 +264,8 @@ namespace KEVIN
 
         private void btnAddMusic_Click(object sender, EventArgs e)
         {
-            frmKEVINAddMusic addMusic = new frmKEVINAddMusic();
-            addMusic.Show();
+            playpause = true;
+            ofdOpenMusic.ShowDialog();
         }
 
         private void btnAddMusic_MouseEnter(object sender, EventArgs e)
@@ -294,6 +308,9 @@ namespace KEVIN
 
         }
 
-        
+        private void pnlPlaylists_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
