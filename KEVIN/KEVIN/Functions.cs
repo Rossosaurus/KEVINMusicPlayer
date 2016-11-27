@@ -13,10 +13,9 @@ using System.IO;
 
 namespace KEVIN
 {
-    class Functions
+    public class Functions
     {
         //Variables
-        MusicPlayer mpPlayer = new MusicPlayer();
         public MySqlConnection connect = new MySqlConnection("server=localhost; port=3306; userid=KEVIN; password=; database=kevin;");
         public MySqlConnection connect2 = new MySqlConnection("server=localhost; port=3306; userid=KEVIN; password=; database=kevin;");
         string albumID;
@@ -92,7 +91,7 @@ namespace KEVIN
         }
         public void createAndAppendMusicInfoToTables(string Album, string Artist, string trackNo, string songName, string songLength, string songLocation1)
         {
-            MySqlCommand checkAndCreateMusic = new MySqlCommand("CREATE TABLE IF NOT EXISTS Music (SongID INT(255) UNSIGNED AUTO_INCREMENT PRIMARY KEY, TrackNo VARCHAR(1000), SongName VARCHAR(100), SongLength VARCHAR(100), SongLocation VARCHAR(1000), AlbumID INT(255))", connect);
+            MySqlCommand checkAndCreateMusic = new MySqlCommand("CREATE TABLE IF NOT EXISTS Music (SongID INT(255) UNSIGNED AUTO_INCREMENT PRIMARY KEY, TrackNo INT(255), SongName VARCHAR(100), SongLength VARCHAR(100), SongLocation VARCHAR(1000), AlbumID INT(255))", connect);
             checkAndCreateMusic.ExecuteNonQuery();
             MySqlCommand selectAlbumID = new MySqlCommand("SELECT AlbumID FROM Albums WHERE Album=\"" + Album + "\" AND Artist=\"" + Artist + "\"", connect);
             MySqlDataReader readAlbumID = selectAlbumID.ExecuteReader();
@@ -104,7 +103,7 @@ namespace KEVIN
             if (songExists == false)
             {
                 refreshConnectionToDB();
-                MySqlCommand appendMusicInfo = new MySqlCommand("INSERT INTO Music (TrackNo, SongName, SongLength, SongLocation, AlbumID)  VALUES(\"" + trackNo + "\", \"" + songName + "\", \"" + songLength + "\", \"" + songLocation1 + "\", \"" + albumID + "\")", connect);
+                MySqlCommand appendMusicInfo = new MySqlCommand("INSERT INTO Music (TrackNo, SongName, SongLength, SongLocation, AlbumID)  VALUES( " + trackNo + ", \"" + songName + "\", \"" + songLength + "\", \"" + songLocation1 + "\", \"" + albumID + "\")", connect);
                 appendMusicInfo.ExecuteNonQuery();
             }
         }
@@ -113,11 +112,6 @@ namespace KEVIN
         {
             connect.Close();
             connect.Open();
-        }
-
-        public void countRecords()
-        {
-            MySqlCommand noOfRows = new MySqlCommand("SELECT COUNT(TrackNo) FROM Music");
         }
 
         public void openAlbumForm(string locationForLookup)
@@ -135,7 +129,7 @@ namespace KEVIN
             return b;
         }
 
-        public void createAlbumButtons(int x, FlowLayoutPanel field)
+        public void createAlbumButtons(int x, FlowLayoutPanel field, ContextMenuStrip cms)
         {
             try
             {
@@ -180,6 +174,7 @@ namespace KEVIN
                                 BorderSize = 1,
                                 BorderColor = ColorTranslator.FromHtml("#444444"),
                             },
+                            ContextMenuStrip = cms,
                         }, () => openAlbumForm(stringX)));
                         x++;
                     }
@@ -227,13 +222,13 @@ namespace KEVIN
             {
                 yetAnotherTemp = readSongLocation.GetString(0).Replace("'", "\\");
             }
-            mpPlayer.Pause();
-            mpPlayer.Stop();
-            mpPlayer.Open(yetAnotherTemp);
-            mpPlayer.Play();
+            frmKEVINMain.mpPlayer.Pause();
+            frmKEVINMain.mpPlayer.Stop();
+            frmKEVINMain.mpPlayer.Open(yetAnotherTemp);
+            frmKEVINMain.mpPlayer.Play();
         }
 
-        public void createSongButtons(string locationForAlbumID, FlowLayoutPanel song1)
+        public void createSongButtons(string locationForAlbumID, FlowLayoutPanel song1, ContextMenuStrip cms)
         {
             refreshConnectionToDB();
             MySqlCommand selectAlbumID = new MySqlCommand("SELECT AlbumID FROM Music WHERE SongLocation = \"" + locationForAlbumID + "\" LIMIT 1", connect);
@@ -245,16 +240,6 @@ namespace KEVIN
             refreshConnectionToDB();
             MySqlCommand selectSongsFromAlbumID = new MySqlCommand("SELECT SongName, SongLength, TrackNo, SongLocation, SongID FROM Music WHERE AlbumID= \"" + albumIDFromLocation + "\" ORDER BY TrackNo ASC", connect);
             MySqlDataReader readSongsFromAlbumID = selectSongsFromAlbumID.ExecuteReader();
-            double x = 0;
-            while (readSongsFromAlbumID.Read())
-            {
-                x++;
-            }
-            x = x / 2;
-            double halfSongCount = Math.Round(x, 0, MidpointRounding.AwayFromZero);
-            refreshConnectionToDB();
-            x = 0;
-            readSongsFromAlbumID = selectSongsFromAlbumID.ExecuteReader();
             while (readSongsFromAlbumID.Read())
             {
                 songLocationmpPlayer = readSongsFromAlbumID.GetString(3).Replace("'","\\");
@@ -269,13 +254,14 @@ namespace KEVIN
                     Font = new Font("Trebuchet MS", 10),
                     TextAlign = ContentAlignment.MiddleLeft,
                     AutoSize = false,
-                    Size = new Size(455, 25),
+                    Size = new Size(450, 25),
                     Anchor = AnchorStyles.Left | AnchorStyles.Right,
                     FlatStyle = FlatStyle.Flat,
                     FlatAppearance =
                     {
                         BorderSize = 0,
                     },
+                    ContextMenuStrip = cms,
                 }, () => playSongofButton(anotherTempVar)));
             }
         }

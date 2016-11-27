@@ -26,7 +26,7 @@ namespace AudioVisualizer
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "MP3 Files (*.mp3)|*.mp3|All Files (*.*)|*.*";
+            //ofd.Filter = "MP3 Files (*.mp3)|*.mp3|All Files (*.*)|*.*";
 
             if (ofd.ShowDialog() == DialogResult.OK)
             {
@@ -40,7 +40,7 @@ namespace AudioVisualizer
         private void frmMain_Load(object sender, EventArgs e)
         {
             updateTimer = new Timer();
-            updateTimer.Interval = 1000 / 60; //60 frames per 1000 milliseconds (1 second)
+            updateTimer.Interval = 1000 / 1000; //60 frames per 1000 milliseconds (1 second)
             updateTimer.Tick += UpdateTimer_Tick;
             updateTimer.Start();
 

@@ -17,30 +17,11 @@ namespace KEVIN
 {
     public partial class frmKEVINMain : Form
     {
-        bool playpause = false;
-        bool playing = false;
-        MusicPlayer mpPlayer = new MusicPlayer();
+        public static readonly KEVIN.MusicPlayer mpPlayer = new MusicPlayer();
+        public bool playpause = true;
+        public bool playing = false;
         Functions Functions = new Functions();
-        string path;
         System.Drawing.Image albumCover = KEVIN.Properties.Resources.NoAlbumArt;
-
-        public void mpPlay(int x)
-        {
-            playpause = true;
-            Functions.refreshConnectionToDB();
-            MySqlCommand selectSongID = new MySqlCommand("SELECT SongID FROM Music WHERE SongName = ", Functions.connect);
-            MySqlCommand selectPath = new MySqlCommand("SELECT SongLocation FROM Music WHERE SongID= " + x, Functions.connect);
-            MySqlDataReader readerPath = selectPath.ExecuteReader();
-            while (readerPath.Read())
-            {
-                path = readerPath[0] as string;
-                path = path.Replace("'", "\\");
-            }
-            mpPlayer.Stop();
-            mpPlayer.Open(path);
-            mpPlayer.Play();
-            Functions.refreshConnectionToDB();
-        }
 
         public frmKEVINMain()
         {
@@ -95,7 +76,7 @@ namespace KEVIN
 
             //Connect to DB
             Functions.connectToDB();
-            Functions.createAlbumButtons(x, flpAlbums);
+            Functions.createAlbumButtons(x, flpAlbums, cmsRightClickAlbums);
             Functions.refreshConnectionToDB();
             
 
@@ -114,7 +95,7 @@ namespace KEVIN
                 string pathExtension = Path.GetExtension(songInfo);
                 if (pathExtension == ".mp3" || pathExtension == ".flac" || pathExtension == ".aac" || pathExtension == ".m4a" || pathExtension == ".wav")
                 {
-                    mpPlayer.Stop();
+                    frmKEVINMain.mpPlayer.Stop();
                     TagLib.File file = TagLib.File.Create(songInfo);
                     string fileName = System.IO.Path.GetFileNameWithoutExtension(songInfo);
                     uint TrackID = file.Tag.Track;
@@ -134,7 +115,7 @@ namespace KEVIN
                     //strSongLength = strSongLength.Remove(0, 3);
                     //strSongLength = strSongLength.Remove(5, 8);
 
-                    string Artist = string.Join(",", file.Tag.Artists);
+                    string Artist = string.Join(",", file.Tag.FirstArtist);
                     string Album = file.Tag.Album;
                     string Genre = file.Tag.FirstGenre;
                     string Location = songInfo;
@@ -144,7 +125,7 @@ namespace KEVIN
                     Functions.refreshConnectionToDB();
                     this.Text = Album + " - KEVIN";
                     lblCurrentlyPlaying.Text = SongName;
-                    mpPlayer.Open(ofdOpenMusic.FileName);
+                    //frmKEVINMain.mpPlayer.Open(ofdOpenMusic.FileName);
                     MemoryStream ms;
                     try
                     {
@@ -177,14 +158,14 @@ namespace KEVIN
             if (playing == true)
             {
                 btnPlay.BackgroundImage = KEVIN.Properties.Resources.Pause_fw;
-                mpPlayer.Pause();
+                frmKEVINMain.mpPlayer.Pause();
                 playing = false;
                 return;
             }
             if (playing == false)
             {
                 btnPlay.BackgroundImage = KEVIN.Properties.Resources.Play_fw;
-                mpPlayer.Play();
+                frmKEVINMain.mpPlayer.Play();
                 playing = true;
                 return;
             }            

@@ -23,7 +23,7 @@ namespace KEVIN
             InitializeComponent();
         }
 
-        private void frmKEVINAddMusic_Load(object sender, EventArgs e)
+        public void frmKEVINAddMusic_Load(object sender, EventArgs e)
         {
             this.BackColor = ColorTranslator.FromHtml("#444444");
             lblAlbumName.ForeColor = ColorTranslator.FromHtml("#646464");
@@ -47,7 +47,7 @@ namespace KEVIN
                 pbAlbumArt.BackgroundImage = KEVIN.Properties.Resources.NoAlbumArt;
             }
             AlbumFunctions.getAlbumInfoFromLocation(locationWithApostrophe);
-            AlbumFunctions.createSongButtons(locationWithApostrophe, flpSongsWrapper);  
+            AlbumFunctions.createSongButtons(locationWithApostrophe, flpSongsWrapper, cmsRightClickSongs);  
         }
     }
 }

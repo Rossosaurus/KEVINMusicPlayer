@@ -28,18 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmKEVINAlbum));
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.lblAlbumName = new System.Windows.Forms.Label();
             this.flpEverything = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlMain = new System.Windows.Forms.Panel();
+            this.flpSongsWrapper = new System.Windows.Forms.FlowLayoutPanel();
             this.lblArtistAndGenre = new System.Windows.Forms.Label();
             this.pbAlbumArt = new System.Windows.Forms.PictureBox();
-            this.flpSongsWrapper = new System.Windows.Forms.FlowLayoutPanel();
+            this.cmsRightClickSongs = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.playToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addToQueueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.currentlyPlayingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.playNextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addToPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlHeader.SuspendLayout();
             this.flpEverything.SuspendLayout();
             this.pnlMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbAlbumArt)).BeginInit();
+            this.cmsRightClickSongs.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlHeader
@@ -82,6 +90,14 @@
             this.pnlMain.Size = new System.Drawing.Size(746, 356);
             this.pnlMain.TabIndex = 2;
             // 
+            // flpSongsWrapper
+            // 
+            this.flpSongsWrapper.AutoScroll = true;
+            this.flpSongsWrapper.Location = new System.Drawing.Point(259, 18);
+            this.flpSongsWrapper.Name = "flpSongsWrapper";
+            this.flpSongsWrapper.Size = new System.Drawing.Size(475, 326);
+            this.flpSongsWrapper.TabIndex = 2;
+            // 
             // lblArtistAndGenre
             // 
             this.lblArtistAndGenre.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -102,13 +118,47 @@
             this.pbAlbumArt.TabIndex = 0;
             this.pbAlbumArt.TabStop = false;
             // 
-            // flpSongsWrapper
+            // cmsRightClickSongs
             // 
-            this.flpSongsWrapper.AutoScroll = true;
-            this.flpSongsWrapper.Location = new System.Drawing.Point(259, 18);
-            this.flpSongsWrapper.Name = "flpSongsWrapper";
-            this.flpSongsWrapper.Size = new System.Drawing.Size(475, 326);
-            this.flpSongsWrapper.TabIndex = 2;
+            this.cmsRightClickSongs.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.playToolStripMenuItem,
+            this.addToQueueToolStripMenuItem,
+            this.addToPlaylistToolStripMenuItem});
+            this.cmsRightClickSongs.Name = "cmsRightClickAlbums";
+            this.cmsRightClickSongs.Size = new System.Drawing.Size(151, 70);
+            // 
+            // playToolStripMenuItem
+            // 
+            this.playToolStripMenuItem.Name = "playToolStripMenuItem";
+            this.playToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.playToolStripMenuItem.Text = "Play";
+            // 
+            // addToQueueToolStripMenuItem
+            // 
+            this.addToQueueToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.currentlyPlayingToolStripMenuItem,
+            this.playNextToolStripMenuItem});
+            this.addToQueueToolStripMenuItem.Name = "addToQueueToolStripMenuItem";
+            this.addToQueueToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.addToQueueToolStripMenuItem.Text = "Add to Queue";
+            // 
+            // currentlyPlayingToolStripMenuItem
+            // 
+            this.currentlyPlayingToolStripMenuItem.Name = "currentlyPlayingToolStripMenuItem";
+            this.currentlyPlayingToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.currentlyPlayingToolStripMenuItem.Text = "Currently Playing";
+            // 
+            // playNextToolStripMenuItem
+            // 
+            this.playNextToolStripMenuItem.Name = "playNextToolStripMenuItem";
+            this.playNextToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.playNextToolStripMenuItem.Text = "Play Next";
+            // 
+            // addToPlaylistToolStripMenuItem
+            // 
+            this.addToPlaylistToolStripMenuItem.Name = "addToPlaylistToolStripMenuItem";
+            this.addToPlaylistToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.addToPlaylistToolStripMenuItem.Text = "Add to Playlist";
             // 
             // frmKEVINAlbum
             // 
@@ -125,6 +175,7 @@
             this.flpEverything.ResumeLayout(false);
             this.pnlMain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbAlbumArt)).EndInit();
+            this.cmsRightClickSongs.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -138,5 +189,11 @@
         private System.Windows.Forms.Label lblAlbumName;
         private System.Windows.Forms.Label lblArtistAndGenre;
         private System.Windows.Forms.FlowLayoutPanel flpSongsWrapper;
+        public System.Windows.Forms.ContextMenuStrip cmsRightClickSongs;
+        private System.Windows.Forms.ToolStripMenuItem playToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addToQueueToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem currentlyPlayingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem playNextToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addToPlaylistToolStripMenuItem;
     }
 }

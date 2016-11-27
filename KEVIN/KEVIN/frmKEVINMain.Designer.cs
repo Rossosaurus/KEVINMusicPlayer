@@ -34,6 +34,9 @@
             this.cmsRightClickAlbums = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.playToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addToQueueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.currentlyPlayingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.playNextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addToPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnSkipBackward = new System.Windows.Forms.Button();
             this.btnSkipForward = new System.Windows.Forms.Button();
@@ -45,6 +48,7 @@
             this.btnSettings = new System.Windows.Forms.Button();
             this.btnPlayer = new System.Windows.Forms.Button();
             this.btnAddMusic = new System.Windows.Forms.Button();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.tlpPlayerBottom = new System.Windows.Forms.TableLayoutPanel();
             this.pbAlbumCover = new System.Windows.Forms.PictureBox();
             this.btnRepeat = new System.Windows.Forms.Button();
@@ -54,12 +58,14 @@
             this.pnlPlaylists = new System.Windows.Forms.Panel();
             this.pnlPlaying = new System.Windows.Forms.Panel();
             this.flpAlbums = new System.Windows.Forms.FlowLayoutPanel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.cmsRightClickAlbums.SuspendLayout();
             this.tlpKEVINMain.SuspendLayout();
             this.tlpPlayerTopMenu.SuspendLayout();
             this.tlpPlayerBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbAlbumCover)).BeginInit();
             this.pnlMiddleBacking.SuspendLayout();
+            this.pnlPlaying.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnPlay
@@ -68,7 +74,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPlay.BackColor = System.Drawing.Color.Transparent;
-            this.btnPlay.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPlay.BackgroundImage")));
+            this.btnPlay.BackgroundImage = global::KEVIN.Properties.Resources.Play_fw;
             this.btnPlay.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnPlay.ContextMenuStrip = this.cmsRightClickAlbums;
             this.btnPlay.FlatAppearance.BorderSize = 0;
@@ -87,9 +93,10 @@
             this.cmsRightClickAlbums.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem,
             this.playToolStripMenuItem,
+            this.addToQueueToolStripMenuItem,
             this.addToPlaylistToolStripMenuItem});
             this.cmsRightClickAlbums.Name = "cmsRightClickAlbums";
-            this.cmsRightClickAlbums.Size = new System.Drawing.Size(151, 70);
+            this.cmsRightClickAlbums.Size = new System.Drawing.Size(151, 92);
             // 
             // openToolStripMenuItem
             // 
@@ -103,11 +110,32 @@
             this.playToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.playToolStripMenuItem.Text = "Play";
             // 
+            // addToQueueToolStripMenuItem
+            // 
+            this.addToQueueToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.currentlyPlayingToolStripMenuItem,
+            this.playNextToolStripMenuItem});
+            this.addToQueueToolStripMenuItem.Name = "addToQueueToolStripMenuItem";
+            this.addToQueueToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.addToQueueToolStripMenuItem.Text = "Add to Queue";
+            // 
+            // currentlyPlayingToolStripMenuItem
+            // 
+            this.currentlyPlayingToolStripMenuItem.Name = "currentlyPlayingToolStripMenuItem";
+            this.currentlyPlayingToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.currentlyPlayingToolStripMenuItem.Text = "Currently Playing";
+            // 
+            // playNextToolStripMenuItem
+            // 
+            this.playNextToolStripMenuItem.Name = "playNextToolStripMenuItem";
+            this.playNextToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.playNextToolStripMenuItem.Text = "Play Next";
+            // 
             // addToPlaylistToolStripMenuItem
             // 
             this.addToPlaylistToolStripMenuItem.Name = "addToPlaylistToolStripMenuItem";
             this.addToPlaylistToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.addToPlaylistToolStripMenuItem.Text = "Add to playlist";
+            this.addToPlaylistToolStripMenuItem.Text = "Add to Playlist";
             // 
             // btnSkipBackward
             // 
@@ -196,6 +224,7 @@
             this.tlpPlayerTopMenu.Controls.Add(this.btnSettings, 6, 0);
             this.tlpPlayerTopMenu.Controls.Add(this.btnPlayer, 2, 0);
             this.tlpPlayerTopMenu.Controls.Add(this.btnAddMusic, 5, 0);
+            this.tlpPlayerTopMenu.Controls.Add(this.progressBar1, 4, 0);
             this.tlpPlayerTopMenu.Location = new System.Drawing.Point(3, 3);
             this.tlpPlayerTopMenu.Name = "tlpPlayerTopMenu";
             this.tlpPlayerTopMenu.Padding = new System.Windows.Forms.Padding(3);
@@ -304,6 +333,13 @@
             this.btnAddMusic.UseVisualStyleBackColor = false;
             this.btnAddMusic.Click += new System.EventHandler(this.btnAddMusic_Click);
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(118, 6);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(552, 23);
+            this.progressBar1.TabIndex = 5;
+            // 
             // tlpPlayerBottom
             // 
             this.tlpPlayerBottom.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -403,8 +439,8 @@
             // pnlMiddleBacking
             // 
             this.pnlMiddleBacking.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlMiddleBacking.Controls.Add(this.pnlPlaylists);
             this.pnlMiddleBacking.Controls.Add(this.pnlPlaying);
+            this.pnlMiddleBacking.Controls.Add(this.pnlPlaylists);
             this.pnlMiddleBacking.Controls.Add(this.flpAlbums);
             this.pnlMiddleBacking.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMiddleBacking.Location = new System.Drawing.Point(0, 41);
@@ -417,7 +453,7 @@
             // 
             this.pnlPlaylists.BackgroundImage = global::KEVIN.Properties.Resources.Backing_fw;
             this.pnlPlaylists.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlPlaylists.Location = new System.Drawing.Point(489, 4);
+            this.pnlPlaylists.Location = new System.Drawing.Point(489, 3);
             this.pnlPlaylists.Name = "pnlPlaylists";
             this.pnlPlaylists.Size = new System.Drawing.Size(236, 196);
             this.pnlPlaylists.TabIndex = 2;
@@ -427,9 +463,10 @@
             // 
             this.pnlPlaying.BackgroundImage = global::KEVIN.Properties.Resources.Backing_fw;
             this.pnlPlaying.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlPlaying.Location = new System.Drawing.Point(259, 4);
+            this.pnlPlaying.Controls.Add(this.tableLayoutPanel1);
+            this.pnlPlaying.Location = new System.Drawing.Point(16, 0);
             this.pnlPlaying.Name = "pnlPlaying";
-            this.pnlPlaying.Size = new System.Drawing.Size(229, 196);
+            this.pnlPlaying.Size = new System.Drawing.Size(709, 426);
             this.pnlPlaying.TabIndex = 1;
             // 
             // flpAlbums
@@ -442,6 +479,19 @@
             this.flpAlbums.Name = "flpAlbums";
             this.flpAlbums.Size = new System.Drawing.Size(241, 197);
             this.flpAlbums.TabIndex = 0;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(703, 423);
+            this.tableLayoutPanel1.TabIndex = 0;
             // 
             // frmKEVINMain
             // 
@@ -462,6 +512,7 @@
             this.tlpPlayerBottom.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbAlbumCover)).EndInit();
             this.pnlMiddleBacking.ResumeLayout(false);
+            this.pnlPlaying.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -487,10 +538,15 @@
         private System.Windows.Forms.Panel pnlPlaylists;
         private System.Windows.Forms.Panel pnlPlaying;
         private System.Windows.Forms.FlowLayoutPanel flpAlbums;
-        private System.Windows.Forms.ContextMenuStrip cmsRightClickAlbums;
+        public System.Windows.Forms.ContextMenuStrip cmsRightClickAlbums;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem playToolStripMenuItem;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.ToolStripMenuItem addToQueueToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem currentlyPlayingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem playNextToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addToPlaylistToolStripMenuItem;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }
 
