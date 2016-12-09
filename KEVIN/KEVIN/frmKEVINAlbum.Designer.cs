@@ -125,13 +125,15 @@
             this.addToQueueToolStripMenuItem,
             this.addToPlaylistToolStripMenuItem});
             this.cmsRightClickSongs.Name = "cmsRightClickAlbums";
-            this.cmsRightClickSongs.Size = new System.Drawing.Size(151, 70);
+            this.cmsRightClickSongs.Size = new System.Drawing.Size(153, 92);
+            this.cmsRightClickSongs.Opening += new System.ComponentModel.CancelEventHandler(this.cmsRightClickSongs_Opening);
             // 
             // playToolStripMenuItem
             // 
             this.playToolStripMenuItem.Name = "playToolStripMenuItem";
-            this.playToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.playToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.playToolStripMenuItem.Text = "Play";
+            this.playToolStripMenuItem.Click += new System.EventHandler(this.playToolStripMenuItem_Click);
             // 
             // addToQueueToolStripMenuItem
             // 
@@ -139,20 +141,23 @@
             this.currentlyPlayingToolStripMenuItem,
             this.playNextToolStripMenuItem});
             this.addToQueueToolStripMenuItem.Name = "addToQueueToolStripMenuItem";
-            this.addToQueueToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.addToQueueToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.addToQueueToolStripMenuItem.Text = "Add to Queue";
+            this.addToQueueToolStripMenuItem.Click += new System.EventHandler(this.addToQueueToolStripMenuItem_Click);
             // 
             // currentlyPlayingToolStripMenuItem
             // 
             this.currentlyPlayingToolStripMenuItem.Name = "currentlyPlayingToolStripMenuItem";
             this.currentlyPlayingToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.currentlyPlayingToolStripMenuItem.Text = "Currently Playing";
+            this.currentlyPlayingToolStripMenuItem.Click += new System.EventHandler(this.currentlyPlayingToolStripMenuItem_Click);
             // 
             // playNextToolStripMenuItem
             // 
             this.playNextToolStripMenuItem.Name = "playNextToolStripMenuItem";
             this.playNextToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.playNextToolStripMenuItem.Text = "Play Next";
+            this.playNextToolStripMenuItem.Click += new System.EventHandler(this.playNextToolStripMenuItem_Click);
             // 
             // addToPlaylistToolStripMenuItem
             // 

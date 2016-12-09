@@ -33,13 +33,31 @@ namespace KEVIN
         public string buttonGenre;
         string songLocationmpPlayer;
         string yetAnotherTemp;
+        public int tempQueueIDForCheck = 0;
+        public int maxQueueID;
+        public int Timer = 0;
+        public double SongLength;
 
         //MySQL Commands not used in functions
+        public void blankVoid()
+        {
+            //Placeholder for things
+        }
 
         public void connectToDB()
         {
             connect.Open();
             connect2.Open();
+        }
+
+        public void createOtherTables()
+        {
+            refreshConnectionToDB();
+            MySqlCommand createQueueTable = new MySqlCommand("CREATE TABLE IF NOT EXISTS Queue (QueueID INT(255), MusicID INT(255))", connect);
+            createQueueTable.ExecuteNonQuery();
+            refreshConnectionToDB();
+            MySqlCommand createControlsTable = new MySqlCommand("CREATE TABLE IF NOT EXISTS Controls (Control VARCHAR(100), State INT(255))", connect);
+            createControlsTable.ExecuteNonQuery();
         }
 
         public void checkIfAlbumExists(string album1, string artist1)
@@ -76,6 +94,7 @@ namespace KEVIN
                 return;
             }
         }
+
         public void CreateAndAppendAlbumInfoToTables(string AlbumToAppend, string Artist, string Genre)
         {
             MySqlCommand checkandCreateAlbum = new MySqlCommand("CREATE TABLE IF NOT EXISTS Albums (AlbumID INT(255) UNSIGNED AUTO_INCREMENT PRIMARY KEY, Album VARCHAR(1000), Artist VARCHAR(100), Genre VARCHAR(100))", connect);
@@ -89,6 +108,7 @@ namespace KEVIN
             }
             refreshConnectionToDB();
         }
+
         public void createAndAppendMusicInfoToTables(string Album, string Artist, string trackNo, string songName, string songLength, string songLocation1)
         {
             MySqlCommand checkAndCreateMusic = new MySqlCommand("CREATE TABLE IF NOT EXISTS Music (SongID INT(255) UNSIGNED AUTO_INCREMENT PRIMARY KEY, TrackNo INT(255), SongName VARCHAR(100), SongLength VARCHAR(100), SongLocation VARCHAR(1000), AlbumID INT(255))", connect);
@@ -112,6 +132,8 @@ namespace KEVIN
         {
             connect.Close();
             connect.Open();
+            connect2.Close();
+            connect2.Open();
         }
 
         public void openAlbumForm(string locationForLookup)
@@ -123,7 +145,7 @@ namespace KEVIN
             selectedAlbum.Show();
         }
 
-        public Button AttachMethodToButton(Button b, Action buttonMethod)
+        public Button attachMethodToButton(Button b, Action buttonMethod)
         {
             b.Click += (s, e) => buttonMethod();
             return b;
@@ -131,6 +153,7 @@ namespace KEVIN
 
         public void createAlbumButtons(int x, FlowLayoutPanel field, ContextMenuStrip cms)
         {
+            field.Controls.Clear();
             try
             {
                 refreshConnectionToDB();
@@ -159,7 +182,7 @@ namespace KEVIN
 
                         }
                         string stringX = readAlbumIDFromFirstSong.GetString(0);
-                        field.Controls.Add(AttachMethodToButton(new Button
+                        field.Controls.Add(attachMethodToButton(new Button
                         {
                             Name = "Album" + readAlbumsTable.GetString(0),
                             ForeColor = Color.WhiteSmoke,
@@ -173,6 +196,7 @@ namespace KEVIN
                             {
                                 BorderSize = 1,
                                 BorderColor = ColorTranslator.FromHtml("#444444"),
+                                MouseOverBackColor = Color.Transparent,
                             },
                             ContextMenuStrip = cms,
                         }, () => openAlbumForm(stringX)));
@@ -207,14 +231,20 @@ namespace KEVIN
             }
         }
 
-        public Button attachSongToButton(Button button, Action method)
+        public Button attachSongToButton(Button button, Action method, ContextMenuStrip cms)
         {
             button.Click += (s, e) => method();
+            button.MouseHover += (s, e) => mouseHoverCMSTag(cms, button);
             return button;
         }
 
-        public void playSongofButton(string songIDForFile)
+        public void playSongofButton(string songIDForFile, ContextMenuStrip cms)
         {
+            refreshConnectionToDB();
+            MySqlCommand deleteAllQueue = new MySqlCommand("DELETE FROM Queue WHERE true", connect);
+            deleteAllQueue.ExecuteNonQuery();
+            refreshConnectionToDB();
+            appendQueue(cms);
             refreshConnectionToDB();
             MySqlCommand selectSongLocation = new MySqlCommand("SELECT SongLocation FROM Music WHERE SongID = \"" + songIDForFile + "\"", connect);
             MySqlDataReader readSongLocation = selectSongLocation.ExecuteReader();
@@ -222,6 +252,7 @@ namespace KEVIN
             {
                 yetAnotherTemp = readSongLocation.GetString(0).Replace("'", "\\");
             }
+            Timer = 0;
             frmKEVINMain.mpPlayer.Pause();
             frmKEVINMain.mpPlayer.Stop();
             frmKEVINMain.mpPlayer.Open(yetAnotherTemp);
@@ -230,6 +261,7 @@ namespace KEVIN
 
         public void createSongButtons(string locationForAlbumID, FlowLayoutPanel song1, ContextMenuStrip cms)
         {
+            song1.Controls.Clear();
             refreshConnectionToDB();
             MySqlCommand selectAlbumID = new MySqlCommand("SELECT AlbumID FROM Music WHERE SongLocation = \"" + locationForAlbumID + "\" LIMIT 1", connect);
             MySqlDataReader readAlbumID = selectAlbumID.ExecuteReader();
@@ -249,8 +281,9 @@ namespace KEVIN
                 song1.Controls.Add(attachSongToButton(new Button()
                 {
                     Name = readSongsFromAlbumID.GetString(2) + " " + readSongsFromAlbumID.GetString(0) + " | " + time,
-                    ForeColor = ColorTranslator.FromHtml("#646464"),
+                    ForeColor = Color.WhiteSmoke,
                     Text = readSongsFromAlbumID.GetInt16(2) + " " + readSongsFromAlbumID.GetString(0) + " | " + time,
+                    Tag = readSongsFromAlbumID.GetString(4),
                     Font = new Font("Trebuchet MS", 10),
                     TextAlign = ContentAlignment.MiddleLeft,
                     AutoSize = false,
@@ -262,8 +295,104 @@ namespace KEVIN
                         BorderSize = 0,
                     },
                     ContextMenuStrip = cms,
-                }, () => playSongofButton(anotherTempVar)));
+                }, () => playSongofButton(anotherTempVar, cms), cms));
             }
+        }
+
+        public void appendQueue(ContextMenuStrip cms)
+        {
+            refreshConnectionToDB();
+            MySqlCommand selectQueue = new MySqlCommand("SELECT QueueID FROM Queue ORDER BY QueueID DESC LIMIT 1", connect);
+            MySqlDataReader readQueue = selectQueue.ExecuteReader();
+            while (readQueue.Read())
+            {
+                tempQueueIDForCheck = readQueue.GetInt16(0)+1;
+            }
+            refreshConnectionToDB();
+            MySqlCommand appendQueue = new MySqlCommand("INSERT INTO Queue(QueueID, MusicID) VALUES (" + tempQueueIDForCheck++ + ", " + cms.Tag.ToString() + ")", connect);
+            appendQueue.ExecuteNonQuery();
+        }
+
+        public void createQueueButtons(FlowLayoutPanel queue, ContextMenuStrip cms)
+        {
+            queue.Controls.Clear();
+            refreshConnectionToDB();
+            MySqlCommand selectQueue = new MySqlCommand("SELECT * FROM Queue", connect);
+            MySqlDataReader readQueue = selectQueue.ExecuteReader();
+            while (readQueue.Read())
+            {
+                connect2.Close();
+                connect2.Open();
+                MySqlCommand selectSongInfo = new MySqlCommand("SELECT SongLocation FROM Music WHERE SongID = " + readQueue.GetString(1), connect2);
+                MySqlDataReader readSongInfo = selectSongInfo.ExecuteReader();
+                while (readSongInfo.Read())
+                {
+                    int z = 1;
+                    string stripSongLocation = readSongInfo.GetString(0).Replace("'", "\\");
+                    TagLib.File songInfoFromSongLocation = TagLib.File.Create(stripSongLocation);
+                    TimeSpan songLength = songInfoFromSongLocation.Properties.Duration;
+                    string strSongLength = songLength.ToString().Remove(0, 3);
+                    queue.Controls.Add(attachMethodToButton(new Button()
+                    {
+                        AutoEllipsis = true,
+                        Name = "queue" + z,
+                        ForeColor = Color.WhiteSmoke,
+                        Text = songInfoFromSongLocation.Tag.Title + " | " + strSongLength.Remove(5,8),
+                        Font = new Font("Trebuchet MS", 10),
+                        TextAlign = ContentAlignment.MiddleLeft,
+                        Width = queue.Width - 3,
+                        Anchor = AnchorStyles.Left | AnchorStyles.Right,
+                        FlatStyle = FlatStyle.Flat,
+                        FlatAppearance =
+                        {
+                            BorderSize = 0,
+                            MouseOverBackColor = Color.Transparent,
+                        },
+                        Margin = new Padding(0,2,2,4),
+                    }, () => blankVoid()));
+                }   
+            }
+        }
+
+        public void mouseHoverCMSTag(ContextMenuStrip cms, Button b)
+        {
+            cms.Tag = b.Tag;
+        }
+
+        public void openFirstQueueSong()
+        {
+            int queueID = 0;
+            int musicID = 0;
+            string songLocation = "";
+            refreshConnectionToDB();
+            MySqlCommand selectMaxQueueID = new MySqlCommand("SELECT QueueID FROM Queue ORDER BY QueueID DESC LIMIT 1");
+            MySqlDataReader readMaxQueueID = selectMaxQueueID.ExecuteReader();
+            while (readMaxQueueID.Read())
+            {
+                maxQueueID = readMaxQueueID.GetInt16(0);
+            }
+            refreshConnectionToDB();
+            MySqlCommand selectFirstItemInQueue = new MySqlCommand("SELECT MusicID FROM Queue WHERE QueueID = " + queueID, connect);
+            MySqlDataReader readFirstItemInQueue = selectFirstItemInQueue.ExecuteReader();
+            while (readFirstItemInQueue.Read())
+            {
+                musicID = readFirstItemInQueue.GetInt16(0);
+            }
+            refreshConnectionToDB();
+            MySqlCommand selectSongLocation = new MySqlCommand("SELECT SongLocation FROM Music WHERE SongID = " + musicID, connect);
+            MySqlDataReader readSongLocation = selectSongLocation.ExecuteReader();
+            while (readSongLocation.Read())
+            {
+                songLocation = readSongLocation.GetString(0).Replace("'", "\\");
+            }
+            try
+            {
+                TagLib.File songLength = TagLib.File.Create(songLocation);
+                SongLength = songLength.Properties.Duration.TotalSeconds;
+            }
+            catch { }
+            frmKEVINMain.mpPlayer.Open(songLocation);
+            tempQueueIDForCheck++;
         }
     }
 }

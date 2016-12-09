@@ -18,6 +18,7 @@ namespace KEVIN
     public partial class frmKEVINAlbum : Form
     {
         Functions AlbumFunctions = new Functions();
+        string locationWithApostrophe;
         public frmKEVINAlbum()
         {
             InitializeComponent();
@@ -26,10 +27,10 @@ namespace KEVIN
         public void frmKEVINAddMusic_Load(object sender, EventArgs e)
         {
             this.BackColor = ColorTranslator.FromHtml("#444444");
-            lblAlbumName.ForeColor = ColorTranslator.FromHtml("#646464");
+            lblAlbumName.ForeColor = Color.WhiteSmoke;
             pnlHeader.BackColor = ColorTranslator.FromHtml("#3c3c3c");
-            lblArtistAndGenre.ForeColor = ColorTranslator.FromHtml("#646464");
-            string locationWithApostrophe = this.Tag.ToString();
+            lblArtistAndGenre.ForeColor = Color.WhiteSmoke;
+            locationWithApostrophe = this.Tag.ToString();
             string replaceLocation = locationWithApostrophe.Replace("'", "\\");
             TagLib.File albumTags = TagLib.File.Create(replaceLocation);
             this.Text = albumTags.Tag.Album + " - " + albumTags.Tag.FirstArtist;
@@ -48,6 +49,31 @@ namespace KEVIN
             }
             AlbumFunctions.getAlbumInfoFromLocation(locationWithApostrophe);
             AlbumFunctions.createSongButtons(locationWithApostrophe, flpSongsWrapper, cmsRightClickSongs);  
+        }
+
+        private void cmsRightClickSongs_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void addToQueueToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+                      
+        }
+
+        private void currentlyPlayingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AlbumFunctions.appendQueue(cmsRightClickSongs);
+        }
+
+        private void playToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void playNextToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -9,11 +9,10 @@ namespace KEVIN
 {
     public class MusicPlayer
     {
-        string openString;
-        string playString;
-        string pauseString;
-        string stopString;
-        string repeatString;
+        public string openString;
+        public string playString;
+        public string pauseString;
+        public string stopString;
         [DllImport("winmm.dll")]
         private static extern long mciSendString(string lpstrCommand, StringBuilder lpstrReturnString, int uReturnLength, int hwndCallback);
 

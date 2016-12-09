@@ -51,6 +51,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commented Code For Later Class.cs" />
+    <Compile Include="frmTemp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTemp.Designer.cs">
+      <DependentUpon>frmTemp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Functions.cs" />
     <Compile Include="frmKEVINAlbum.cs">
       <SubType>Form</SubType>
@@ -250,6 +256,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Icons\NoAlbumArt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\queue.fw.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

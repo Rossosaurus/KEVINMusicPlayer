@@ -59,3 +59,96 @@ MySqlDataReader trackNoReader = selectTrackNo.ExecuteReader();
 
             }
             selectArtist.Connection.Close();*/
+
+    /*public void queuePlayFirstSong(Label songName, PictureBox albumArt)
+    {
+        refreshConnectionToDB();
+        MySqlCommand selectFirstQueueItem = new MySqlCommand("SELECT MusicID FROM Queue Where QueueID = 0", connect);
+        MySqlDataReader readFirstQueueItem = selectFirstQueueItem.ExecuteReader();
+        string firstSong = "";
+        while (readFirstQueueItem.Read())
+        {
+            firstSong = readFirstQueueItem.GetString(0);
+        }
+        refreshConnectionToDB();
+        MySqlCommand selectSongInfo = new MySqlCommand("SELECT SongLocation From Music WHERE SongID = " + firstSong, connect);
+        MySqlDataReader readSongInfo = selectSongInfo.ExecuteReader();
+        string songLocationSlash = "";
+        while (readSongInfo.Read())
+        {
+            songLocationSlash = readSongInfo.GetString(0);
+        }
+        songLocationSlash = songLocationSlash.Replace("'", "\\");
+        frmKEVINMain.mpPlayer.Open(songLocationSlash);
+        frmKEVINMain.mpPlayer.Play();
+        TagLib.File songInfo = TagLib.File.Create(songLocationSlash);
+        songName.Text = songInfo.Tag.Title;
+        //main.Text = songInfo.Tag.Title + " - KEVIN MP";
+        MemoryStream ms;
+        try
+        {
+            ms = new MemoryStream(songInfo.Tag.Pictures[0].Data.Data);
+            System.Drawing.Image image = System.Drawing.Image.FromStream(ms);
+            albumArt.BackgroundImage = image;
+        }
+        catch
+        {
+            albumArt.BackgroundImage = KEVIN.Properties.Resources.NoAlbumArt;
+        }
+
+    }
+
+    public void playQueueSongs(bool playing, Button b, Label songName, PictureBox albumArt)
+    {
+        refreshConnectionToDB();
+        int maxQueueID = 0;
+        MySqlCommand getMaxQueueID = new MySqlCommand("SELECT COUNT(*) FROM Queue", connect);
+        MySqlDataReader readMaxQueueID = getMaxQueueID.ExecuteReader();
+        while (readMaxQueueID.Read())
+        {
+            maxQueueID = readMaxQueueID.GetInt16(0);
+        }
+        string[] queueArray = new string[maxQueueID];
+        if (playing == true)
+        {
+            playing = false;
+            b.BackgroundImage = KEVIN.Properties.Resources.Play_fw;
+            frmKEVINMain.mpPlayer.Pause();
+        }
+        else if (playing == false)
+        {
+            playing = true;
+            b.BackgroundImage = KEVIN.Properties.Resources.Pause_fw;
+            queuePlayFirstSong(songName, albumArt);
+            while (true && playing == true)
+            {
+
+            }
+        }
+    }
+    public void waitSongLength(int songLength)
+    {
+        if (songLength == songLengthComparator)
+        {
+            refreshConnectionToDB();
+            MySqlCommand selectNextQueueItem = new MySqlCommand("SELECT MusicID FROM Queue Where QueueID = 0", connect);
+            MySqlDataReader readNextQueueItem = selectNextQueueItem.ExecuteReader();
+            string firstSong = "";
+            while (readNextQueueItem.Read())
+            {
+                firstSong = readNextQueueItem.GetString(0);
+            }
+            refreshConnectionToDB();
+            MySqlCommand selectSongInfo = new MySqlCommand("SELECT SongLocation From Music WHERE SongID = " + firstSong, connect);
+            MySqlDataReader readSongInfo = selectSongInfo.ExecuteReader();
+            string songLocationSlash = "";
+            while (readSongInfo.Read())
+            {
+                songLocationSlash = readSongInfo.GetString(0);
+            }
+            if (true)
+            {
+
+            }
+        }
+    }*/

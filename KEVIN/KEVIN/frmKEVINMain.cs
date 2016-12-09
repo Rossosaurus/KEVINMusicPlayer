@@ -17,11 +17,12 @@ namespace KEVIN
 {
     public partial class frmKEVINMain : Form
     {
-        public static readonly KEVIN.MusicPlayer mpPlayer = new MusicPlayer();
-        public bool playpause = true;
         public bool playing = false;
+        public static readonly KEVIN.MusicPlayer mpPlayer = new MusicPlayer();
         Functions Functions = new Functions();
         System.Drawing.Image albumCover = KEVIN.Properties.Resources.NoAlbumArt;
+        int x = 1;
+        ContextMenuStrip cmsFake;
 
         public frmKEVINMain()
         {
@@ -40,14 +41,16 @@ namespace KEVIN
 
         private void frmKEVINMain_Load(object sender, EventArgs e)
         {
-            //Variables declared on launch
-            int x = 1;
+            CheckForIllegalCrossThreadCalls = false;
+
+            //Variables declared on launch            
             MySqlCommand selectTrackNo = new MySqlCommand("SELECT TrackNo FROM Music");
             MySqlCommand selectSongName = new MySqlCommand("SELECT SongName FROM Music");
             MySqlCommand selectSongLength = new MySqlCommand("SELECT SongLength FROM Music");
             MySqlCommand selectAlbum = new MySqlCommand("SELECT Album FROM Music");
             MySqlCommand selectArtist = new MySqlCommand("SELECT Artist FROM Music");
             MySqlCommand selectGenre = new MySqlCommand("SELECT Genre FROM Music");
+            bwTimer.WorkerSupportsCancellation = true;
 
             //Set colours via hex codes
             this.BackColor = ColorTranslator.FromHtml("#444444");
@@ -61,8 +64,9 @@ namespace KEVIN
             pbAlbumCover.BackColor = ColorTranslator.FromHtml("#444444");
 
             //Set pnlPlaying and pnlPlaylists to hidden
-            pnlPlaying.Hide();
+            flpAlbums.Hide();
             pnlPlaylists.Hide();
+
             //Format of all subforms            
             flpAlbums.Location = new Point(16,3);
             flpAlbums.Size = new Size(729, 423);
@@ -73,18 +77,22 @@ namespace KEVIN
             pnlPlaylists.Location = new Point(16, 3);
             pnlPlaylists.Size = new Size(729, 423);
             pnlPlaylists.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom;
+            flpQueue.HorizontalScroll.Maximum = 0;
+            flpQueue.AutoScroll = false;
+            flpQueue.HorizontalScroll.Visible = false;
+            flpQueue.AutoScroll = true;
+                      
 
             //Connect to DB
             Functions.connectToDB();
-            Functions.createAlbumButtons(x, flpAlbums, cmsRightClickAlbums);
+            Functions.createOtherTables();
             Functions.refreshConnectionToDB();
+            Functions.createQueueButtons(flpQueue, cmsFake);
             
-
-        }
-
-        private void btnOpen_Click(object sender, EventArgs e)
-        {
-            
+            //Functions onLoad
+            Functions.openFirstQueueSong();
+            bwTimer.RunWorkerAsync();
+            bwPlayer.RunWorkerAsync();
         }
 
         private void ofdOpenMusic_FileOk(object sender, CancelEventArgs e)
@@ -95,7 +103,6 @@ namespace KEVIN
                 string pathExtension = Path.GetExtension(songInfo);
                 if (pathExtension == ".mp3" || pathExtension == ".flac" || pathExtension == ".aac" || pathExtension == ".m4a" || pathExtension == ".wav")
                 {
-                    frmKEVINMain.mpPlayer.Stop();
                     TagLib.File file = TagLib.File.Create(songInfo);
                     string fileName = System.IO.Path.GetFileNameWithoutExtension(songInfo);
                     uint TrackID = file.Tag.Track;
@@ -112,9 +119,6 @@ namespace KEVIN
 
                     TimeSpan SongLength = file.Properties.Duration;
                     string strSongLength = SongLength.ToString();
-                    //strSongLength = strSongLength.Remove(0, 3);
-                    //strSongLength = strSongLength.Remove(5, 8);
-
                     string Artist = string.Join(",", file.Tag.FirstArtist);
                     string Album = file.Tag.Album;
                     string Genre = file.Tag.FirstGenre;
@@ -123,9 +127,7 @@ namespace KEVIN
 
                     //Add song
                     Functions.refreshConnectionToDB();
-                    this.Text = Album + " - KEVIN";
                     lblCurrentlyPlaying.Text = SongName;
-                    //frmKEVINMain.mpPlayer.Open(ofdOpenMusic.FileName);
                     MemoryStream ms;
                     try
                     {
@@ -138,6 +140,9 @@ namespace KEVIN
                         pbAlbumCover.BackgroundImage = KEVIN.Properties.Resources.NoAlbumArt;
                     }
 
+                    flpAlbums.Hide();
+                    pnlPlaying.Show();
+                    pnlPlaylists.Hide();
 
                     //Addpend to DB
                     Functions.CreateAndAppendAlbumInfoToTables(Album, Artist, Genre);
@@ -151,24 +156,18 @@ namespace KEVIN
 
         private void btnPlay_Click(object sender, EventArgs e)
         {
-            if (playpause == false)
-            {
-                return;
-            }
-            if (playing == true)
-            {
-                btnPlay.BackgroundImage = KEVIN.Properties.Resources.Pause_fw;
-                frmKEVINMain.mpPlayer.Pause();
-                playing = false;
-                return;
-            }
             if (playing == false)
             {
-                btnPlay.BackgroundImage = KEVIN.Properties.Resources.Play_fw;
-                frmKEVINMain.mpPlayer.Play();
+                btnPlay.BackgroundImage = KEVIN.Properties.Resources.Pause_fw;
+                mpPlayer.Play();
                 playing = true;
-                return;
-            }            
+            }
+            else
+            {
+                btnPlay.BackgroundImage = KEVIN.Properties.Resources.Play_fw;
+                mpPlayer.Pause();
+                playing = false;
+            }
         }
 
         private void btnSkipForward_Click(object sender, EventArgs e)
@@ -178,6 +177,7 @@ namespace KEVIN
 
         private void btnAlbum_Click(object sender, EventArgs e)
         {
+            Functions.createAlbumButtons(x, flpAlbums, cmsRightClickAlbums);
             pnlPlaying.Hide();
             pnlPlaylists.Hide();
             flpAlbums.Show();
@@ -198,6 +198,7 @@ namespace KEVIN
             pnlPlaying.Show();
             pnlPlaylists.Hide();
             flpAlbums.Hide();
+            Functions.createQueueButtons(flpQueue, cmsRightClickAlbums);
         }
 
         private void btnPlayer_MouseEnter(object sender, EventArgs e)
@@ -245,7 +246,6 @@ namespace KEVIN
 
         private void btnAddMusic_Click(object sender, EventArgs e)
         {
-            playpause = true;
             ofdOpenMusic.ShowDialog();
         }
 
@@ -292,6 +292,80 @@ namespace KEVIN
         private void pnlPlaylists_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void flpQueue_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void bwTimer_DoWork(object sender, DoWorkEventArgs e)
+        {
+            Functions.Timer = 0;
+            frmTemp temp = new frmTemp();
+            temp.Text = Functions.Timer + " | " + Functions.SongLength;
+            temp.Show();
+            while (true)
+            {
+                while (playing == true)
+                {
+                    temp.Text = Functions.Timer.ToString() + " | " + Functions.SongLength;
+                    Functions.Timer++;
+                    System.Threading.Thread.Sleep(1000);
+                }
+            }
+            
+        }
+
+        private void bwPlayer_DoWork(object sender, DoWorkEventArgs e)
+        {
+            while (true)
+            {
+                if (Functions.Timer > Functions.SongLength)
+                {
+                    if (Functions.maxQueueID == Functions.tempQueueIDForCheck)
+                    {
+                        Functions.openFirstQueueSong();
+                        mpPlayer.Play();
+                    }
+                    else
+                    {
+                        Functions.Timer = 0;
+                        Functions.refreshConnectionToDB();
+                        MySqlCommand selectNextID = new MySqlCommand("SELECT musicID FROM queue WHERE queueID = " + Functions.tempQueueIDForCheck, Functions.connect);
+                        MySqlDataReader readNextID = selectNextID.ExecuteReader();
+                        string nextMusicID = "";
+                        while (readNextID.Read())
+                        {
+                            nextMusicID = readNextID.GetString(0);
+                        }
+                        Functions.tempQueueIDForCheck++;
+                        Functions.refreshConnectionToDB();
+                        MySqlCommand selectNextSong = new MySqlCommand("SELECT SongLocation FROM music WHERE SongID = " + nextMusicID, Functions.connect);
+                        MySqlDataReader readNextSong = selectNextSong.ExecuteReader();
+                        string nextSongLocation = "";
+                        while (readNextSong.Read())
+                        {
+                            nextSongLocation = readNextSong.GetString(0).Replace("'", "\\");
+                        }
+                        TagLib.File songLength = TagLib.File.Create(nextSongLocation);
+                        Functions.SongLength = songLength.Properties.Duration.TotalSeconds;
+                        mpPlayer.Stop();
+                        mpPlayer.Open(nextSongLocation);
+                        mpPlayer.Play(); 
+                    }
+                                       
+                }
+                if (playing == true)
+                {
+                    mpPlayer.Play();
+                }
+                if (playing == false)
+                {
+                    mpPlayer.Pause();
+                }
+                System.Threading.Thread.Sleep(100);
+            }
         }
     }
 }
