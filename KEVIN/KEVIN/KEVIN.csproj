@@ -88,6 +88,9 @@
     <EmbeddedResource Include="frmKEVINSettings.resx">
       <DependentUpon>frmKEVINSettings.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmTemp.resx">
+      <DependentUpon>frmTemp.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

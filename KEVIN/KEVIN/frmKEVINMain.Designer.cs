@@ -465,11 +465,13 @@
             this.tlpNoPlayingLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.61735F));
             this.tlpNoPlayingLayout.Controls.Add(this.flpQueue, 1, 0);
             this.tlpNoPlayingLayout.Location = new System.Drawing.Point(3, 3);
+            this.tlpNoPlayingLayout.Margin = new System.Windows.Forms.Padding(0);
             this.tlpNoPlayingLayout.Name = "tlpNoPlayingLayout";
             this.tlpNoPlayingLayout.RowCount = 1;
             this.tlpNoPlayingLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpNoPlayingLayout.Size = new System.Drawing.Size(722, 423);
             this.tlpNoPlayingLayout.TabIndex = 0;
+            this.tlpNoPlayingLayout.Paint += new System.Windows.Forms.PaintEventHandler(this.tlpNoPlayingLayout_Paint);
             // 
             // flpQueue
             // 

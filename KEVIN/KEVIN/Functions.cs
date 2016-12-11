@@ -32,11 +32,12 @@ namespace KEVIN
         public string buttonArtist;
         public string buttonGenre;
         string songLocationmpPlayer;
-        string yetAnotherTemp;
+        string yetAnotherTemp = "";
         public int tempQueueIDForCheck = 0;
         public int maxQueueID;
         public int Timer = 0;
         public double SongLength;
+        public bool playing = false;
 
         //MySQL Commands not used in functions
         public void blankVoid()
@@ -253,10 +254,14 @@ namespace KEVIN
                 yetAnotherTemp = readSongLocation.GetString(0).Replace("'", "\\");
             }
             Timer = 0;
+            TagLib.File songLengthFromLocation = TagLib.File.Create(yetAnotherTemp);
+            SongLength = songLengthFromLocation.Properties.Duration.TotalSeconds;
             frmKEVINMain.mpPlayer.Pause();
             frmKEVINMain.mpPlayer.Stop();
             frmKEVINMain.mpPlayer.Open(yetAnotherTemp);
-            frmKEVINMain.mpPlayer.Play();
+            playing = true;
+            MessageBox.Show("Playing = true");
+            frmKEVINMain.mpPlayer.Play();                      
         }
 
         public void createSongButtons(string locationForAlbumID, FlowLayoutPanel song1, ContextMenuStrip cms)
@@ -340,7 +345,8 @@ namespace KEVIN
                         Text = songInfoFromSongLocation.Tag.Title + " | " + strSongLength.Remove(5,8),
                         Font = new Font("Trebuchet MS", 10),
                         TextAlign = ContentAlignment.MiddleLeft,
-                        Width = queue.Width - 3,
+                        Width = queue.Width - 8,
+                        Margin = new Padding(4,2,2,4),
                         Anchor = AnchorStyles.Left | AnchorStyles.Right,
                         FlatStyle = FlatStyle.Flat,
                         FlatAppearance =
@@ -348,7 +354,6 @@ namespace KEVIN
                             BorderSize = 0,
                             MouseOverBackColor = Color.Transparent,
                         },
-                        Margin = new Padding(0,2,2,4),
                     }, () => blankVoid()));
                 }   
             }
@@ -365,7 +370,7 @@ namespace KEVIN
             int musicID = 0;
             string songLocation = "";
             refreshConnectionToDB();
-            MySqlCommand selectMaxQueueID = new MySqlCommand("SELECT QueueID FROM Queue ORDER BY QueueID DESC LIMIT 1");
+            MySqlCommand selectMaxQueueID = new MySqlCommand("SELECT QueueID FROM Queue ORDER BY QueueID DESC LIMIT 1", connect);
             MySqlDataReader readMaxQueueID = selectMaxQueueID.ExecuteReader();
             while (readMaxQueueID.Read())
             {

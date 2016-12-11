@@ -335,7 +335,7 @@ namespace KEVIN.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap queue_fw {
             get {
-                object obj = ResourceManager.GetObject("queue.fw", resourceCulture);
+                object obj = ResourceManager.GetObject("queue_fw", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
