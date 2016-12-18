@@ -33,11 +33,12 @@ namespace KEVIN
         public string buttonGenre;
         string songLocationmpPlayer;
         string yetAnotherTemp = "";
-        public int tempQueueIDForCheck = 0;
-        public int maxQueueID;
+        public int currentQueueID = 0;
+        public int queueSize;
         public int Timer = 0;
         public double SongLength;
         public bool playing = false;
+        public bool stop = false;
 
         //MySQL Commands not used in functions
         public void blankVoid()
@@ -51,7 +52,7 @@ namespace KEVIN
             connect2.Open();
         }
 
-        public void createOtherTables()
+        public void createTables()
         {
             refreshConnectionToDB();
             MySqlCommand createQueueTable = new MySqlCommand("CREATE TABLE IF NOT EXISTS Queue (QueueID INT(255), MusicID INT(255))", connect);
@@ -59,6 +60,13 @@ namespace KEVIN
             refreshConnectionToDB();
             MySqlCommand createControlsTable = new MySqlCommand("CREATE TABLE IF NOT EXISTS Controls (Control VARCHAR(100), State INT(255))", connect);
             createControlsTable.ExecuteNonQuery();
+            refreshConnectionToDB();
+            MySqlCommand createAlbumsTable = new MySqlCommand("CREATE TABLE IF NOT EXISTS Albums (AlbumID INT(255) UNSIGNED AUTO_INCREMENT PRIMARY KEY, Album VARCHAR(1000), Artist VARCHAR(100), Genre VARCHAR(100))", connect);
+            createAlbumsTable.ExecuteNonQuery();
+            refreshConnectionToDB();
+            MySqlCommand createMusicTable = new MySqlCommand("CREATE TABLE IF NOT EXISTS Music (SongID INT(255) UNSIGNED AUTO_INCREMENT PRIMARY KEY, TrackNo INT(255), SongName VARCHAR(100), SongLength VARCHAR(100), SongLocation VARCHAR(1000), AlbumID INT(255))", connect);
+            createMusicTable.ExecuteNonQuery();
+            refreshConnectionToDB();
         }
 
         public void checkIfAlbumExists(string album1, string artist1)
@@ -124,7 +132,7 @@ namespace KEVIN
             if (songExists == false)
             {
                 refreshConnectionToDB();
-                MySqlCommand appendMusicInfo = new MySqlCommand("INSERT INTO Music (TrackNo, SongName, SongLength, SongLocation, AlbumID)  VALUES( " + trackNo + ", \"" + songName + "\", \"" + songLength + "\", \"" + songLocation1 + "\", \"" + albumID + "\")", connect);
+                MySqlCommand appendMusicInfo = new MySqlCommand("INSERT INTO Music (TrackNo, SongName, SongLength, SongLocation, AlbumID)  VALUES ( " + trackNo + ", \"" + songName + "\", \"" + songLength + "\", \"" + songLocation1 + "\", \"" + albumID + "\")", connect);
                 appendMusicInfo.ExecuteNonQuery();
             }
         }
@@ -245,6 +253,9 @@ namespace KEVIN
             MySqlCommand deleteAllQueue = new MySqlCommand("DELETE FROM Queue WHERE true", connect);
             deleteAllQueue.ExecuteNonQuery();
             refreshConnectionToDB();
+            currentQueueID = 1;
+            queueSize = 1;
+            stop = true;
             appendQueue(cms);
             refreshConnectionToDB();
             MySqlCommand selectSongLocation = new MySqlCommand("SELECT SongLocation FROM Music WHERE SongID = \"" + songIDForFile + "\"", connect);
@@ -256,11 +267,9 @@ namespace KEVIN
             Timer = 0;
             TagLib.File songLengthFromLocation = TagLib.File.Create(yetAnotherTemp);
             SongLength = songLengthFromLocation.Properties.Duration.TotalSeconds;
-            frmKEVINMain.mpPlayer.Pause();
             frmKEVINMain.mpPlayer.Stop();
             frmKEVINMain.mpPlayer.Open(yetAnotherTemp);
             playing = true;
-            MessageBox.Show("Playing = true");
             frmKEVINMain.mpPlayer.Play();                      
         }
 
@@ -309,12 +318,14 @@ namespace KEVIN
             refreshConnectionToDB();
             MySqlCommand selectQueue = new MySqlCommand("SELECT QueueID FROM Queue ORDER BY QueueID DESC LIMIT 1", connect);
             MySqlDataReader readQueue = selectQueue.ExecuteReader();
+            int tempQueueID = 0;
             while (readQueue.Read())
             {
-                tempQueueIDForCheck = readQueue.GetInt16(0)+1;
+                tempQueueID = readQueue.GetInt16(0)+1;
             }
             refreshConnectionToDB();
-            MySqlCommand appendQueue = new MySqlCommand("INSERT INTO Queue(QueueID, MusicID) VALUES (" + tempQueueIDForCheck++ + ", " + cms.Tag.ToString() + ")", connect);
+            MySqlCommand appendQueue = new MySqlCommand("INSERT INTO Queue(QueueID, MusicID) VALUES (" + tempQueueID + ", " + cms.Tag.ToString() + ")", connect);
+            queueSize++;
             appendQueue.ExecuteNonQuery();
         }
 
@@ -343,6 +354,7 @@ namespace KEVIN
                         Name = "queue" + z,
                         ForeColor = Color.WhiteSmoke,
                         Text = songInfoFromSongLocation.Tag.Title + " | " + strSongLength.Remove(5,8),
+                        Tag = readQueue.GetString(0),
                         Font = new Font("Trebuchet MS", 10),
                         TextAlign = ContentAlignment.MiddleLeft,
                         Width = queue.Width - 8,
@@ -354,6 +366,7 @@ namespace KEVIN
                             BorderSize = 0,
                             MouseOverBackColor = Color.Transparent,
                         },
+                        ContextMenuStrip = cms
                     }, () => blankVoid()));
                 }   
             }
@@ -366,18 +379,18 @@ namespace KEVIN
 
         public void openFirstQueueSong()
         {
-            int queueID = 0;
+            currentQueueID = 1;
             int musicID = 0;
             string songLocation = "";
             refreshConnectionToDB();
-            MySqlCommand selectMaxQueueID = new MySqlCommand("SELECT QueueID FROM Queue ORDER BY QueueID DESC LIMIT 1", connect);
+            MySqlCommand selectMaxQueueID = new MySqlCommand("SELECT COUNT(*) FROM Queue", connect);
             MySqlDataReader readMaxQueueID = selectMaxQueueID.ExecuteReader();
             while (readMaxQueueID.Read())
             {
-                maxQueueID = readMaxQueueID.GetInt16(0);
+                queueSize = readMaxQueueID.GetInt16(0);
             }
             refreshConnectionToDB();
-            MySqlCommand selectFirstItemInQueue = new MySqlCommand("SELECT MusicID FROM Queue WHERE QueueID = " + queueID, connect);
+            MySqlCommand selectFirstItemInQueue = new MySqlCommand("SELECT MusicID FROM Queue WHERE QueueID = " + currentQueueID, connect);
             MySqlDataReader readFirstItemInQueue = selectFirstItemInQueue.ExecuteReader();
             while (readFirstItemInQueue.Read())
             {
@@ -397,7 +410,6 @@ namespace KEVIN
             }
             catch { }
             frmKEVINMain.mpPlayer.Open(songLocation);
-            tempQueueIDForCheck++;
         }
     }
 }

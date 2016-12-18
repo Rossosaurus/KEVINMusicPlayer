@@ -51,11 +51,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commented Code For Later Class.cs" />
-    <Compile Include="frmTemp.cs">
+    <Compile Include="frmTesting.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmTemp.Designer.cs">
-      <DependentUpon>frmTemp.cs</DependentUpon>
+    <Compile Include="frmTesting.Designer.cs">
+      <DependentUpon>frmTesting.cs</DependentUpon>
     </Compile>
     <Compile Include="Functions.cs" />
     <Compile Include="frmKEVINAlbum.cs">
@@ -88,8 +88,8 @@
     <EmbeddedResource Include="frmKEVINSettings.resx">
       <DependentUpon>frmKEVINSettings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmTemp.resx">
-      <DependentUpon>frmTemp.cs</DependentUpon>
+    <EmbeddedResource Include="frmTesting.resx">
+      <DependentUpon>frmTesting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

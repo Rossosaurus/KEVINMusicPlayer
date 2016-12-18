@@ -47,8 +47,8 @@ namespace KEVIN
             {
                 pbAlbumArt.BackgroundImage = KEVIN.Properties.Resources.NoAlbumArt;
             }
-            AlbumFunctions.getAlbumInfoFromLocation(locationWithApostrophe);
-            AlbumFunctions.createSongButtons(locationWithApostrophe, flpSongsWrapper, cmsRightClickSongs);  
+            frmKEVINMain.Functions.getAlbumInfoFromLocation(locationWithApostrophe);
+            frmKEVINMain.Functions.createSongButtons(locationWithApostrophe, flpSongsWrapper, cmsRightClickSongs);  
         }
 
         private void cmsRightClickSongs_Opening(object sender, CancelEventArgs e)
@@ -58,22 +58,12 @@ namespace KEVIN
 
         private void addToQueueToolStripMenuItem_Click(object sender, EventArgs e)
         {
-                      
-        }
-
-        private void currentlyPlayingToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            AlbumFunctions.appendQueue(cmsRightClickSongs);
+            AlbumFunctions.appendQueue(cmsRightClickSongs);       
         }
 
         private void playToolStripMenuItem_Click(object sender, EventArgs e)
         {
             
-        }
-
-        private void playNextToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

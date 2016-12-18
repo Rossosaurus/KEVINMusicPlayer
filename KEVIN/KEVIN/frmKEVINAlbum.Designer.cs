@@ -40,8 +40,6 @@
             this.cmsRightClickSongs = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.playToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addToQueueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.currentlyPlayingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.playNextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addToPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlHeader.SuspendLayout();
             this.flpEverything.SuspendLayout();
@@ -137,32 +135,15 @@
             // 
             // addToQueueToolStripMenuItem
             // 
-            this.addToQueueToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.currentlyPlayingToolStripMenuItem,
-            this.playNextToolStripMenuItem});
             this.addToQueueToolStripMenuItem.Name = "addToQueueToolStripMenuItem";
             this.addToQueueToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.addToQueueToolStripMenuItem.Text = "Add to Queue";
             this.addToQueueToolStripMenuItem.Click += new System.EventHandler(this.addToQueueToolStripMenuItem_Click);
             // 
-            // currentlyPlayingToolStripMenuItem
-            // 
-            this.currentlyPlayingToolStripMenuItem.Name = "currentlyPlayingToolStripMenuItem";
-            this.currentlyPlayingToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
-            this.currentlyPlayingToolStripMenuItem.Text = "Currently Playing";
-            this.currentlyPlayingToolStripMenuItem.Click += new System.EventHandler(this.currentlyPlayingToolStripMenuItem_Click);
-            // 
-            // playNextToolStripMenuItem
-            // 
-            this.playNextToolStripMenuItem.Name = "playNextToolStripMenuItem";
-            this.playNextToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
-            this.playNextToolStripMenuItem.Text = "Play Next";
-            this.playNextToolStripMenuItem.Click += new System.EventHandler(this.playNextToolStripMenuItem_Click);
-            // 
             // addToPlaylistToolStripMenuItem
             // 
             this.addToPlaylistToolStripMenuItem.Name = "addToPlaylistToolStripMenuItem";
-            this.addToPlaylistToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.addToPlaylistToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.addToPlaylistToolStripMenuItem.Text = "Add to Playlist";
             // 
             // frmKEVINAlbum
@@ -197,8 +178,6 @@
         public System.Windows.Forms.ContextMenuStrip cmsRightClickSongs;
         private System.Windows.Forms.ToolStripMenuItem playToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addToQueueToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem currentlyPlayingToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem playNextToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addToPlaylistToolStripMenuItem;
     }
 }

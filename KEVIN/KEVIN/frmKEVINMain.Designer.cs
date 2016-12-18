@@ -33,11 +33,6 @@
             this.btnPlay = new System.Windows.Forms.Button();
             this.cmsRightClickAlbums = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.playToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addToQueueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.currentlyPlayingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.playNextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addToPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnSkipBackward = new System.Windows.Forms.Button();
             this.btnSkipForward = new System.Windows.Forms.Button();
             this.ofdOpenMusic = new System.Windows.Forms.OpenFileDialog();
@@ -61,6 +56,9 @@
             this.flpAlbums = new System.Windows.Forms.FlowLayoutPanel();
             this.bwTimer = new System.ComponentModel.BackgroundWorker();
             this.bwPlayer = new System.ComponentModel.BackgroundWorker();
+            this.cmsQueueRightClick = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsRightClickAlbums.SuspendLayout();
             this.tlpKEVINMain.SuspendLayout();
             this.tlpPlayerTopMenu.SuspendLayout();
@@ -69,6 +67,7 @@
             this.pnlMiddleBacking.SuspendLayout();
             this.pnlPlaying.SuspendLayout();
             this.tlpNoPlayingLayout.SuspendLayout();
+            this.cmsQueueRightClick.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnPlay
@@ -94,51 +93,15 @@
             // cmsRightClickAlbums
             // 
             this.cmsRightClickAlbums.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openToolStripMenuItem,
-            this.playToolStripMenuItem,
-            this.addToQueueToolStripMenuItem,
-            this.addToPlaylistToolStripMenuItem});
+            this.openToolStripMenuItem});
             this.cmsRightClickAlbums.Name = "cmsRightClickAlbums";
-            this.cmsRightClickAlbums.Size = new System.Drawing.Size(151, 92);
+            this.cmsRightClickAlbums.Size = new System.Drawing.Size(104, 26);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.openToolStripMenuItem.Text = "Open";
-            // 
-            // playToolStripMenuItem
-            // 
-            this.playToolStripMenuItem.Name = "playToolStripMenuItem";
-            this.playToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.playToolStripMenuItem.Text = "Play";
-            // 
-            // addToQueueToolStripMenuItem
-            // 
-            this.addToQueueToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.currentlyPlayingToolStripMenuItem,
-            this.playNextToolStripMenuItem});
-            this.addToQueueToolStripMenuItem.Name = "addToQueueToolStripMenuItem";
-            this.addToQueueToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.addToQueueToolStripMenuItem.Text = "Add to Queue";
-            // 
-            // currentlyPlayingToolStripMenuItem
-            // 
-            this.currentlyPlayingToolStripMenuItem.Name = "currentlyPlayingToolStripMenuItem";
-            this.currentlyPlayingToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
-            this.currentlyPlayingToolStripMenuItem.Text = "Currently Playing";
-            // 
-            // playNextToolStripMenuItem
-            // 
-            this.playNextToolStripMenuItem.Name = "playNextToolStripMenuItem";
-            this.playNextToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
-            this.playNextToolStripMenuItem.Text = "Play Next";
-            // 
-            // addToPlaylistToolStripMenuItem
-            // 
-            this.addToPlaylistToolStripMenuItem.Name = "addToPlaylistToolStripMenuItem";
-            this.addToPlaylistToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.addToPlaylistToolStripMenuItem.Text = "Add to Playlist";
             // 
             // btnSkipBackward
             // 
@@ -518,6 +481,26 @@
             // 
             this.bwPlayer.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwPlayer_DoWork);
             // 
+            // cmsQueueRightClick
+            // 
+            this.cmsQueueRightClick.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
+            this.toolStripMenuItem2});
+            this.cmsQueueRightClick.Name = "cmsQueueRightClick";
+            this.cmsQueueRightClick.Size = new System.Drawing.Size(153, 70);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem1.Text = "Play";
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem2.Text = "Delete";
+            // 
             // frmKEVINMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -540,6 +523,7 @@
             this.pnlPlaying.ResumeLayout(false);
             this.tlpNoPlayingLayout.ResumeLayout(false);
             this.tlpNoPlayingLayout.PerformLayout();
+            this.cmsQueueRightClick.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -567,15 +551,13 @@
         private System.Windows.Forms.FlowLayoutPanel flpAlbums;
         public System.Windows.Forms.ContextMenuStrip cmsRightClickAlbums;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem playToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem addToQueueToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem currentlyPlayingToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem playNextToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem addToPlaylistToolStripMenuItem;
         private System.Windows.Forms.TableLayoutPanel tlpNoPlayingLayout;
         private System.Windows.Forms.FlowLayoutPanel flpQueue;
         private System.ComponentModel.BackgroundWorker bwTimer;
         private System.ComponentModel.BackgroundWorker bwPlayer;
+        private System.Windows.Forms.ContextMenuStrip cmsQueueRightClick;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }
 

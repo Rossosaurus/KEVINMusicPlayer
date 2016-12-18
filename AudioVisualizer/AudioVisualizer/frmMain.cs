@@ -53,7 +53,7 @@ namespace AudioVisualizer
             WAVEDATA_SIZE = this.Width;
             wavedata = new float[WAVEDATA_SIZE];
 
-            brushBlack = new SolidBrush(Color.Black);
+            brushBlack = new SolidBrush(ColorTranslator.FromHtml("#646464"));
             brushGreen = new SolidBrush(Color.Green);
             brushWhite = new SolidBrush(Color.White);
         }
