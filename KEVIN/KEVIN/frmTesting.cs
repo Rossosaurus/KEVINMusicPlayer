@@ -36,6 +36,7 @@ namespace KEVIN
                         lblQNV.Text = frmKEVINMain.Functions.currentQueueID.ToString();
                         lblSLV.Text = frmKEVINMain.Functions.SongLength.ToString();
                         lblTV.Text = frmKEVINMain.Functions.Timer.ToString();
+                        lblTQIDV.Text = frmKEVINMain.Functions.tempQueueID.ToString();
                     });
                 }
                 catch { this.Invoke((MethodInvoker)delegate { this.Close(); }); }

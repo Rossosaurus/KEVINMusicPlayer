@@ -11,17 +11,12 @@ namespace KEVIN
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-        public string albumInfo;
         [STAThread]        
         static void Main()
         {           
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmKEVINMain());
-        }
-        public void albumIDLookUp(string temp)
-        {
-            albumInfo = temp;
         }
     }
 }

@@ -57,8 +57,8 @@
             this.bwTimer = new System.ComponentModel.BackgroundWorker();
             this.bwPlayer = new System.ComponentModel.BackgroundWorker();
             this.cmsQueueRightClick = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tlsPlay = new System.Windows.Forms.ToolStripMenuItem();
+            this.tlsDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsRightClickAlbums.SuspendLayout();
             this.tlpKEVINMain.SuspendLayout();
             this.tlpPlayerTopMenu.SuspendLayout();
@@ -484,22 +484,23 @@
             // cmsQueueRightClick
             // 
             this.cmsQueueRightClick.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1,
-            this.toolStripMenuItem2});
+            this.tlsPlay,
+            this.tlsDelete});
             this.cmsQueueRightClick.Name = "cmsQueueRightClick";
-            this.cmsQueueRightClick.Size = new System.Drawing.Size(153, 70);
+            this.cmsQueueRightClick.Size = new System.Drawing.Size(108, 48);
             // 
-            // toolStripMenuItem1
+            // tlsPlay
             // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.toolStripMenuItem1.Text = "Play";
+            this.tlsPlay.Name = "tlsPlay";
+            this.tlsPlay.Size = new System.Drawing.Size(107, 22);
+            this.tlsPlay.Text = "Play";
             // 
-            // toolStripMenuItem2
+            // tlsDelete
             // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
-            this.toolStripMenuItem2.Text = "Delete";
+            this.tlsDelete.Name = "tlsDelete";
+            this.tlsDelete.Size = new System.Drawing.Size(107, 22);
+            this.tlsDelete.Text = "Delete";
+            this.tlsDelete.Click += new System.EventHandler(this.tlsDelete_Click);
             // 
             // frmKEVINMain
             // 
@@ -556,8 +557,8 @@
         private System.ComponentModel.BackgroundWorker bwTimer;
         private System.ComponentModel.BackgroundWorker bwPlayer;
         private System.Windows.Forms.ContextMenuStrip cmsQueueRightClick;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem tlsPlay;
+        private System.Windows.Forms.ToolStripMenuItem tlsDelete;
     }
 }
 

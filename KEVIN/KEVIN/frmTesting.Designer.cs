@@ -40,6 +40,8 @@
             this.lblSLV = new System.Windows.Forms.Label();
             this.lblQNV = new System.Windows.Forms.Label();
             this.bwDebug = new System.ComponentModel.BackgroundWorker();
+            this.lblTQID = new System.Windows.Forms.Label();
+            this.lblTQIDV = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblT
@@ -136,11 +138,31 @@
             // 
             this.bwDebug.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwDebug_DoWork);
             // 
+            // lblTQID
+            // 
+            this.lblTQID.AutoSize = true;
+            this.lblTQID.Location = new System.Drawing.Point(12, 74);
+            this.lblTQID.Name = "lblTQID";
+            this.lblTQID.Size = new System.Drawing.Size(73, 13);
+            this.lblTQID.TabIndex = 11;
+            this.lblTQID.Text = "tempQueueID";
+            // 
+            // lblTQIDV
+            // 
+            this.lblTQIDV.AutoSize = true;
+            this.lblTQIDV.Location = new System.Drawing.Point(118, 74);
+            this.lblTQIDV.Name = "lblTQIDV";
+            this.lblTQIDV.Size = new System.Drawing.Size(16, 13);
+            this.lblTQIDV.TabIndex = 12;
+            this.lblTQIDV.Text = "---";
+            // 
             // frmTesting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(241, 79);
+            this.ClientSize = new System.Drawing.Size(241, 91);
+            this.Controls.Add(this.lblTQIDV);
+            this.Controls.Add(this.lblTQID);
             this.Controls.Add(this.lblQNV);
             this.Controls.Add(this.lblSLV);
             this.Controls.Add(this.lblPV);
@@ -175,5 +197,7 @@
         private System.Windows.Forms.Label lblSLV;
         private System.Windows.Forms.Label lblQNV;
         private System.ComponentModel.BackgroundWorker bwDebug;
+        private System.Windows.Forms.Label lblTQID;
+        private System.Windows.Forms.Label lblTQIDV;
     }
 }

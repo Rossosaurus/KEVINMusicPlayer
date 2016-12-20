@@ -35,6 +35,7 @@ namespace KEVIN
         string yetAnotherTemp = "";
         public int currentQueueID = 0;
         public int queueSize;
+        public int tempQueueID = 0;
         public int Timer = 0;
         public double SongLength;
         public bool playing = false;
@@ -318,15 +319,24 @@ namespace KEVIN
             refreshConnectionToDB();
             MySqlCommand selectQueue = new MySqlCommand("SELECT QueueID FROM Queue ORDER BY QueueID DESC LIMIT 1", connect);
             MySqlDataReader readQueue = selectQueue.ExecuteReader();
-            int tempQueueID = 0;
             while (readQueue.Read())
             {
-                tempQueueID = readQueue.GetInt16(0)+1;
+                tempQueueID = readQueue.GetInt16(0);
+                tempQueueID++;
             }
             refreshConnectionToDB();
+            if (tempQueueID == 0)
+            {
+                tempQueueID = 1;
+            }
             MySqlCommand appendQueue = new MySqlCommand("INSERT INTO Queue(QueueID, MusicID) VALUES (" + tempQueueID + ", " + cms.Tag.ToString() + ")", connect);
             queueSize++;
             appendQueue.ExecuteNonQuery();
+        }
+
+        public void mouseHoverCMSTag(ContextMenuStrip cms, Button b)
+        {
+            cms.Tag = b.Tag;
         }
 
         public void createQueueButtons(FlowLayoutPanel queue, ContextMenuStrip cms)
@@ -348,10 +358,10 @@ namespace KEVIN
                     TagLib.File songInfoFromSongLocation = TagLib.File.Create(stripSongLocation);
                     TimeSpan songLength = songInfoFromSongLocation.Properties.Duration;
                     string strSongLength = songLength.ToString().Remove(0, 3);
-                    queue.Controls.Add(attachMethodToButton(new Button()
+                    queue.Controls.Add(attachSongToButton(new Button()
                     {
                         AutoEllipsis = true,
-                        Name = "queue" + z,
+                        Name = "Queue" + readQueue.GetString(0),
                         ForeColor = Color.WhiteSmoke,
                         Text = songInfoFromSongLocation.Tag.Title + " | " + strSongLength.Remove(5,8),
                         Tag = readQueue.GetString(0),
@@ -367,17 +377,14 @@ namespace KEVIN
                             MouseOverBackColor = Color.Transparent,
                         },
                         ContextMenuStrip = cms
-                    }, () => blankVoid()));
+                    }, () => blankVoid(), cms));
                 }   
             }
         }
 
-        public void mouseHoverCMSTag(ContextMenuStrip cms, Button b)
-        {
-            cms.Tag = b.Tag;
-        }
+        
 
-        public void openFirstQueueSong()
+        public void openFirstQueueSong(Label songName, PictureBox albumArt)
         {
             currentQueueID = 1;
             int musicID = 0;
@@ -403,12 +410,29 @@ namespace KEVIN
             {
                 songLocation = readSongLocation.GetString(0).Replace("'", "\\");
             }
+            TagLib.File songDetails = null;
             try
             {
-                TagLib.File songLength = TagLib.File.Create(songLocation);
-                SongLength = songLength.Properties.Duration.TotalSeconds;
+                songDetails = TagLib.File.Create(songLocation);
             }
             catch { }
+            try
+            {                
+                SongLength = songDetails.Properties.Duration.TotalSeconds;
+                songName.Text = songDetails.Tag.Title.ToString();
+            }
+            catch { }            
+            MemoryStream ms;
+            try
+            {
+                ms = new MemoryStream(songDetails.Tag.Pictures[0].Data.Data);
+                System.Drawing.Image image = System.Drawing.Image.FromStream(ms);
+                albumArt.BackgroundImage = image;
+            }
+            catch
+            {
+                albumArt.BackgroundImage = KEVIN.Properties.Resources.NoAlbumArt;
+            }
             frmKEVINMain.mpPlayer.Open(songLocation);
         }
     }

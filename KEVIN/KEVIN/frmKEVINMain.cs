@@ -96,7 +96,7 @@ namespace KEVIN
             Functions.createQueueButtons(flpQueue, cmsQueueRightClick);
 
             //Functions onLoad
-            Functions.openFirstQueueSong();
+            Functions.openFirstQueueSong(lblCurrentlyPlaying, pbAlbumCover);
             bwTimer.RunWorkerAsync();
             bwPlayer.RunWorkerAsync();
         }
@@ -204,7 +204,7 @@ namespace KEVIN
             pnlPlaying.Show();
             pnlPlaylists.Hide();
             flpAlbums.Hide();
-            Functions.createQueueButtons(flpQueue, cmsRightClickAlbums);
+            Functions.createQueueButtons(flpQueue, cmsQueueRightClick);
         }
 
         private void btnPlayer_MouseEnter(object sender, EventArgs e)
@@ -330,7 +330,7 @@ namespace KEVIN
                     {
                         Functions.Timer = 0;
                         mpPlayer.Stop();
-                        Functions.openFirstQueueSong();
+                        Functions.openFirstQueueSong(lblCurrentlyPlaying, pbAlbumCover);
                         mpPlayer.Play();
                         goto endOfCheck;
                     }
@@ -359,8 +359,20 @@ namespace KEVIN
                         nextSongLocation = readNextSong.GetString(0).Replace("'", "\\");
                     }
 
-                    TagLib.File songLength = TagLib.File.Create(nextSongLocation);
-                    Functions.SongLength = songLength.Properties.Duration.TotalSeconds;
+                    TagLib.File songDetails = TagLib.File.Create(nextSongLocation);
+                    Functions.SongLength = songDetails.Properties.Duration.TotalSeconds;
+                    this.Invoke((MethodInvoker)delegate { lblCurrentlyPlaying.Text = songDetails.Tag.Title.ToString(); });
+                    MemoryStream ms;
+                    try
+                    {
+                        ms = new MemoryStream(songDetails.Tag.Pictures[0].Data.Data);
+                        System.Drawing.Image image = System.Drawing.Image.FromStream(ms);
+                        this.Invoke((MethodInvoker)delegate { pbAlbumCover.BackgroundImage = image; });
+                    }
+                    catch
+                    {
+                        this.Invoke((MethodInvoker)delegate { pbAlbumCover.BackgroundImage = KEVIN.Properties.Resources.NoAlbumArt; });
+                    }
                     mpPlayer.Stop();
                     mpPlayer.Open(nextSongLocation);
                     mpPlayer.Play();
@@ -393,6 +405,62 @@ namespace KEVIN
         private void addToQueueToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void tlsDelete_Click(object sender, EventArgs e)
+        {
+            Functions.refreshConnectionToDB();
+            MessageBox.Show(cmsQueueRightClick.Tag.ToString());
+            string rowToDeleteSTR = cmsQueueRightClick.Tag.ToString();
+            int rowToDelete= Convert.ToInt16(rowToDeleteSTR);
+            int temp;
+            int numberOfRows = 1;
+            MySqlCommand selectNOR = new MySqlCommand("SELECT COUNT(*) FROM Queue", Functions.connect);
+            MySqlDataReader readNOR = selectNOR.ExecuteReader();
+            while (readNOR.Read())
+            {
+                numberOfRows = readNOR.GetInt16(0);
+            }
+            string[,] queue = new string[numberOfRows, 2];
+            MySqlCommand selectQueue = new MySqlCommand("SELECT * FROM Queue", Functions.connect2);
+            MySqlDataReader readQueue = selectQueue.ExecuteReader();
+            int x = 0;
+            while (readQueue.Read())
+            {
+                queue[x, 0] = readQueue.GetString(0);
+                queue[x, 1] = readQueue.GetString(1);
+                x++;
+            }
+            x = 0;
+            if (rowToDelete == numberOfRows)
+            {
+                Functions.refreshConnectionToDB();
+                MySqlCommand deleteLastQueue = new MySqlCommand("DELETE FROM Queue Where QueueID=" + rowToDelete, Functions.connect);
+                deleteLastQueue.ExecuteNonQuery();
+                flpQueue.Controls.Clear();
+                Functions.createQueueButtons(flpQueue, cmsQueueRightClick);
+            }
+            else
+            {
+                
+                while (rowToDelete <= numberOfRows - 1)
+                {
+                    queue[rowToDelete - 1, 1] = queue[rowToDelete, 1];
+                    rowToDelete++;
+                }
+                Functions.refreshConnectionToDB();
+                MySqlCommand deleteQueue = new MySqlCommand("DELETE FROM Queue", Functions.connect);
+                deleteQueue.ExecuteNonQuery();
+                while (x <= numberOfRows - 2)
+                {
+                    Functions.refreshConnectionToDB();
+                    MySqlCommand appendQueue = new MySqlCommand("INSERT INTO Queue(QueueID, MusicID)  Values (" + queue[x, 0] + ", " + queue[x, 1] + ")", Functions.connect);
+                    appendQueue.ExecuteNonQuery();
+                    x++;
+                }
+                flpQueue.Controls.Clear();
+                Functions.createQueueButtons(flpQueue, cmsQueueRightClick);
+            }
         }
     }
 }
