@@ -353,7 +353,6 @@ namespace KEVIN
                 MySqlDataReader readSongInfo = selectSongInfo.ExecuteReader();
                 while (readSongInfo.Read())
                 {
-                    int z = 1;
                     string stripSongLocation = readSongInfo.GetString(0).Replace("'", "\\");
                     TagLib.File songInfoFromSongLocation = TagLib.File.Create(stripSongLocation);
                     TimeSpan songLength = songInfoFromSongLocation.Properties.Duration;

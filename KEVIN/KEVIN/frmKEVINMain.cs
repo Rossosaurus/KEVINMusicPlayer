@@ -22,7 +22,6 @@ namespace KEVIN
         public static Functions Functions = new Functions();
         System.Drawing.Image albumCover = KEVIN.Properties.Resources.NoAlbumArt;
         int x = 1;
-        ContextMenuStrip cmsFake;
 
         public frmKEVINMain()
         {
