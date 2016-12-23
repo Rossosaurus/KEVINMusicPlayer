@@ -20,6 +20,7 @@ namespace KEVIN
     {
         public static readonly KEVIN.MusicPlayer mpPlayer = new MusicPlayer();
         public static Functions Functions = new Functions();
+        public static Random shuffle = new Random();
         System.Drawing.Image albumCover = KEVIN.Properties.Resources.NoAlbumArt;
         int x = 1;
 
@@ -37,13 +38,32 @@ namespace KEVIN
             btnAddMusic.MouseLeave += new EventHandler(btnAddMusic_MouseLeave);
             btnSettings.MouseEnter += new EventHandler(btnSettings_MouseEnter);
             btnSettings.MouseLeave += new EventHandler(btnSettings_MouseLeave);
+            btnRepeat.MouseEnter += new EventHandler(btnRepeat_MouseEnter);
+            btnRepeat.MouseLeave += new EventHandler(btnRepeat_MouseLeave);
             this.Resize += new EventHandler(frmKEVINMain_Resize);
         }
 
         private void frmKEVINMain_Resize(object sender, System.EventArgs e)
         {
             flpQueue.Controls.Clear();
+            if (Functions.shuffle == false)
+            {
             Functions.createQueueButtons(flpQueue, cmsQueueRightClick);
+            }
+            else
+            {
+                flpQueue.Controls.Add(new Label
+                {
+                    Name = "shuffle",
+                    ForeColor = Color.WhiteSmoke,
+                    Text = "SHUFFLE" + Environment.NewLine + "MODE" + Environment.NewLine + "ACTIVE",
+                    Font = new Font("Trebuchet MS", 20),
+                    TextAlign = ContentAlignment.MiddleCenter,
+                    AutoSize = true,
+                    Anchor = AnchorStyles.Left | AnchorStyles.Right,
+                });
+            }
+
         }
 
         private void frmKEVINMain_Load(object sender, EventArgs e)
@@ -58,6 +78,7 @@ namespace KEVIN
             Functions.SongLength = 1;
 
             //Set colours via hex codes
+            tbVolume.BackColor = ColorTranslator.FromHtml("#3c3c3c");
             this.BackColor = ColorTranslator.FromHtml("#444444");
             btnPlay.BackColor = ColorTranslator.FromHtml("#3c3c3c");
             btnPlay.ForeColor = ColorTranslator.FromHtml("#3c3c3c");
@@ -149,7 +170,7 @@ namespace KEVIN
                     pnlPlaying.Show();
                     pnlPlaylists.Hide();
 
-                    //Addpend to DB
+                    //Append to DB
                     Functions.CreateAndAppendAlbumInfoToTables(Album, Artist, Genre);
                     Functions.albumExists = false;
                     Functions.createAndAppendMusicInfoToTables(Album, Artist, TrackIDstr, SongName, strSongLength, sqlLocation);
@@ -172,12 +193,91 @@ namespace KEVIN
                 btnPlay.BackgroundImage = KEVIN.Properties.Resources.Play_fw;
                 mpPlayer.Pause();
                 Functions.playing = false;
-            }
+            }            
         }
 
         private void btnSkipForward_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnSkipBackword_Click(object sender, EventArgs e) { }
+
+        private void btnShuffle_Click(object sender, EventArgs e)
+        {
+            if (Functions.shuffle == true)
+            {
+                Functions.shuffle = false;
+                btnShuffle.BackgroundImage = Properties.Resources.shuffle_fw;
+                flpQueue.Controls.Clear();
+                Functions.createQueueButtons(flpQueue, cmsQueueRightClick);            
+            }
+            else if (Functions.shuffle == false)
+            {
+                Functions.shuffle = true;
+                btnShuffle.BackgroundImage = Properties.Resources.shuffleSelected;
+                flpQueue.Controls.Clear();
+                flpQueue.Controls.Add(new Label
+                {
+                    Name = "shuffle",
+                    ForeColor = Color.WhiteSmoke,
+                    Text = "SHUFFLE" + Environment.NewLine + "MODE" + Environment.NewLine + "ACTIVE",
+                    Font = new Font("Trebuchet MS", 20),
+                    TextAlign = ContentAlignment.MiddleCenter,
+                    AutoSize = true,
+                    Anchor = AnchorStyles.Left | AnchorStyles.Right,
+                });
+                string songLocation = "";
+                Functions.refreshConnectionToDB();
+                MySqlCommand selectRandomRecord = new MySqlCommand("SELECT SongLocation FROM Music ORDER BY RAND() LIMIT 1", Functions.connect);
+                MySqlDataReader readRandomRecord = selectRandomRecord.ExecuteReader();
+                while (readRandomRecord.Read())
+                {
+                    songLocation = readRandomRecord.GetString(0).Replace("'", "\\");
+                }
+                TagLib.File Tags = TagLib.File.Create(songLocation);
+                Functions.SongLength = Tags.Properties.Duration.TotalSeconds;
+                frmKEVINMain.mpPlayer.Stop();
+                frmKEVINMain.mpPlayer.Open(songLocation);
+                Functions.playing = true;
+                btnPlay.BackgroundImage = Properties.Resources.Pause_fw;
+                Functions.Timer = 0;
+                frmKEVINMain.mpPlayer.Play();
+                try
+                {
+                    Functions.SongLength = Tags.Properties.Duration.TotalSeconds;
+                    this.Invoke((MethodInvoker)delegate { lblCurrentlyPlaying.Text = Tags.Tag.Title.ToString(); });
+                    MemoryStream ms;
+                    try
+                    {
+                        ms = new MemoryStream(Tags.Tag.Pictures[0].Data.Data);
+                        System.Drawing.Image image = System.Drawing.Image.FromStream(ms);
+                        this.Invoke((MethodInvoker)delegate { pbAlbumCover.BackgroundImage = image; });
+                    }
+                    catch
+                    {
+                        this.Invoke((MethodInvoker)delegate { pbAlbumCover.BackgroundImage = KEVIN.Properties.Resources.NoAlbumArt; });
+                    }
+
+                }
+                catch { }
+            }
+            
+        }        
+
+        private void btnRepeat_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRepeat_MouseEnter(object sender, EventArgs e)
+        {
+            btnRepeat.BackgroundImage = Properties.Resources.repeatHover;
+        }
+
+        private void btnRepeat_MouseLeave(object sender, EventArgs e)
+        {
+            btnRepeat.BackgroundImage = Properties.Resources.repeat_fw;
         }
 
         private void btnAlbum_Click(object sender, EventArgs e)
@@ -322,7 +422,7 @@ namespace KEVIN
         {
             while (true)
             {
-                if (Functions.Timer > Functions.SongLength)
+                if (Functions.Timer > Functions.SongLength && Functions.shuffle == false)
                 {
                     Functions.refreshConnectionToDB();
                     if (Functions.currentQueueID == Functions.queueSize)
@@ -358,24 +458,67 @@ namespace KEVIN
                         nextSongLocation = readNextSong.GetString(0).Replace("'", "\\");
                     }
 
-                    TagLib.File songDetails = TagLib.File.Create(nextSongLocation);
-                    Functions.SongLength = songDetails.Properties.Duration.TotalSeconds;
-                    this.Invoke((MethodInvoker)delegate { lblCurrentlyPlaying.Text = songDetails.Tag.Title.ToString(); });
-                    MemoryStream ms;
+                    TagLib.File songDetails;
                     try
                     {
-                        ms = new MemoryStream(songDetails.Tag.Pictures[0].Data.Data);
-                        System.Drawing.Image image = System.Drawing.Image.FromStream(ms);
-                        this.Invoke((MethodInvoker)delegate { pbAlbumCover.BackgroundImage = image; });
+                        songDetails = TagLib.File.Create(nextSongLocation);
+                        Functions.SongLength = songDetails.Properties.Duration.TotalSeconds;
+                        this.Invoke((MethodInvoker)delegate { lblCurrentlyPlaying.Text = songDetails.Tag.Title.ToString(); });
+                        MemoryStream ms;
+                        try
+                        {
+                            ms = new MemoryStream(songDetails.Tag.Pictures[0].Data.Data);
+                            System.Drawing.Image image = System.Drawing.Image.FromStream(ms);
+                            this.Invoke((MethodInvoker)delegate { pbAlbumCover.BackgroundImage = image; });
+                        }
+                        catch
+                        {
+                            this.Invoke((MethodInvoker)delegate { pbAlbumCover.BackgroundImage = KEVIN.Properties.Resources.NoAlbumArt; });
+                        }
+
                     }
-                    catch
-                    {
-                        this.Invoke((MethodInvoker)delegate { pbAlbumCover.BackgroundImage = KEVIN.Properties.Resources.NoAlbumArt; });
-                    }
+                    catch { }
                     mpPlayer.Stop();
                     mpPlayer.Open(nextSongLocation);
                     mpPlayer.Play();
-                endOfCheck:;
+                    endOfCheck:;
+                }
+                else if ((Functions.Timer > Functions.SongLength && Functions.shuffle == true))
+                {                    
+                    string songLocation = "";
+                    Functions.refreshConnectionToDB();
+                    MySqlCommand selectRandomRecord = new MySqlCommand("SELECT SongLocation FROM Music ORDER BY RAND() LIMIT 1", Functions.connect);
+                    MySqlDataReader readRandomRecord = selectRandomRecord.ExecuteReader();
+                    while (readRandomRecord.Read())
+                    {
+                        songLocation = readRandomRecord.GetString(0).Replace("'", "\\");
+                    }
+                    TagLib.File Tags = TagLib.File.Create(songLocation);
+                    Functions.SongLength = Tags.Properties.Duration.TotalSeconds;                    
+                    frmKEVINMain.mpPlayer.Stop();
+                    frmKEVINMain.mpPlayer.Open(songLocation);
+                    Functions.playing = true;
+                    btnPlay.BackgroundImage = Properties.Resources.Pause_fw;
+                    Functions.Timer = 0;
+                    frmKEVINMain.mpPlayer.Play();
+                    try
+                    {
+                        Functions.SongLength = Tags.Properties.Duration.TotalSeconds;
+                        this.Invoke((MethodInvoker)delegate { lblCurrentlyPlaying.Text = Tags.Tag.Title.ToString(); });
+                        MemoryStream ms;
+                        try
+                        {
+                            ms = new MemoryStream(Tags.Tag.Pictures[0].Data.Data);
+                            System.Drawing.Image image = System.Drawing.Image.FromStream(ms);
+                            this.Invoke((MethodInvoker)delegate { pbAlbumCover.BackgroundImage = image; });
+                        }
+                        catch
+                        {
+                            this.Invoke((MethodInvoker)delegate { pbAlbumCover.BackgroundImage = KEVIN.Properties.Resources.NoAlbumArt; });
+                        }
+
+                    }
+                    catch { }
                 }
                 if (Functions.stop == true)
                 {
@@ -393,17 +536,8 @@ namespace KEVIN
                     btnPlay.BackgroundImage = Properties.Resources.Play_fw;
                 }
                 System.Threading.Thread.Sleep(100);
+
             }
-        }
-
-        private void tlpNoPlayingLayout_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void addToQueueToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void tlsDelete_Click(object sender, EventArgs e)
@@ -460,6 +594,11 @@ namespace KEVIN
                 flpQueue.Controls.Clear();
                 Functions.createQueueButtons(flpQueue, cmsQueueRightClick);
             }
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Functions.openAlbumForm(cmsRightClickAlbums.Tag.ToString());
         }
     }
 }

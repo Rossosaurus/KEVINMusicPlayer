@@ -42,6 +42,8 @@
             this.bwDebug = new System.ComponentModel.BackgroundWorker();
             this.lblTQID = new System.Windows.Forms.Label();
             this.lblTQIDV = new System.Windows.Forms.Label();
+            this.lblSV = new System.Windows.Forms.Label();
+            this.lbls = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblT
@@ -156,11 +158,31 @@
             this.lblTQIDV.TabIndex = 12;
             this.lblTQIDV.Text = "---";
             // 
+            // lblSV
+            // 
+            this.lblSV.AutoSize = true;
+            this.lblSV.Location = new System.Drawing.Point(118, 87);
+            this.lblSV.Name = "lblSV";
+            this.lblSV.Size = new System.Drawing.Size(16, 13);
+            this.lblSV.TabIndex = 14;
+            this.lblSV.Text = "---";
+            // 
+            // lbls
+            // 
+            this.lbls.AutoSize = true;
+            this.lbls.Location = new System.Drawing.Point(12, 87);
+            this.lbls.Name = "lbls";
+            this.lbls.Size = new System.Drawing.Size(40, 13);
+            this.lbls.TabIndex = 13;
+            this.lbls.Text = "Shuffle";
+            // 
             // frmTesting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(241, 91);
+            this.ClientSize = new System.Drawing.Size(241, 150);
+            this.Controls.Add(this.lblSV);
+            this.Controls.Add(this.lbls);
             this.Controls.Add(this.lblTQIDV);
             this.Controls.Add(this.lblTQID);
             this.Controls.Add(this.lblQNV);
@@ -199,5 +221,7 @@
         private System.ComponentModel.BackgroundWorker bwDebug;
         private System.Windows.Forms.Label lblTQID;
         private System.Windows.Forms.Label lblTQIDV;
+        private System.Windows.Forms.Label lblSV;
+        private System.Windows.Forms.Label lbls;
     }
 }

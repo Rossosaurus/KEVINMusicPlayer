@@ -40,8 +40,9 @@ namespace KEVIN
         public double SongLength;
         public bool playing = false;
         public bool stop = false;
+        public bool shuffle = false;
+        public bool repeat = false;
 
-        //MySQL Commands not used in functions
         public void blankVoid()
         {
             //Placeholder for things
@@ -155,12 +156,6 @@ namespace KEVIN
             selectedAlbum.Show();
         }
 
-        public Button attachMethodToButton(Button b, Action buttonMethod)
-        {
-            b.Click += (s, e) => buttonMethod();
-            return b;
-        }
-
         public void createAlbumButtons(int x, FlowLayoutPanel field, ContextMenuStrip cms)
         {
             field.Controls.Clear();
@@ -192,11 +187,12 @@ namespace KEVIN
 
                         }
                         string stringX = readAlbumIDFromFirstSong.GetString(0);
-                        field.Controls.Add(attachMethodToButton(new Button
+                        field.Controls.Add(attachToButton(new Button
                         {
                             Name = "Album" + readAlbumsTable.GetString(0),
                             ForeColor = Color.WhiteSmoke,
                             Text = readAlbumsTable.GetString(1) + "\n" + readAlbumsTable.GetString(2),
+                            Tag = readAlbumIDFromFirstSong.GetString(0),
                             TextAlign = ContentAlignment.BottomCenter,
                             Size = new Size(135, 135),
                             BackgroundImage = albumCoverImage,
@@ -209,7 +205,7 @@ namespace KEVIN
                                 MouseOverBackColor = Color.Transparent,
                             },
                             ContextMenuStrip = cms,
-                        }, () => openAlbumForm(stringX)));
+                        }, () => openAlbumForm(stringX), cms));
                         x++;
                     }
                 }
@@ -241,7 +237,7 @@ namespace KEVIN
             }
         }
 
-        public Button attachSongToButton(Button button, Action method, ContextMenuStrip cms)
+        public Button attachToButton(Button button, Action method, ContextMenuStrip cms)
         {
             button.Click += (s, e) => method();
             button.MouseHover += (s, e) => mouseHoverCMSTag(cms, button);
@@ -293,7 +289,7 @@ namespace KEVIN
                 string time = readSongsFromAlbumID.GetString(1).Remove(0, 3);
                 time = time.Remove(5, 8);
                 string anotherTempVar = readSongsFromAlbumID.GetString(4);
-                song1.Controls.Add(attachSongToButton(new Button()
+                song1.Controls.Add(attachToButton(new Button()
                 {
                     Name = readSongsFromAlbumID.GetString(2) + " " + readSongsFromAlbumID.GetString(0) + " | " + time,
                     ForeColor = Color.WhiteSmoke,
@@ -357,7 +353,7 @@ namespace KEVIN
                     TagLib.File songInfoFromSongLocation = TagLib.File.Create(stripSongLocation);
                     TimeSpan songLength = songInfoFromSongLocation.Properties.Duration;
                     string strSongLength = songLength.ToString().Remove(0, 3);
-                    queue.Controls.Add(attachSongToButton(new Button()
+                    queue.Controls.Add(attachToButton(new Button()
                     {
                         AutoEllipsis = true,
                         Name = "Queue" + readQueue.GetString(0),
@@ -379,9 +375,7 @@ namespace KEVIN
                     }, () => blankVoid(), cms));
                 }   
             }
-        }
-
-        
+        }        
 
         public void openFirstQueueSong(Label songName, PictureBox albumArt)
         {
