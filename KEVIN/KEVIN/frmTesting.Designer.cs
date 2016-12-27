@@ -44,6 +44,8 @@
             this.lblTQIDV = new System.Windows.Forms.Label();
             this.lblSV = new System.Windows.Forms.Label();
             this.lbls = new System.Windows.Forms.Label();
+            this.lblRV = new System.Windows.Forms.Label();
+            this.lblR = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblT
@@ -176,11 +178,31 @@
             this.lbls.TabIndex = 13;
             this.lbls.Text = "Shuffle";
             // 
+            // lblRV
+            // 
+            this.lblRV.AutoSize = true;
+            this.lblRV.Location = new System.Drawing.Point(118, 100);
+            this.lblRV.Name = "lblRV";
+            this.lblRV.Size = new System.Drawing.Size(16, 13);
+            this.lblRV.TabIndex = 16;
+            this.lblRV.Text = "---";
+            // 
+            // lblR
+            // 
+            this.lblR.AutoSize = true;
+            this.lblR.Location = new System.Drawing.Point(12, 100);
+            this.lblR.Name = "lblR";
+            this.lblR.Size = new System.Drawing.Size(42, 13);
+            this.lblR.TabIndex = 15;
+            this.lblR.Text = "Repeat";
+            // 
             // frmTesting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(241, 150);
+            this.Controls.Add(this.lblRV);
+            this.Controls.Add(this.lblR);
             this.Controls.Add(this.lblSV);
             this.Controls.Add(this.lbls);
             this.Controls.Add(this.lblTQIDV);
@@ -223,5 +245,7 @@
         private System.Windows.Forms.Label lblTQIDV;
         private System.Windows.Forms.Label lblSV;
         private System.Windows.Forms.Label lbls;
+        private System.Windows.Forms.Label lblRV;
+        private System.Windows.Forms.Label lblR;
     }
 }

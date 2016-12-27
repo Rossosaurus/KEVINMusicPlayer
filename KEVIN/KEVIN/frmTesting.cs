@@ -38,6 +38,7 @@ namespace KEVIN
                         lblTV.Text = frmKEVINMain.Functions.Timer.ToString();
                         lblTQIDV.Text = frmKEVINMain.Functions.tempQueueID.ToString();
                         lblSV.Text = frmKEVINMain.Functions.shuffle.ToString();
+                        lblRV.Text = frmKEVINMain.Functions.repeat.ToString();
                     });
                 }
                 catch { }

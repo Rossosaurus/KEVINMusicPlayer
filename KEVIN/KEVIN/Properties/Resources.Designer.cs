@@ -363,6 +363,16 @@ namespace KEVIN.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap repeatSelected {
+            get {
+                object obj = ResourceManager.GetObject("repeatSelected", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Reverse_Album_fw___Copy {
             get {
                 object obj = ResourceManager.GetObject("Reverse_Album_fw___Copy", resourceCulture);

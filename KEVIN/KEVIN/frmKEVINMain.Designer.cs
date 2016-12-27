@@ -375,6 +375,7 @@
             this.btnRepeat.Size = new System.Drawing.Size(42, 45);
             this.btnRepeat.TabIndex = 8;
             this.btnRepeat.UseVisualStyleBackColor = false;
+            this.btnRepeat.Click += new System.EventHandler(this.btnRepeat_Click);
             // 
             // btnShuffle
             // 

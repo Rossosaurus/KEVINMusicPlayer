@@ -38,8 +38,6 @@ namespace KEVIN
             btnAddMusic.MouseLeave += new EventHandler(btnAddMusic_MouseLeave);
             btnSettings.MouseEnter += new EventHandler(btnSettings_MouseEnter);
             btnSettings.MouseLeave += new EventHandler(btnSettings_MouseLeave);
-            btnRepeat.MouseEnter += new EventHandler(btnRepeat_MouseEnter);
-            btnRepeat.MouseLeave += new EventHandler(btnRepeat_MouseLeave);
             this.Resize += new EventHandler(frmKEVINMain_Resize);
         }
 
@@ -267,17 +265,16 @@ namespace KEVIN
 
         private void btnRepeat_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void btnRepeat_MouseEnter(object sender, EventArgs e)
-        {
-            btnRepeat.BackgroundImage = Properties.Resources.repeatHover;
-        }
-
-        private void btnRepeat_MouseLeave(object sender, EventArgs e)
-        {
-            btnRepeat.BackgroundImage = Properties.Resources.repeat_fw;
+            if  (Functions.repeat == false)
+            {
+                Functions.repeat = true;
+                btnRepeat.BackgroundImage = Properties.Resources.repeatSelected;
+            }
+            else if (Functions.repeat == true)
+            {
+                Functions.repeat = false;
+                btnRepeat.BackgroundImage = Properties.Resources.repeat_fw;
+            }
         }
 
         private void btnAlbum_Click(object sender, EventArgs e)
@@ -420,13 +417,15 @@ namespace KEVIN
 
         private void bwPlayer_DoWork(object sender, DoWorkEventArgs e)
         {
+            string songLocation = "";
             while (true)
             {
-                if (Functions.Timer > Functions.SongLength && Functions.shuffle == false)
+                if (Functions.Timer > Functions.SongLength && Functions.shuffle == false && Functions.repeat == false)
                 {
                     Functions.refreshConnectionToDB();
                     if (Functions.currentQueueID == Functions.queueSize)
                     {
+                        MessageBox.Show("NORMAL");
                         Functions.Timer = 0;
                         mpPlayer.Stop();
                         Functions.openFirstQueueSong(lblCurrentlyPlaying, pbAlbumCover);
@@ -452,16 +451,15 @@ namespace KEVIN
                     Functions.refreshConnectionToDB();
                     MySqlCommand selectNextSong = new MySqlCommand("SELECT SongLocation FROM music WHERE SongID = " + nextMusicID, Functions.connect);
                     MySqlDataReader readNextSong = selectNextSong.ExecuteReader();
-                    string nextSongLocation = "";
                     while (readNextSong.Read())
                     {
-                        nextSongLocation = readNextSong.GetString(0).Replace("'", "\\");
+                        songLocation = readNextSong.GetString(0).Replace("'", "\\");
                     }
 
                     TagLib.File songDetails;
                     try
                     {
-                        songDetails = TagLib.File.Create(nextSongLocation);
+                        songDetails = TagLib.File.Create(songLocation);
                         Functions.SongLength = songDetails.Properties.Duration.TotalSeconds;
                         this.Invoke((MethodInvoker)delegate { lblCurrentlyPlaying.Text = songDetails.Tag.Title.ToString(); });
                         MemoryStream ms;
@@ -479,13 +477,23 @@ namespace KEVIN
                     }
                     catch { }
                     mpPlayer.Stop();
-                    mpPlayer.Open(nextSongLocation);
+                    mpPlayer.Open(songLocation);
                     mpPlayer.Play();
                     endOfCheck:;
                 }
-                else if ((Functions.Timer > Functions.SongLength && Functions.shuffle == true))
-                {                    
-                    string songLocation = "";
+                else if (Functions.Timer > Functions.SongLength && Functions.repeat == true)
+                {
+                    Functions.Timer = 0;
+                    MessageBox.Show("REPEAT");
+                    mpPlayer.Stop();
+                    mpPlayer.Open(songLocation);
+                    
+                    Functions.playing = true;
+                    mpPlayer.Play();
+                }
+                else if (Functions.Timer > Functions.SongLength && Functions.shuffle == true)
+                {
+                    MessageBox.Show("SHUFFLE");                   
                     Functions.refreshConnectionToDB();
                     MySqlCommand selectRandomRecord = new MySqlCommand("SELECT SongLocation FROM Music ORDER BY RAND() LIMIT 1", Functions.connect);
                     MySqlDataReader readRandomRecord = selectRandomRecord.ExecuteReader();
