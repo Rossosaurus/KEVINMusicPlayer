@@ -124,6 +124,7 @@
             this.btnSkipBackward.Size = new System.Drawing.Size(19, 45);
             this.btnSkipBackward.TabIndex = 5;
             this.btnSkipBackward.UseVisualStyleBackColor = false;
+            this.btnSkipBackward.Click += new System.EventHandler(this.btnSkipBackward_Click);
             // 
             // btnSkipForward
             // 

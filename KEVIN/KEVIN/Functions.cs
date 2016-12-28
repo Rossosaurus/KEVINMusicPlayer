@@ -42,6 +42,8 @@ namespace KEVIN
         public bool stop = false;
         public bool shuffle = false;
         public bool repeat = false;
+        public string currentlyPlaying = "";
+        public string previousSong = "";
 
         public void blankVoid()
         {
@@ -427,6 +429,7 @@ namespace KEVIN
                 albumArt.BackgroundImage = KEVIN.Properties.Resources.NoAlbumArt;
             }
             frmKEVINMain.mpPlayer.Open(songLocation);
+            currentlyPlaying = songLocation;
         }
     }
 }
