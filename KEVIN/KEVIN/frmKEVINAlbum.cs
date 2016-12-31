@@ -53,7 +53,37 @@ namespace KEVIN
 
         private void cmsRightClickSongs_Opening(object sender, CancelEventArgs e)
         {
-
+            addToPlaylistToolStripMenuItem.DropDownItems.Clear();
+            int playlistCount = 0;
+            int counter = 0;
+            ToolStripMenuItem[] playlistNames;
+            frmKEVINMain.Functions.refreshConnectionToDB();
+            MySqlCommand selectPlaylistCount = new MySqlCommand("SELECT COUNT(*) FROM playlistinfo", frmKEVINMain.Functions.connect);
+            MySqlDataReader readPlaylistCount = selectPlaylistCount.ExecuteReader();
+            while (readPlaylistCount.Read())
+            {
+                playlistCount = readPlaylistCount.GetInt16(0) + 1;
+            }
+            playlistNames = new ToolStripMenuItem[playlistCount];
+            frmKEVINMain.Functions.refreshConnectionToDB();
+            MySqlCommand selectPlaylists = new MySqlCommand("SELECT * FROM playlistinfo", frmKEVINMain.Functions.connect);
+            MySqlDataReader readPlaylists = selectPlaylists.ExecuteReader();
+            playlistNames[counter] = new ToolStripMenuItem();
+            playlistNames[counter].Name = "NewPlaylist";
+            playlistNames[counter].Text = "New Playlist";
+            playlistNames[counter].Click += (s, eventarg) => newPlaylistClick();
+            playlistNames[counter].Image = Properties.Resources.AddMusic_2_fw;
+            counter++;
+            while (readPlaylists.Read())
+            {
+                playlistNames[counter] = new ToolStripMenuItem();
+                playlistNames[counter].Name = readPlaylists.GetString(0);
+                playlistNames[counter].Text = readPlaylists.GetString(0);
+                playlistNames[counter].Click += (s, eventarg) => frmKEVINMain.Functions.addToPlaylist(readPlaylists.GetString(0), Convert.ToInt16(cmsRightClickSongs.Tag.ToString()));
+                playlistNames[counter].Image = Properties.Resources.AddMusic_2_fw;
+                counter++;
+            }            
+            addToPlaylistToolStripMenuItem.DropDownItems.AddRange(playlistNames);
         }
 
         private void addToQueueToolStripMenuItem_Click(object sender, EventArgs e)
@@ -63,7 +93,19 @@ namespace KEVIN
 
         private void playToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            frmKEVINMain.Functions.playSongofButton(cmsRightClickSongs.Tag.ToString(), cmsRightClickSongs);
+        }
+
+        public void newPlaylistClick()
+        {
+            frmKEVINCreatePlaylist createPlaylist = new frmKEVINCreatePlaylist();
+            createPlaylist.Tag = cmsRightClickSongs.Tag;
+            createPlaylist.Show();
+        }
+
+        public void deletePlaylistClick()
+        {
+
         }
     }
 }

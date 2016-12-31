@@ -41,6 +41,7 @@
             this.playToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addToQueueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addToPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlHeader.SuspendLayout();
             this.flpEverything.SuspendLayout();
             this.pnlMain.SuspendLayout();
@@ -142,9 +143,17 @@
             // 
             // addToPlaylistToolStripMenuItem
             // 
+            this.addToPlaylistToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newPlaylistToolStripMenuItem});
             this.addToPlaylistToolStripMenuItem.Name = "addToPlaylistToolStripMenuItem";
             this.addToPlaylistToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.addToPlaylistToolStripMenuItem.Text = "Add to Playlist";
+            // 
+            // newPlaylistToolStripMenuItem
+            // 
+            this.newPlaylistToolStripMenuItem.Name = "newPlaylistToolStripMenuItem";
+            this.newPlaylistToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newPlaylistToolStripMenuItem.Text = "New Playlist";
             // 
             // frmKEVINAlbum
             // 
@@ -179,5 +188,6 @@
         private System.Windows.Forms.ToolStripMenuItem playToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addToQueueToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addToPlaylistToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newPlaylistToolStripMenuItem;
     }
 }

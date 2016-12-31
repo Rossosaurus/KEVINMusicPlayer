@@ -60,6 +60,12 @@
             this.cmsQueueRightClick = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tlsPlay = new System.Windows.Forms.ToolStripMenuItem();
             this.tlsDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsAlbumsRightClick = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.playToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.shuffleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.wholePlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.flpPlaylists = new System.Windows.Forms.FlowLayoutPanel();
             this.cmsRightClickAlbums.SuspendLayout();
             this.tlpKEVINMain.SuspendLayout();
             this.tlpPlayerTopMenu.SuspendLayout();
@@ -69,7 +75,9 @@
             this.pnlMiddleBacking.SuspendLayout();
             this.pnlPlaying.SuspendLayout();
             this.tlpNoPlayingLayout.SuspendLayout();
+            this.pnlPlaylists.SuspendLayout();
             this.cmsQueueRightClick.SuspendLayout();
+            this.cmsAlbumsRightClick.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnPlay
@@ -97,12 +105,12 @@
             this.cmsRightClickAlbums.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem});
             this.cmsRightClickAlbums.Name = "cmsRightClickAlbums";
-            this.cmsRightClickAlbums.Size = new System.Drawing.Size(153, 48);
+            this.cmsRightClickAlbums.Size = new System.Drawing.Size(104, 26);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
@@ -415,8 +423,8 @@
             // pnlMiddleBacking
             // 
             this.pnlMiddleBacking.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlMiddleBacking.Controls.Add(this.pnlPlaying);
             this.pnlMiddleBacking.Controls.Add(this.pnlPlaylists);
+            this.pnlMiddleBacking.Controls.Add(this.pnlPlaying);
             this.pnlMiddleBacking.Controls.Add(this.flpAlbums);
             this.pnlMiddleBacking.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMiddleBacking.Location = new System.Drawing.Point(0, 41);
@@ -430,27 +438,25 @@
             this.pnlPlaying.BackgroundImage = global::KEVIN.Properties.Resources.Backing;
             this.pnlPlaying.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnlPlaying.Controls.Add(this.tlpNoPlayingLayout);
-            this.pnlPlaying.Location = new System.Drawing.Point(16, 0);
+            this.pnlPlaying.Location = new System.Drawing.Point(261, 3);
             this.pnlPlaying.Name = "pnlPlaying";
-            this.pnlPlaying.Size = new System.Drawing.Size(728, 426);
+            this.pnlPlaying.Size = new System.Drawing.Size(247, 197);
             this.pnlPlaying.TabIndex = 1;
             // 
             // tlpNoPlayingLayout
             // 
-            this.tlpNoPlayingLayout.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.tlpNoPlayingLayout.BackColor = System.Drawing.Color.Transparent;
             this.tlpNoPlayingLayout.ColumnCount = 2;
             this.tlpNoPlayingLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 77.38264F));
             this.tlpNoPlayingLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.61735F));
             this.tlpNoPlayingLayout.Controls.Add(this.flpQueue, 1, 0);
-            this.tlpNoPlayingLayout.Location = new System.Drawing.Point(3, 3);
+            this.tlpNoPlayingLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpNoPlayingLayout.Location = new System.Drawing.Point(0, 0);
             this.tlpNoPlayingLayout.Margin = new System.Windows.Forms.Padding(0);
             this.tlpNoPlayingLayout.Name = "tlpNoPlayingLayout";
             this.tlpNoPlayingLayout.RowCount = 1;
             this.tlpNoPlayingLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpNoPlayingLayout.Size = new System.Drawing.Size(722, 423);
+            this.tlpNoPlayingLayout.Size = new System.Drawing.Size(247, 197);
             this.tlpNoPlayingLayout.TabIndex = 0;
             // 
             // flpQueue
@@ -462,10 +468,10 @@
             this.flpQueue.AutoSize = true;
             this.flpQueue.BackgroundImage = global::KEVIN.Properties.Resources.queue_fw;
             this.flpQueue.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.flpQueue.Location = new System.Drawing.Point(558, 0);
+            this.flpQueue.Location = new System.Drawing.Point(191, 0);
             this.flpQueue.Margin = new System.Windows.Forms.Padding(0);
             this.flpQueue.Name = "flpQueue";
-            this.flpQueue.Size = new System.Drawing.Size(164, 423);
+            this.flpQueue.Size = new System.Drawing.Size(56, 197);
             this.flpQueue.TabIndex = 0;
             this.flpQueue.Paint += new System.Windows.Forms.PaintEventHandler(this.flpQueue_Paint);
             // 
@@ -473,9 +479,10 @@
             // 
             this.pnlPlaylists.BackgroundImage = global::KEVIN.Properties.Resources.Backing;
             this.pnlPlaylists.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlPlaylists.Location = new System.Drawing.Point(489, 3);
+            this.pnlPlaylists.Controls.Add(this.flpPlaylists);
+            this.pnlPlaylists.Location = new System.Drawing.Point(16, 3);
             this.pnlPlaylists.Name = "pnlPlaylists";
-            this.pnlPlaylists.Size = new System.Drawing.Size(236, 196);
+            this.pnlPlaylists.Size = new System.Drawing.Size(728, 423);
             this.pnlPlaylists.TabIndex = 2;
             this.pnlPlaylists.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlPlaylists_Paint);
             // 
@@ -519,6 +526,50 @@
             this.tlsDelete.Text = "Delete";
             this.tlsDelete.Click += new System.EventHandler(this.tlsDelete_Click);
             // 
+            // cmsAlbumsRightClick
+            // 
+            this.cmsAlbumsRightClick.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.playToolStripMenuItem,
+            this.shuffleToolStripMenuItem,
+            this.deleteToolStripMenuItem});
+            this.cmsAlbumsRightClick.Name = "cmsAlbumsRightClick";
+            this.cmsAlbumsRightClick.Size = new System.Drawing.Size(112, 70);
+            // 
+            // playToolStripMenuItem
+            // 
+            this.playToolStripMenuItem.Name = "playToolStripMenuItem";
+            this.playToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+            this.playToolStripMenuItem.Text = "Play";
+            // 
+            // shuffleToolStripMenuItem
+            // 
+            this.shuffleToolStripMenuItem.Name = "shuffleToolStripMenuItem";
+            this.shuffleToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+            this.shuffleToolStripMenuItem.Text = "Shuffle";
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.wholePlaylistToolStripMenuItem});
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            // 
+            // wholePlaylistToolStripMenuItem
+            // 
+            this.wholePlaylistToolStripMenuItem.Name = "wholePlaylistToolStripMenuItem";
+            this.wholePlaylistToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.wholePlaylistToolStripMenuItem.Text = "Whole Playlist";
+            // 
+            // flpPlaylists
+            // 
+            this.flpPlaylists.BackColor = System.Drawing.Color.Transparent;
+            this.flpPlaylists.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpPlaylists.Location = new System.Drawing.Point(0, 0);
+            this.flpPlaylists.Name = "flpPlaylists";
+            this.flpPlaylists.Size = new System.Drawing.Size(728, 423);
+            this.flpPlaylists.TabIndex = 0;
+            // 
             // frmKEVINMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -543,7 +594,9 @@
             this.pnlPlaying.ResumeLayout(false);
             this.tlpNoPlayingLayout.ResumeLayout(false);
             this.tlpNoPlayingLayout.PerformLayout();
+            this.pnlPlaylists.ResumeLayout(false);
             this.cmsQueueRightClick.ResumeLayout(false);
+            this.cmsAlbumsRightClick.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -579,6 +632,12 @@
         private System.Windows.Forms.ToolStripMenuItem tlsPlay;
         private System.Windows.Forms.ToolStripMenuItem tlsDelete;
         private System.Windows.Forms.TrackBar tbVolume;
+        private System.Windows.Forms.ContextMenuStrip cmsAlbumsRightClick;
+        private System.Windows.Forms.ToolStripMenuItem playToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem shuffleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem wholePlaylistToolStripMenuItem;
+        private System.Windows.Forms.FlowLayoutPanel flpPlaylists;
     }
 }
 

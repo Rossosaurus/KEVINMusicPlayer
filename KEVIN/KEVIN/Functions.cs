@@ -44,7 +44,8 @@ namespace KEVIN
         public bool repeat = false;
         public string currentlyPlaying = "";
         public string previousSong = "";
-
+        public string songToAddToPlaylist = "";
+        
         public void blankVoid()
         {
             //Placeholder for things
@@ -62,7 +63,7 @@ namespace KEVIN
             MySqlCommand createQueueTable = new MySqlCommand("CREATE TABLE IF NOT EXISTS Queue (QueueID INT(255), MusicID INT(255))", connect);
             createQueueTable.ExecuteNonQuery();
             refreshConnectionToDB();
-            MySqlCommand createControlsTable = new MySqlCommand("CREATE TABLE IF NOT EXISTS Controls (Control VARCHAR(100), State INT(255))", connect);
+            MySqlCommand createControlsTable = new MySqlCommand("CREATE TABLE IF NOT EXISTS PlaylistInfo (PlaylistName VARCHAR(1000))", connect);
             createControlsTable.ExecuteNonQuery();
             refreshConnectionToDB();
             MySqlCommand createAlbumsTable = new MySqlCommand("CREATE TABLE IF NOT EXISTS Albums (AlbumID INT(255) UNSIGNED AUTO_INCREMENT PRIMARY KEY, Album VARCHAR(1000), Artist VARCHAR(100), Genre VARCHAR(100))", connect);
@@ -335,6 +336,7 @@ namespace KEVIN
         public void mouseHoverCMSTag(ContextMenuStrip cms, Button b)
         {
             cms.Tag = b.Tag;
+           
         }
 
         public void createQueueButtons(FlowLayoutPanel queue, ContextMenuStrip cms)
@@ -430,6 +432,21 @@ namespace KEVIN
             }
             frmKEVINMain.mpPlayer.Open(songLocation);
             currentlyPlaying = songLocation;
+        }
+
+        public void addToPlaylist(string playlistName, int SongID)
+        {
+            refreshConnectionToDB();
+            int count = 0;
+            MySqlCommand recordCount = new MySqlCommand("SELECT COUNT(*) FROM " + playlistName, connect);
+            MySqlDataReader readRecordCount = recordCount.ExecuteReader();
+            while (readRecordCount.Read())
+            {
+                count = readRecordCount.GetInt16(0);
+            }
+            refreshConnectionToDB();
+            MySqlCommand addToPlaylist = new MySqlCommand("INSERT INTO " + playlistName + " (PlaylistID, SongID) VALUES (" + count + ", " + SongID + ")", connect);
+            addToPlaylist.ExecuteNonQuery();
         }
     }
 }
