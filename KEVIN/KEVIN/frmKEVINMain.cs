@@ -524,41 +524,6 @@ namespace KEVIN
             pbAlbumCover.BackColor = ColorTranslator.FromHtml("#444444");
         }
 
-        private void lblCurrentlyPlaying_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tlpKEVINMain_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void tlpPlayerBottom_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void lblTrackNo_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void flpSong_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void pnlPlaylists_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void flpQueue_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void bwTimer_DoWork(object sender, DoWorkEventArgs e)
         {
             Functions.Timer = 0;
@@ -715,7 +680,6 @@ namespace KEVIN
             MessageBox.Show(cmsQueueRightClick.Tag.ToString());
             string rowToDeleteSTR = cmsQueueRightClick.Tag.ToString();
             int rowToDelete= Convert.ToInt16(rowToDeleteSTR);
-            int temp;
             int numberOfRows = 1;
             MySqlCommand selectNOR = new MySqlCommand("SELECT COUNT(*) FROM Queue", Functions.connect);
             MySqlDataReader readNOR = selectNOR.ExecuteReader();
@@ -768,6 +732,65 @@ namespace KEVIN
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Functions.openAlbumForm(cmsRightClickAlbums.Tag.ToString());
+        }
+
+        private void cmsPlaylistsRightClick_Opening(object sender, CancelEventArgs e)
+        {
+            ToolStripMenuItem[] deletePlaylist = new ToolStripMenuItem[1];
+            ToolStripMenuItem[] playlists;
+            int count = 0;
+            string songName = "";
+            deletePlaylist[0] = new ToolStripMenuItem();
+            deletePlaylist[0].Text = "Delete Playlist";
+            deletePlaylist[0].Image = Properties.Resources.Close;
+            deletePlaylist[0].Click += (s, eventarg) => dropPlaylist(cmsPlaylistsRightClick.Tag.ToString());
+            deleteToolStripMenuItem.DropDownItems.Clear();
+            deleteToolStripMenuItem.DropDownItems.AddRange(deletePlaylist);
+            Functions.refreshConnectionToDB();
+            MySqlCommand countPlaylists = new MySqlCommand("SELECT COUNT(*) FROM " + cmsPlaylistsRightClick.Tag.ToString(), Functions.connect);
+            MySqlDataReader readCountPlaylists = countPlaylists.ExecuteReader();
+            while (readCountPlaylists.Read())
+            {
+                count = readCountPlaylists.GetInt16(0);
+            }
+            playlists = new ToolStripMenuItem[count];
+            Functions.refreshConnectionToDB();
+            MySqlCommand selectPlaylistSongs = new MySqlCommand("SELECT SongID FROM " + cmsPlaylistsRightClick.Tag.ToString(), Functions.connect);
+            MySqlDataReader readPlaylistSongs = selectPlaylistSongs.ExecuteReader();
+            count = 0;
+            while (readPlaylistSongs.Read())
+            {
+                Functions.connect2.Close();
+                Functions.connect2.Open();
+                MySqlCommand selectSong = new MySqlCommand("SELECT SongName FROM music WHERE SongID=" + readPlaylistSongs.GetString(0), Functions.connect2);
+                MySqlDataReader readSong = selectSong.ExecuteReader();
+                while (readSong.Read())
+                {
+                    songName = readSong.GetString(0);
+                }
+                playlists[count] = new ToolStripMenuItem();
+                playlists[count].Name = readPlaylistSongs.GetString(0).Replace("_", " ");
+                playlists[count].Text = songName;
+                playlists[count].Image = Properties.Resources.Close;
+                playlists[count].Click += (s, eventarg) => Functions.deleteSongFromPlaylist(this.Tag.ToString(), cmsPlaylistsRightClick.Tag.ToString());
+                playlists[count].Tag = readPlaylistSongs.GetString(0);
+                playlists[count].MouseEnter += (s, eventarg) =>
+                {
+                    this.Tag = playlists[count].Tag;
+                };                
+                count++;
+            }
+            deleteToolStripMenuItem.DropDownItems.AddRange(playlists);
+        }
+
+        public void dropPlaylist(string name)
+        {
+            Functions.refreshConnectionToDB();
+            MySqlCommand dropPlaylist = new MySqlCommand("DROP TABLE " + name, Functions.connect);
+            dropPlaylist.ExecuteNonQuery();
+            MySqlCommand deletePlaylist = new MySqlCommand("DELETE FROM playlistinfo WHERE PlaylistName = \"" + name + "\"", Functions.connect2);
+            deletePlaylist.ExecuteNonQuery();
+            Functions.refreshConnectionToDB();
         }
     }
 }

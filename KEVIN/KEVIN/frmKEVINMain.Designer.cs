@@ -180,7 +180,6 @@
             this.tlpKEVINMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.302325F));
             this.tlpKEVINMain.Size = new System.Drawing.Size(764, 516);
             this.tlpKEVINMain.TabIndex = 7;
-            this.tlpKEVINMain.Paint += new System.Windows.Forms.PaintEventHandler(this.tlpKEVINMain_Paint);
             // 
             // tlpPlayerTopMenu
             // 
@@ -350,7 +349,6 @@
             this.tlpPlayerBottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpPlayerBottom.Size = new System.Drawing.Size(764, 49);
             this.tlpPlayerBottom.TabIndex = 2;
-            this.tlpPlayerBottom.Paint += new System.Windows.Forms.PaintEventHandler(this.tlpPlayerBottom_Paint);
             // 
             // pbAlbumCover
             // 
@@ -418,7 +416,6 @@
             this.lblCurrentlyPlaying.Name = "lblCurrentlyPlaying";
             this.lblCurrentlyPlaying.Size = new System.Drawing.Size(512, 49);
             this.lblCurrentlyPlaying.TabIndex = 10;
-            this.lblCurrentlyPlaying.Click += new System.EventHandler(this.lblCurrentlyPlaying_Click);
             // 
             // pnlMiddleBacking
             // 
@@ -442,7 +439,6 @@
             this.pnlPlaylists.Name = "pnlPlaylists";
             this.pnlPlaylists.Size = new System.Drawing.Size(728, 423);
             this.pnlPlaylists.TabIndex = 2;
-            this.pnlPlaylists.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlPlaylists_Paint);
             // 
             // flpPlaylists
             // 
@@ -493,7 +489,6 @@
             this.flpQueue.Name = "flpQueue";
             this.flpQueue.Size = new System.Drawing.Size(56, 197);
             this.flpQueue.TabIndex = 0;
-            this.flpQueue.Paint += new System.Windows.Forms.PaintEventHandler(this.flpQueue_Paint);
             // 
             // flpAlbums
             // 
@@ -543,6 +538,7 @@
             this.deleteToolStripMenuItem});
             this.cmsPlaylistsRightClick.Name = "cmsAlbumsRightClick";
             this.cmsPlaylistsRightClick.Size = new System.Drawing.Size(153, 92);
+            this.cmsPlaylistsRightClick.Opening += new System.ComponentModel.CancelEventHandler(this.cmsPlaylistsRightClick_Opening);
             // 
             // playToolStripMenuItem
             // 

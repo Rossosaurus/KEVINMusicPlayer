@@ -26,11 +26,11 @@ namespace KEVIN
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(this.Tag.ToString());
             int temp = 0;
             bool playlistExists = false;
             frmKEVINMain.Functions.refreshConnectionToDB();
             MySqlCommand createPlaylistIfNotExist = new MySqlCommand("CREATE TABLE IF NOT EXISTS " + txtbxPlaylist.Text.Replace(" ", "_") + " (PlaylistID INT(255), SongID INT(255))", frmKEVINMain.Functions.connect);
+            createPlaylistIfNotExist.ExecuteNonQuery();
             MySqlCommand selectPlaylistInfo = new MySqlCommand("SELECT * FROM playlistinfo", frmKEVINMain.Functions.connect2);
             MySqlDataReader readPlaylistInfo = selectPlaylistInfo.ExecuteReader();
             while (readPlaylistInfo.Read())
@@ -55,7 +55,6 @@ namespace KEVIN
             }
             frmKEVINMain.Functions.refreshConnectionToDB();
             temp = temp + 1;
-            MessageBox.Show(temp.ToString());
             MySqlCommand appendSongToPlaylist = new MySqlCommand("INSERT INTO " + txtbxPlaylist.Text.Replace(" ", "_") + "(PlaylistID, SongID) VALUES (" + temp + ", " + this.Tag.ToString() + ")", frmKEVINMain.Functions.connect);
             appendSongToPlaylist.ExecuteNonQuery();
             frmKEVINMain.Functions.refreshConnectionToDB();

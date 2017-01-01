@@ -247,7 +247,7 @@ namespace KEVIN
         public Button attachToButton(Button button, Action method, ContextMenuStrip cms)
         {
             button.Click += (s, e) => method();
-            button.MouseHover += (s, e) => mouseHoverCMSTag(cms, button);
+            button.MouseEnter += (s, e) => mouseHoverCMSTag(cms, button);
             return button;
         }
 
@@ -446,7 +446,7 @@ namespace KEVIN
             MySqlDataReader readRecordCount = recordCount.ExecuteReader();
             while (readRecordCount.Read())
             {
-                count = readRecordCount.GetInt16(0);
+                count = readRecordCount.GetInt16(0) + 1;
             }
             refreshConnectionToDB();
             MySqlCommand addToPlaylist = new MySqlCommand("INSERT INTO " + playlistName + " (PlaylistID, SongID) VALUES (" + count + ", " + SongID + ")", connect);
@@ -498,7 +498,8 @@ namespace KEVIN
                 {
                     Name = playlistName,
                     ForeColor = Color.WhiteSmoke,
-                    Text = playlistName + "\n" + string.Join("\n", songCount),
+                    Text = playlistName.Replace("_", " ") + "\n" + string.Join("\n", songCount),
+                    Tag = playlistName,
                     Font = new Font("Trebuchet MS", 8),
                     TextAlign = ContentAlignment.MiddleCenter,
                     Size = new Size(135,135),
@@ -513,6 +514,13 @@ namespace KEVIN
                     ContextMenuStrip = cms,
                 }, () => playPlaylist(), cms));
             }
+        }
+
+        public void deleteSongFromPlaylist(string songID, string playlist)
+        {
+            refreshConnectionToDB();
+            MySqlCommand deleteSong = new MySqlCommand("DELETE FROM " + playlist + "WHERE SongID = " + songID, connect);
+            deleteSong.ExecuteNonQuery();
         }
     }
 }
