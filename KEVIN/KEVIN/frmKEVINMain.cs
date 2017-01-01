@@ -475,7 +475,7 @@ namespace KEVIN
             pnlPlaying.Hide();
             pnlPlaylists.Show();
             flpAlbums.Hide();
-
+            Functions.generatePlaylistButtons(flpPlaylists, cmsPlaylistsRightClick);
         }
 
         private void btnPlaylists_MouseEnter(object sender, EventArgs e)

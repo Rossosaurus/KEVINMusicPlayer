@@ -18,6 +18,7 @@ namespace KEVIN
         //Variables
         public MySqlConnection connect = new MySqlConnection("server=localhost; port=3306; userid=KEVIN; password=; database=kevin;");
         public MySqlConnection connect2 = new MySqlConnection("server=localhost; port=3306; userid=KEVIN; password=; database=kevin;");
+        public MySqlConnection connect3 = new MySqlConnection("server=localhost; port=3306; userid=KEVIN; password=; database=kevin;");
         string albumID;
         public bool albumExists = false;
         string album;
@@ -55,6 +56,7 @@ namespace KEVIN
         {
             connect.Open();
             connect2.Open();
+            connect3.Open();
         }
 
         public void createTables()
@@ -148,6 +150,8 @@ namespace KEVIN
             connect.Open();
             connect2.Close();
             connect2.Open();
+            connect3.Close();
+            connect3.Open();
         }
 
         public void openAlbumForm(string locationForLookup)
@@ -447,6 +451,68 @@ namespace KEVIN
             refreshConnectionToDB();
             MySqlCommand addToPlaylist = new MySqlCommand("INSERT INTO " + playlistName + " (PlaylistID, SongID) VALUES (" + count + ", " + SongID + ")", connect);
             addToPlaylist.ExecuteNonQuery();
+        }
+
+        public void playPlaylist()
+        {
+            return;
+        }
+
+        public void generatePlaylistButtons(FlowLayoutPanel flp,ContextMenuStrip cms)
+        {
+            string playlistName = "";
+            int count = 0;
+            string[] songCount;
+            flp.Controls.Clear();
+            refreshConnectionToDB();
+            MySqlCommand selectPlaylistInfo = new MySqlCommand("SELECT * FROM playlistinfo", connect);
+            MySqlDataReader readPlaylistInfo = selectPlaylistInfo.ExecuteReader();
+            while (readPlaylistInfo.Read())
+            {
+                playlistName = readPlaylistInfo.GetString(0);
+                MySqlCommand recordCount = new MySqlCommand("SELECT COUNT(*) FROM " + playlistName, connect2);
+                MySqlDataReader readRecordCount = recordCount.ExecuteReader();
+                while (readRecordCount.Read())
+                {
+                    count = readRecordCount.GetInt16(0);
+                }
+                songCount = new string[count];
+                count = 0;
+                connect2.Close();
+                connect2.Open();
+                MySqlCommand selectPlaylist = new MySqlCommand("SELECt * FROM " + playlistName, connect2);
+                MySqlDataReader readPlaylist = selectPlaylist.ExecuteReader();
+                while (readPlaylist.Read())
+                {
+                    connect3.Close();
+                    connect3.Open();                    
+                    MySqlCommand selectSong = new MySqlCommand("SELECT SongName,SongLength FROM music WHERE SongID = " + readPlaylist.GetString(1), connect3);
+                    MySqlDataReader readSong = selectSong.ExecuteReader();
+                    while (readSong.Read())
+                    {
+                        songCount[count] = readSong.GetString(0) + " | " + readSong.GetString(1).Remove(0,3).Remove(5,8);
+                        count++;
+                    }
+                }
+                flp.Controls.Add(attachToButton(new Button()
+                {
+                    Name = playlistName,
+                    ForeColor = Color.WhiteSmoke,
+                    Text = playlistName + "\n" + string.Join("\n", songCount),
+                    Font = new Font("Trebuchet MS", 8),
+                    TextAlign = ContentAlignment.MiddleCenter,
+                    Size = new Size(135,135),
+                    Anchor= AnchorStyles.Left | AnchorStyles.Top,
+                    FlatStyle = FlatStyle.Flat,
+                    FlatAppearance =
+                    {
+                        BorderColor = ColorTranslator.FromHtml("#3c3c3c"),
+                        BorderSize = 1
+                    },
+                    Margin = new Padding(5,5,5,5),
+                    ContextMenuStrip = cms,
+                }, () => playPlaylist(), cms));
+            }
         }
     }
 }

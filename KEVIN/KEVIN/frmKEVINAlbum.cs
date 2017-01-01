@@ -102,10 +102,5 @@ namespace KEVIN
             createPlaylist.Tag = cmsRightClickSongs.Tag;
             createPlaylist.Show();
         }
-
-        public void deletePlaylistClick()
-        {
-
-        }
     }
 }
