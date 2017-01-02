@@ -42,11 +42,32 @@ namespace KEVIN
             stopString = "close CurrentlyPlaying";
             mciSendString(stopString, null, 0, 0);
         }
-        public void Repeat(int timeLeft)
+
+        private const int APPCOMMAND_VOLUME_MUTE = 0x80000;
+        private const int APPCOMMAND_VOLUME_UP = 0xA0000;
+        private const int APPCOMMAND_VOLUME_DOWN = 0x90000;
+        private const int WM_APPCOMMAND = 0x319;
+
+        [DllImport("user32.dll")]
+        public static extern IntPtr SendMessageW(IntPtr hWnd, int Msg,
+            IntPtr wParam, IntPtr lParam);
+
+        public void Mute(frmKEVINMain frm)
         {
-            playString += " REPEAT";
-            System.Threading.Thread.Sleep(timeLeft * 1000);
-            mciSendString(playString, null, 0, 0);
+            SendMessageW(frm.Handle, WM_APPCOMMAND, frm.Handle,
+                (IntPtr)APPCOMMAND_VOLUME_MUTE);
+        }
+
+        public void DecVol(frmKEVINMain frm)
+        {
+            SendMessageW(frm.Handle, WM_APPCOMMAND, frm.Handle,
+                (IntPtr)APPCOMMAND_VOLUME_DOWN);
+        }
+
+        public void IncVol(frmKEVINMain frm)
+        { 
+            SendMessageW(frm.Handle, WM_APPCOMMAND, frm.Handle,
+                (IntPtr)APPCOMMAND_VOLUME_UP);
         }
     }
 }

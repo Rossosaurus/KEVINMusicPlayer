@@ -80,7 +80,6 @@ namespace KEVIN
             Functions.SongLength = 1;
 
             //Set colours via hex codes
-            tbVolume.BackColor = ColorTranslator.FromHtml("#3c3c3c");
             this.BackColor = ColorTranslator.FromHtml("#444444");
             btnPlay.BackColor = ColorTranslator.FromHtml("#3c3c3c");
             btnPlay.ForeColor = ColorTranslator.FromHtml("#3c3c3c");
@@ -792,6 +791,21 @@ namespace KEVIN
         private void playToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Functions.playPlaylist(cmsPlaylistsRightClick);
+        }
+
+        private void btnVDown_Click(object sender, EventArgs e)
+        {
+            mpPlayer.DecVol(this);
+        }
+
+        private void btnVUp_Click(object sender, EventArgs e)
+        {
+            mpPlayer.IncVol(this);
+        }
+
+        private void btnMute_Click(object sender, EventArgs e)
+        {
+            mpPlayer.Mute(this);
         }
     }
 }
