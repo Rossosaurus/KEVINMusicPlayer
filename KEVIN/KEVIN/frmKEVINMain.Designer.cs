@@ -63,7 +63,6 @@
             this.tlsDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsPlaylistsRightClick = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.playToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.shuffleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.wholePlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsRightClickAlbums.SuspendLayout();
@@ -534,10 +533,9 @@
             // 
             this.cmsPlaylistsRightClick.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.playToolStripMenuItem,
-            this.shuffleToolStripMenuItem,
             this.deleteToolStripMenuItem});
             this.cmsPlaylistsRightClick.Name = "cmsAlbumsRightClick";
-            this.cmsPlaylistsRightClick.Size = new System.Drawing.Size(153, 92);
+            this.cmsPlaylistsRightClick.Size = new System.Drawing.Size(153, 70);
             this.cmsPlaylistsRightClick.Opening += new System.ComponentModel.CancelEventHandler(this.cmsPlaylistsRightClick_Opening);
             // 
             // playToolStripMenuItem
@@ -545,12 +543,7 @@
             this.playToolStripMenuItem.Name = "playToolStripMenuItem";
             this.playToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.playToolStripMenuItem.Text = "Play";
-            // 
-            // shuffleToolStripMenuItem
-            // 
-            this.shuffleToolStripMenuItem.Name = "shuffleToolStripMenuItem";
-            this.shuffleToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.shuffleToolStripMenuItem.Text = "Shuffle";
+            this.playToolStripMenuItem.Click += new System.EventHandler(this.playToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
@@ -630,7 +623,6 @@
         private System.Windows.Forms.TrackBar tbVolume;
         private System.Windows.Forms.ContextMenuStrip cmsPlaylistsRightClick;
         private System.Windows.Forms.ToolStripMenuItem playToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem shuffleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem wholePlaylistToolStripMenuItem;
         private System.Windows.Forms.FlowLayoutPanel flpPlaylists;

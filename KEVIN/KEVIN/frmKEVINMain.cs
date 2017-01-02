@@ -788,6 +788,11 @@ namespace KEVIN
             deletePlaylist.ExecuteNonQuery();
             Functions.refreshConnectionToDB();
         }
+
+        private void playToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Functions.playPlaylist(cmsPlaylistsRightClick);
+        }
     }
 }
 

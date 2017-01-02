@@ -34,7 +34,7 @@ namespace KEVIN
         public string buttonGenre;
         string songLocationmpPlayer;
         string yetAnotherTemp = "";
-        public int currentQueueID = 0;
+        public int currentQueueID = 1;
         public int queueSize;
         public int tempQueueID = 0;
         public int Timer = 0;
@@ -455,7 +455,53 @@ namespace KEVIN
 
         public void playPlaylist(ContextMenuStrip cms)
         {
-            
+            refreshConnectionToDB();
+            int[] playlistSongIDs;
+            int count = 0;
+            int countplus = 0;
+            MySqlCommand countSongs = new MySqlCommand("SELECT COUNT(*) FROM " + cms.Tag.ToString(), connect);
+            MySqlDataReader readCountSongs = countSongs.ExecuteReader();
+            while (readCountSongs.Read())
+            {
+                count = readCountSongs.GetInt16(0);
+            }
+            playlistSongIDs = new int[count];
+            MySqlCommand selectPlaylist = new MySqlCommand("SELECT SongID FROM " + cms.Tag.ToString(), connect2);
+            MySqlDataReader readPlaylist = selectPlaylist.ExecuteReader();
+            count = 0;
+            while (readPlaylist.Read())
+            {
+                playlistSongIDs[count] = readPlaylist.GetInt16(0);
+                count++;
+            }
+            MySqlCommand deleteQueue = new MySqlCommand("DELETE FROM queue", connect3);
+            deleteQueue.ExecuteNonQuery();
+            count = 0;
+            refreshConnectionToDB();
+            while (count < playlistSongIDs.Length)
+            {
+                countplus = count + 1;
+                MySqlCommand appendQueue = new MySqlCommand("INSERT INTO queue(QueueID, MusicID) VALUES (" + countplus + ", " + playlistSongIDs[count] + ")", connect);
+                appendQueue.ExecuteNonQuery();
+                count++;
+            }
+            frmKEVINMain.mpPlayer.Stop();
+            Timer = 0;
+            playing = true;
+            queueSize = playlistSongIDs.Length;
+            currentQueueID = 1;
+            string songLocation = "";
+            refreshConnectionToDB();
+            MySqlCommand selectQueue1 = new MySqlCommand("SELECT SongLocation FROM music WHERE SongID = " + playlistSongIDs[0], connect);
+            MySqlDataReader readQueue1 = selectQueue1.ExecuteReader();
+            while (readQueue1.Read())
+            {
+                songLocation = readQueue1.GetString(0).Replace("'", "\\");
+            }
+            TagLib.File songLengthFromLocation = TagLib.File.Create(songLocation);
+            SongLength = songLengthFromLocation.Properties.Duration.TotalSeconds;
+            frmKEVINMain.mpPlayer.Open(songLocation);
+            frmKEVINMain.mpPlayer.Play();
         }
 
         public void generatePlaylistButtons(FlowLayoutPanel flp,ContextMenuStrip cms)
