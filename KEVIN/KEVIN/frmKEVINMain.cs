@@ -772,12 +772,8 @@ namespace KEVIN
                 playlists[count].Name = readPlaylistSongs.GetString(0).Replace("_", " ");
                 playlists[count].Text = songName;
                 playlists[count].Image = Properties.Resources.Close;
-                playlists[count].Click += (s, eventarg) => Functions.deleteSongFromPlaylist(this.Tag.ToString(), cmsPlaylistsRightClick.Tag.ToString());
-                playlists[count].Tag = readPlaylistSongs.GetString(0);
-                playlists[count].MouseEnter += (s, eventarg) =>
-                {
-                    this.Tag = playlists[count].Tag;
-                };                
+                playlists[count].Click += (s, eventarg) => Functions.deleteSongFromPlaylist(((ToolStripMenuItem)s).Tag.ToString(), cmsPlaylistsRightClick.Tag.ToString(), flpPlaylists, cmsPlaylistsRightClick);
+                playlists[count].Tag = readPlaylistSongs.GetString(0);                
                 count++;
             }
             deleteToolStripMenuItem.DropDownItems.AddRange(playlists);

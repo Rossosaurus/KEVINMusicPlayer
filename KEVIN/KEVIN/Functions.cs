@@ -453,9 +453,9 @@ namespace KEVIN
             addToPlaylist.ExecuteNonQuery();
         }
 
-        public void playPlaylist()
+        public void playPlaylist(ContextMenuStrip cms)
         {
-            return;
+            
         }
 
         public void generatePlaylistButtons(FlowLayoutPanel flp,ContextMenuStrip cms)
@@ -512,15 +512,17 @@ namespace KEVIN
                     },
                     Margin = new Padding(5,5,5,5),
                     ContextMenuStrip = cms,
-                }, () => playPlaylist(), cms));
+                }, () => playPlaylist(cms), cms));
             }
         }
 
-        public void deleteSongFromPlaylist(string songID, string playlist)
+        public void deleteSongFromPlaylist(string songID, string playlist, FlowLayoutPanel flp, ContextMenuStrip cms)
         {
             refreshConnectionToDB();
-            MySqlCommand deleteSong = new MySqlCommand("DELETE FROM " + playlist + "WHERE SongID = " + songID, connect);
+            MySqlCommand deleteSong = new MySqlCommand("DELETE FROM " + playlist + " WHERE SongID = " + songID, connect);
             deleteSong.ExecuteNonQuery();
+            flp.Controls.Clear();
+            generatePlaylistButtons(flp, cms);
         }
     }
 }
