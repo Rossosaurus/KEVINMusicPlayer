@@ -57,12 +57,6 @@
     <Compile Include="frmKEVINCreatePlaylist.Designer.cs">
       <DependentUpon>frmKEVINCreatePlaylist.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmKEVINMainPlaylist.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmKEVINMainPlaylist.Designer.cs">
-      <DependentUpon>frmKEVINMainPlaylist.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmTesting.cs">
       <SubType>Form</SubType>
     </Compile>
