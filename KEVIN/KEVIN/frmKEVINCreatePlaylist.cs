@@ -20,12 +20,14 @@ namespace KEVIN
 
         private void frmKEVINCreatePlaylist_Load(object sender, EventArgs e)
         {
+            //Format form controls
             this.BackColor = ColorTranslator.FromHtml("#3c3c3c");
             txtbxPlaylist.BackColor = ColorTranslator.FromHtml("#3c3c3c");
         }
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
+            //check if playlist trying to be created already exists
             int temp = 0;
             bool playlistExists = false;
             frmKEVINMain.Functions.refreshConnectionToDB();
@@ -40,12 +42,15 @@ namespace KEVIN
                     playlistExists = true;
                 }
             }
+            //if playlist does not exist
             if (playlistExists == false)
             {
+                //Create playlist table and record in playlistinfo
                 frmKEVINMain.Functions.refreshConnectionToDB();
                 MySqlCommand appendPlaylistExistance = new MySqlCommand("INSERT INTO playlistinfo(PlaylistName) VALUES (\"" + txtbxPlaylist.Text.Replace(" ", "_") + "\")", frmKEVINMain.Functions.connect);
                 appendPlaylistExistance.ExecuteNonQuery();
             }
+            //Get number of records in the playlist
             frmKEVINMain.Functions.refreshConnectionToDB();
             MySqlCommand selectTableSize = new MySqlCommand("SELECT COUNT(*) FROM " + txtbxPlaylist.Text.Replace(" ", "_"), frmKEVINMain.Functions.connect);
             MySqlDataReader readTableSize = selectTableSize.ExecuteReader();
@@ -55,17 +60,21 @@ namespace KEVIN
             }
             frmKEVINMain.Functions.refreshConnectionToDB();
             temp = temp + 1;
+            //Insert into the playlist table the songID that was used to generate this form
             MySqlCommand appendSongToPlaylist = new MySqlCommand("INSERT INTO " + txtbxPlaylist.Text.Replace(" ", "_") + "(PlaylistID, SongID) VALUES (" + temp + ", " + this.Tag.ToString() + ")", frmKEVINMain.Functions.connect);
             appendSongToPlaylist.ExecuteNonQuery();
             frmKEVINMain.Functions.refreshConnectionToDB();
+            //Close form
             this.Close();
         }
         private void txtbxPlaylist_KeyDown(object sender, KeyEventArgs e)
         {
+            //If enter is pressed emulate btnCreate being clicked
             if (e.KeyCode == Keys.Enter)
             {
                 btnCreate.PerformClick();
             }
+            //If escape is pressed close the form
             if (e.KeyCode == Keys.Escape)
             {
                 this.Close();

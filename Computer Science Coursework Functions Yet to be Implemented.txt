@@ -1,8 +1,0 @@
-Computer Science Coursework Functions that havent been implemented but thought about
-
-TimeSpan of song
-
-Background worker
-
-system.thread.halt(1000)
-timespan--

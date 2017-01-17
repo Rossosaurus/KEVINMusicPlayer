@@ -50,7 +50,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commented Code For Later Class.cs" />
     <Compile Include="frmKEVINCreatePlaylist.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,12 +75,6 @@
     <Compile Include="frmKEVINMain.Designer.cs">
       <DependentUpon>frmKEVINMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmKEVINSettings.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmKEVINSettings.Designer.cs">
-      <DependentUpon>frmKEVINSettings.cs</DependentUpon>
-    </Compile>
     <Compile Include="MusicPlayer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -93,9 +86,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmKEVINMain.resx">
       <DependentUpon>frmKEVINMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmKEVINSettings.resx">
-      <DependentUpon>frmKEVINSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTesting.resx">
       <DependentUpon>frmTesting.cs</DependentUpon>

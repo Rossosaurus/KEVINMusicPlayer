@@ -40,13 +40,13 @@
             this.tlpPlayerTopMenu = new System.Windows.Forms.TableLayoutPanel();
             this.btnAlbum = new System.Windows.Forms.Button();
             this.btnPlaylists = new System.Windows.Forms.Button();
-            this.btnSettings = new System.Windows.Forms.Button();
             this.btnPlayer = new System.Windows.Forms.Button();
             this.btnAddMusic = new System.Windows.Forms.Button();
             this.flpVolume = new System.Windows.Forms.FlowLayoutPanel();
+            this.tlpVolume = new System.Windows.Forms.TableLayoutPanel();
             this.btnMute = new System.Windows.Forms.Button();
-            this.btnVDown = new System.Windows.Forms.Button();
             this.btnVUp = new System.Windows.Forms.Button();
+            this.btnVDown = new System.Windows.Forms.Button();
             this.tlpPlayerBottom = new System.Windows.Forms.TableLayoutPanel();
             this.pbAlbumCover = new System.Windows.Forms.PictureBox();
             this.btnRepeat = new System.Windows.Forms.Button();
@@ -55,9 +55,9 @@
             this.pnlMiddleBacking = new System.Windows.Forms.Panel();
             this.pnlPlaylists = new System.Windows.Forms.Panel();
             this.flpPlaylists = new System.Windows.Forms.FlowLayoutPanel();
-            this.pnlPlaying = new System.Windows.Forms.Panel();
             this.tlpNoPlayingLayout = new System.Windows.Forms.TableLayoutPanel();
             this.flpQueue = new System.Windows.Forms.FlowLayoutPanel();
+            this.pnlPlaying = new System.Windows.Forms.Panel();
             this.flpAlbums = new System.Windows.Forms.FlowLayoutPanel();
             this.bwTimer = new System.ComponentModel.BackgroundWorker();
             this.bwPlayer = new System.ComponentModel.BackgroundWorker();
@@ -68,20 +68,19 @@
             this.playToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.wholePlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tlpVolume = new System.Windows.Forms.TableLayoutPanel();
             this.cmsRightClickAlbums.SuspendLayout();
             this.tlpKEVINMain.SuspendLayout();
             this.tlpPlayerTopMenu.SuspendLayout();
             this.flpVolume.SuspendLayout();
+            this.tlpVolume.SuspendLayout();
             this.tlpPlayerBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbAlbumCover)).BeginInit();
             this.pnlMiddleBacking.SuspendLayout();
             this.pnlPlaylists.SuspendLayout();
-            this.flpPlaylists.SuspendLayout();
             this.tlpNoPlayingLayout.SuspendLayout();
+            this.pnlPlaying.SuspendLayout();
             this.cmsQueueRightClick.SuspendLayout();
             this.cmsPlaylistsRightClick.SuspendLayout();
-            this.tlpVolume.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnPlay
@@ -202,10 +201,9 @@
             this.tlpPlayerTopMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tlpPlayerTopMenu.Controls.Add(this.btnAlbum, 1, 0);
             this.tlpPlayerTopMenu.Controls.Add(this.btnPlaylists, 3, 0);
-            this.tlpPlayerTopMenu.Controls.Add(this.btnSettings, 6, 0);
             this.tlpPlayerTopMenu.Controls.Add(this.btnPlayer, 2, 0);
-            this.tlpPlayerTopMenu.Controls.Add(this.btnAddMusic, 5, 0);
             this.tlpPlayerTopMenu.Controls.Add(this.flpVolume, 4, 0);
+            this.tlpPlayerTopMenu.Controls.Add(this.btnAddMusic, 6, 0);
             this.tlpPlayerTopMenu.Location = new System.Drawing.Point(3, 3);
             this.tlpPlayerTopMenu.Name = "tlpPlayerTopMenu";
             this.tlpPlayerTopMenu.Padding = new System.Windows.Forms.Padding(3);
@@ -254,26 +252,6 @@
             this.btnPlaylists.UseVisualStyleBackColor = false;
             this.btnPlaylists.Click += new System.EventHandler(this.btnPlaylists_Click);
             // 
-            // btnSettings
-            // 
-            this.btnSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSettings.BackColor = System.Drawing.Color.Transparent;
-            this.btnSettings.BackgroundImage = global::KEVIN.Properties.Resources.Settings_Logo_Coloured_fw;
-            this.btnSettings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnSettings.FlatAppearance.BorderSize = 0;
-            this.btnSettings.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnSettings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSettings.Location = new System.Drawing.Point(707, 3);
-            this.btnSettings.Margin = new System.Windows.Forms.Padding(0);
-            this.btnSettings.Name = "btnSettings";
-            this.btnSettings.Size = new System.Drawing.Size(34, 29);
-            this.btnSettings.TabIndex = 4;
-            this.btnSettings.UseVisualStyleBackColor = false;
-            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
-            // 
             // btnPlayer
             // 
             this.btnPlayer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -306,7 +284,7 @@
             this.btnAddMusic.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnAddMusic.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnAddMusic.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddMusic.Location = new System.Drawing.Point(673, 3);
+            this.btnAddMusic.Location = new System.Drawing.Point(707, 3);
             this.btnAddMusic.Margin = new System.Windows.Forms.Padding(0);
             this.btnAddMusic.Name = "btnAddMusic";
             this.btnAddMusic.Size = new System.Drawing.Size(34, 29);
@@ -328,6 +306,25 @@
             this.flpVolume.Size = new System.Drawing.Size(558, 29);
             this.flpVolume.TabIndex = 5;
             // 
+            // tlpVolume
+            // 
+            this.tlpVolume.AutoSize = true;
+            this.tlpVolume.ColumnCount = 3;
+            this.tlpVolume.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpVolume.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpVolume.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tlpVolume.Controls.Add(this.btnMute, 2, 0);
+            this.tlpVolume.Controls.Add(this.btnVUp, 0, 0);
+            this.tlpVolume.Controls.Add(this.btnVDown, 1, 0);
+            this.tlpVolume.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpVolume.Location = new System.Drawing.Point(436, 0);
+            this.tlpVolume.Margin = new System.Windows.Forms.Padding(0, 0, 10, 0);
+            this.tlpVolume.Name = "tlpVolume";
+            this.tlpVolume.RowCount = 1;
+            this.tlpVolume.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpVolume.Size = new System.Drawing.Size(112, 29);
+            this.tlpVolume.TabIndex = 4;
+            // 
             // btnMute
             // 
             this.btnMute.BackColor = System.Drawing.Color.Transparent;
@@ -345,25 +342,6 @@
             this.btnMute.TabIndex = 1;
             this.btnMute.UseVisualStyleBackColor = false;
             this.btnMute.Click += new System.EventHandler(this.btnMute_Click);
-            // 
-            // btnVDown
-            // 
-            this.btnVDown.AutoSize = true;
-            this.btnVDown.BackColor = System.Drawing.Color.Transparent;
-            this.btnVDown.BackgroundImage = global::KEVIN.Properties.Resources.Volume_down_02;
-            this.btnVDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnVDown.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnVDown.FlatAppearance.BorderSize = 0;
-            this.btnVDown.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnVDown.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnVDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVDown.Location = new System.Drawing.Point(46, 0);
-            this.btnVDown.Margin = new System.Windows.Forms.Padding(0);
-            this.btnVDown.Name = "btnVDown";
-            this.btnVDown.Size = new System.Drawing.Size(46, 29);
-            this.btnVDown.TabIndex = 2;
-            this.btnVDown.UseVisualStyleBackColor = false;
-            this.btnVDown.Click += new System.EventHandler(this.btnVDown_Click);
             // 
             // btnVUp
             // 
@@ -383,6 +361,25 @@
             this.btnVUp.TabIndex = 3;
             this.btnVUp.UseVisualStyleBackColor = false;
             this.btnVUp.Click += new System.EventHandler(this.btnVUp_Click);
+            // 
+            // btnVDown
+            // 
+            this.btnVDown.AutoSize = true;
+            this.btnVDown.BackColor = System.Drawing.Color.Transparent;
+            this.btnVDown.BackgroundImage = global::KEVIN.Properties.Resources.Volume_down_02;
+            this.btnVDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnVDown.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnVDown.FlatAppearance.BorderSize = 0;
+            this.btnVDown.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnVDown.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnVDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVDown.Location = new System.Drawing.Point(46, 0);
+            this.btnVDown.Margin = new System.Windows.Forms.Padding(0);
+            this.btnVDown.Name = "btnVDown";
+            this.btnVDown.Size = new System.Drawing.Size(46, 29);
+            this.btnVDown.TabIndex = 2;
+            this.btnVDown.UseVisualStyleBackColor = false;
+            this.btnVDown.Click += new System.EventHandler(this.btnVDown_Click);
             // 
             // tlpPlayerBottom
             // 
@@ -425,7 +422,6 @@
             this.pbAlbumCover.Size = new System.Drawing.Size(46, 49);
             this.pbAlbumCover.TabIndex = 7;
             this.pbAlbumCover.TabStop = false;
-            this.pbAlbumCover.Click += new System.EventHandler(this.pbAlbumCover_Click);
             // 
             // btnRepeat
             // 
@@ -506,22 +502,11 @@
             // flpPlaylists
             // 
             this.flpPlaylists.BackColor = System.Drawing.Color.Transparent;
-            this.flpPlaylists.Controls.Add(this.tlpNoPlayingLayout);
             this.flpPlaylists.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flpPlaylists.Location = new System.Drawing.Point(0, 0);
             this.flpPlaylists.Name = "flpPlaylists";
             this.flpPlaylists.Size = new System.Drawing.Size(728, 423);
             this.flpPlaylists.TabIndex = 0;
-            // 
-            // pnlPlaying
-            // 
-            this.pnlPlaying.BackgroundImage = global::KEVIN.Properties.Resources.Backing;
-            this.pnlPlaying.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlPlaying.Controls.Add(this.tlpNoPlayingLayout);
-            this.pnlPlaying.Location = new System.Drawing.Point(261, 3);
-            this.pnlPlaying.Name = "pnlPlaying";
-            this.pnlPlaying.Size = new System.Drawing.Size(247, 197);
-            this.pnlPlaying.TabIndex = 1;
             // 
             // tlpNoPlayingLayout
             // 
@@ -541,8 +526,8 @@
             // 
             // flpQueue
             // 
-            this.flpQueue.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.flpQueue.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.flpQueue.AutoScroll = true;
             this.flpQueue.AutoSize = true;
@@ -553,6 +538,16 @@
             this.flpQueue.Name = "flpQueue";
             this.flpQueue.Size = new System.Drawing.Size(56, 197);
             this.flpQueue.TabIndex = 0;
+            // 
+            // pnlPlaying
+            // 
+            this.pnlPlaying.BackgroundImage = global::KEVIN.Properties.Resources.Backing;
+            this.pnlPlaying.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnlPlaying.Controls.Add(this.tlpNoPlayingLayout);
+            this.pnlPlaying.Location = new System.Drawing.Point(261, 3);
+            this.pnlPlaying.Name = "pnlPlaying";
+            this.pnlPlaying.Size = new System.Drawing.Size(247, 197);
+            this.pnlPlaying.TabIndex = 1;
             // 
             // flpAlbums
             // 
@@ -624,25 +619,6 @@
             this.wholePlaylistToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.wholePlaylistToolStripMenuItem.Text = "Whole Playlist";
             // 
-            // tlpVolume
-            // 
-            this.tlpVolume.AutoSize = true;
-            this.tlpVolume.ColumnCount = 3;
-            this.tlpVolume.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpVolume.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpVolume.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpVolume.Controls.Add(this.btnMute, 2, 0);
-            this.tlpVolume.Controls.Add(this.btnVUp, 0, 0);
-            this.tlpVolume.Controls.Add(this.btnVDown, 1, 0);
-            this.tlpVolume.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpVolume.Location = new System.Drawing.Point(436, 0);
-            this.tlpVolume.Margin = new System.Windows.Forms.Padding(0, 0, 10, 0);
-            this.tlpVolume.Name = "tlpVolume";
-            this.tlpVolume.RowCount = 1;
-            this.tlpVolume.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpVolume.Size = new System.Drawing.Size(112, 29);
-            this.tlpVolume.TabIndex = 4;
-            // 
             // frmKEVINMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -660,17 +636,18 @@
             this.tlpPlayerTopMenu.ResumeLayout(false);
             this.flpVolume.ResumeLayout(false);
             this.flpVolume.PerformLayout();
+            this.tlpVolume.ResumeLayout(false);
+            this.tlpVolume.PerformLayout();
             this.tlpPlayerBottom.ResumeLayout(false);
             this.tlpPlayerBottom.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbAlbumCover)).EndInit();
             this.pnlMiddleBacking.ResumeLayout(false);
             this.pnlPlaylists.ResumeLayout(false);
-            this.flpPlaylists.ResumeLayout(false);
             this.tlpNoPlayingLayout.ResumeLayout(false);
+            this.tlpNoPlayingLayout.PerformLayout();
+            this.pnlPlaying.ResumeLayout(false);
             this.cmsQueueRightClick.ResumeLayout(false);
             this.cmsPlaylistsRightClick.ResumeLayout(false);
-            this.tlpVolume.ResumeLayout(false);
-            this.tlpVolume.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -691,7 +668,6 @@
         private System.Windows.Forms.Button btnAddMusic;
         private System.Windows.Forms.Button btnPlaylists;
         private System.Windows.Forms.Button btnPlayer;
-        private System.Windows.Forms.Button btnSettings;
         private System.Windows.Forms.Panel pnlMiddleBacking;
         private System.Windows.Forms.Panel pnlPlaylists;
         private System.Windows.Forms.Panel pnlPlaying;

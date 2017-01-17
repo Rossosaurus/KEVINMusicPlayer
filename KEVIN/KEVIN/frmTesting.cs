@@ -27,6 +27,7 @@ namespace KEVIN
         {
             while (true)
             {
+                //permenantly refresh debug variables for debugging
                 try
                 {
                     this.Invoke((MethodInvoker)delegate
